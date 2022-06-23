@@ -146,7 +146,7 @@ li a:hover {
 			var passwordObj  = document.querySelector("[name=password]");
 			var passwordchObj  = document.querySelector("[name=passwordch]");
 			var nicknameObj  = document.querySelector("[name=nickname]");
-			var birthObj  = document.querySelector("[name=birth]");
+			var ageObj  = document.querySelector("[name=age]");
 			var genderObj  = document.querySelector("[name=gender]");
 			var adressObj  = document.querySelector("[name=adress]");
 			if(passwordObj.value==""){
@@ -174,46 +174,11 @@ li a:hover {
 				nicknameObj.focus();
 				return;
 			}
-			if(birthObj.value==""){
-				alert("생년월일을 입력하세요.")
-				birthObj.focus();
+			if(ageObj.value==""){
+				alert("나이를 입력하세요.")
+				ageObj.focus();
 				return;
 			}
-			if(birthObj.value.length!=8){
-				alert("생년월일을 8자리로 입력하세요.")
-				birthObj.focus();
-				return;
-			}
-			var year = Number(birthObj.value.substr(0,4)); 
-			var month = Number(birthObj.value.substr(4,2));
-			var day = Number(birthObj.value.substr(6,2));
-		 	var today = new Date(); // 날자 변수 선언
-			var yearNow = today.getFullYear();
-			console.log(year);
-			 
-			     if (year<1900){
-			          alert("년도를 다시 입력하세요.");
-			          return;
-			     }
-			     if (month < 1 || month > 12) { 
-			          alert("달은 01월부터 12월까지 입력 가능합니다.");
-			          return;
-			     }
-			    if (day < 1 || day > 31) {
-			          alert("일은 1일부터 31일까지 입력가능합니다.");
-			          return;
-			     }
-			     if ((month==4 || month==6 || month==9 || month==11) && day==31) {
-			          alert(month+"월은 31일이 존재하지 않습니다.");
-			          return;
-			     }
-			     if (month == 2) {
-			          var isleap = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
-			          if (day>29 || (day==29 && !isleap)) {
-			               alert(year + "년 2월은  " + day + "일이 없습니다.");
-			               return;
-			          }
-			     }
 			if(genderObj.value==""){
 				alert("성별을 선택하세요.")
 				genderObj.focus();
@@ -231,18 +196,15 @@ li a:hover {
 	}
 </script>
 <%
-	int birth=0;
-	String birthS = request.getParameter("birth");
-	if(birthS!=null) birth = Integer.parseInt(birthS);
+	int age=0;
+	String ageS = request.getParameter("age");
+	if(ageS!=null) age = Integer.parseInt(ageS);
 	String id = request.getParameter("id"); if(id==null) id="";
 	String password = request.getParameter("password"); if(password==null) password="";
 	String passwordch = request.getParameter("passwordch"); if(passwordch==null) passwordch="";
 	String nickname = request.getParameter("nickname"); if(nickname==null) nickname="";
 	String gender = request.getParameter("gender"); if(gender==null) gender="";
 	String adress = request.getParameter("adress"); if(adress==null) adress="";
-	log("id:"+id); log("password:"+password); log("passwordch:"+passwordch);
-	log("nickname:"+nickname); log("birth:"+birth); 
-	log("gender:"+gender);log("adress:"+adress);
 %>
 <div class=divm>
 		<h1 align="center">회원가입</h1>
@@ -252,7 +214,7 @@ li a:hover {
 			비밀번호 <input class=inputtext type="password" name="password"><br>
 			비밀번호 확인 <input class=inputtext type="password" name="passwordch"><br>
 			닉네임 <input class=inputtext type="text" name="nickname"><br>
-			생년월일 <input class=inputtext type="text" name = "birth" value="생년월일 8자리"><br>
+			나이 <input class=inputtext type="text" name = "age"><br>
 			성별 <input type="radio" name="gender" style="font-size:17px; width:23px;height:23px">남자
 				<input type="radio" name="gender" style="font-size:17px; width:23px;height:23px">여자<br>
 			주소 <select class=inputtext name="adress">
