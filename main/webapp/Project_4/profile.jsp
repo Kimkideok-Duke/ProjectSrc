@@ -4,11 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>profile</title>
 <style>
 body {
 	margin: 0;  
 	color: rgb(94, 94, 94);
+	font-family: "Noto Sans KR", sans-serif;
 }
 #header {
 	position: fixed;

@@ -4,11 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>main</title>
 <style>
 body {
 	margin: 0;  
 	color: rgb(94, 94, 94);
+	font-family: "Noto Sans KR", sans-serif;
 }
 #header {
 	position: fixed;
@@ -100,8 +101,6 @@ li a:hover {
 	font-size: 20px;
 }
 
-
-
 #guard{
 	height: 125px;
 	width: 0;
@@ -145,6 +144,8 @@ li a:hover {
 	width: 100%;
 	height: 150px;
 	background-color: #D4DADE;
+	font-size: 8px;
+	padding: 20px 0 0 0;
 }
 
 
@@ -189,7 +190,6 @@ li a:hover {
 
 	<div class="contents-slider" onclick="location.href='/webapp/project/notice_list.jsp'">
 	<!-- 공지사항/이벤트 게시글 등록 후에 post 클래스에 onclick 추가로 변경  -->
-
 		<div class="post">1</div>
 		<div class="post">2</div>
 		<div class="post">3</div>
@@ -222,13 +222,13 @@ li a:hover {
 
  --><div class="contents-FAQ">FAQ</div>
 
-	<div id="footer">회사소개
+	<div id="footer"><h4>회사소개</h4>
 		<div class="footer1">
-			<h5>회사 | 이름</h5>
-			<h5>대표자 | @@@</h5>
-			<h5>이메일 | abc123@naver.com</h5>
-			<h5>주소 | address</h5>
-			<h6>COPYRIGHT (C)SAPPUN. ALL RIGHTS RESERVED.</h6>
+			<p>회사 | 이름</p>
+			<p>대표자 | @@@</p>
+			<p>이메일 | abc123@naver.com</p>
+			<p>주소 | address</p>
+			<p>COPYRIGHT (C)SAPPUN. ALL RIGHTS RESERVED.</p>
 		</div>
 			
 		<div class="footer2">
@@ -237,7 +237,6 @@ li a:hover {
 		
 	</div>
 	
-
 </body>
 </html>
 

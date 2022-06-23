@@ -8,12 +8,13 @@ String path=request.getContextPath();
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>matchingFail</title>
 
 <style>
 body {
 	margin: 0;  
 	color: rgb(94, 94, 94);
+	font-family: "Noto Sans KR", sans-serif;
 }
 #header {
 	position: fixed;
@@ -193,7 +194,7 @@ li a:hover {
 	<img src="matching3.JPG">
 </div>
 <div class="matching-button">
-	<input type="button" onclick="" name="success" value="홈으로 돌아가기">
+	<input type="button" onclick="main.jsp" name="success" value="홈으로 돌아가기">
 </div>
 </div>
 </body>

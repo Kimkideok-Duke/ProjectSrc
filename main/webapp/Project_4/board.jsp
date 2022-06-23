@@ -4,11 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>board</title>
 <style>
 body { 
 	margin: 0;  
 	color: rgb(94, 94, 94);
+	font-family: "Noto Sans KR", sans-serif;
 }
 #header {
 	position: fixed;
@@ -99,8 +100,6 @@ li a:hover {
 	font-size: 20px;
 }
 
-
-
 #guard{
 	height: 125px;
 	width: 0;
@@ -109,6 +108,7 @@ li a:hover {
 .board-table {
 	border-collapse: collapse;
 	width: 100%;
+	margin: 60px 0 0 0;
 }
 
 th, td {
@@ -116,12 +116,16 @@ th, td {
 	text-align: left;
 	border-bottom: 1px solid #DDD;
 	text-align: center;
+	font-family: "Noto Sans KR", sans-serif;
+}
+
+th{
+	background-color: rgb(220,220,220);
 }
 
 td{
 	font-size: 12px;
 }
-
 
 .contents:hover {
 	background-color: rgba(250, 80, 120, 0.1);
@@ -135,6 +139,29 @@ td{
 	left: 125px;
 	padding: 20px 0 100px 0;
 	color: rgb(94, 94, 94);
+}
+#board > h2{
+	position: absolute;
+	left: 50px;
+}
+.board-table{
+	margin: 100px 0 0 0;
+}
+
+.board-write-button{
+	position: absolute;
+	appearance: none;
+	font-family: "Noto Sans KR", sans-serif;
+	color: #FFFFFF;
+	font-size: 16px;
+	padding: 5px 10px;
+	cursor: pointer;
+	background-color: rgb(250, 80, 120);
+	border: none;
+	border-radius: 4px;
+	left: 880px;
+	z-index: 1;
+	bottom: 645px;
 }
 
 
@@ -171,24 +198,30 @@ td{
 
 <div id="board">
 <h2>자유게시판</h2>
-<table class="board-table">
-  <tr>
-    <th>No.</th>
-    <th>제목</th>
-    <th>작성자</th>
-    <th>작성일</th>
-    <th>조회수</th>
-  </tr>
-  <tr class="contents">
-    <td>1</td>
-    <td>안녕하세요</td>
-    <td>홍길동</td>
-    <td>2022-06-23</td>
-    <td>0</td>
-  </tr>
-  
-  </tr>
-</table>
+	<table class="board-table">
+	  <tr>
+	    <th>No.</th>
+	    <th>제목</th>
+	    <th>작성자</th>
+	    <th>작성일</th>
+	    <th>조회수</th>
+	  </tr>
+	  <tr class="contents">
+	    <td>1</td>
+	    <td>안녕하세요</td>
+	    <td>홍길동</td>
+	    <td>2022-06-23</td>
+	    <td>0</td>
+	  </tr>
+	</table>
+	
+	<div class="board-write">
+	<input class="board-write-button" type="button" name="write" value="글작성" onclick="location.href='board_write.jsp'">
+	</div>
 </div>
+
+
+
+
 </body>
 </html>

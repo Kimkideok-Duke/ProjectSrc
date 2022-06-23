@@ -4,11 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>matching</title>
 <style>
 body {
 	margin: 0;  
 	color: rgb(94, 94, 94);
+	font-family: "Noto Sans KR", sans-serif;
 }
 #header {
 	position: fixed;
@@ -112,27 +113,20 @@ li a:hover {
 	top: 180px;
 }
 
-.loc-checkbox{
+.loc-radio{
 	position: absolute;
 	left: 530px;
-	top: 380px;
+	top: 340px;
 }
-.loc-dropdown1{
-	display: inline-block;
-}
-
-.loc-dropdown2{
-	display: inline-block;
-}
-.loc-dropdown3{
-	display: inline-block;
-}
-
-
-.loc-dropdown{
+.loc-checkbox{
 	position: absolute;
-	left: 420px;
-	top: 440px;
+	text-align: center;
+	left: 360px;
+	top: 380px;
+	background-color: rgba(250, 80, 120, 0.2);
+	padding: 5px;
+	border: none;
+	border-radius: 10px;
 }
 
 .age-dropdown1{
@@ -145,8 +139,8 @@ li a:hover {
 
 .age-dropdown{
 	position: absolute;
-	left: 80px;
-	top: 60px;
+	left: 500px;
+	top: 500px;
 	z-index: 10;
 }
 
@@ -205,85 +199,11 @@ li a:hover {
 	<img src="matching1.JPG">
 </div>
 
-<form class="loc">
-	<div class="loc-checkbox">
+<form class="loc" name="form">
+	<div class="loc-radio">
 		 같은 지역 <input type="radio" name="loc" value="sameloc" checked>&nbsp;&nbsp;&nbsp;&nbsp;
 		 지역 선택<input type="radio" name="loc" value="selectloc">
 	</div>
-
-
-<div class="loc-dropdown">
-	<div class="loc-dropdown1">
-		지역 선택 <select name='loc'>
-		  <option value='' selected>-- 선택 --</option>
-		  <option value='seoul'>서울특별시</option>
-		  <option value='gyeonggido'>경기도</option>
-		  <option value='incheon'>인천광역시</option>
-		  <option value='busan'>부산광역시</option>
-		  <option value='daegu'>대구광역시</option>
-		  <option value='gwangju'>광주광역시</option>
-		  <option value='daejeon'>대전광역시</option>
-		  <option value='ulsan'>울산광역시</option>
-		  <option value='sejong'>세종특별자치시</option>
-		  <option value='gangwondo'>강원도</option>
-		  <option value='chungcheongnamdo'>충청남도</option>
-		  <option value='chungcheongbukdo'>충청북도</option>
-		  <option value='jeollanamdo'>전라남도</option>
-		  <option value='jeollabukdo'>전라북도</option>
-		  <option value='gyeongsangnamdo'>경상남도</option>
-		  <option value='gyeongsangbukdo'>경상북도</option>
-		  <option value='jejudo'>제주특별자치도</option>
-		</select>
-	</div>
-	
-	<div class="loc-dropdown2">
-		<select name='loc'>
-		  <option value='' selected>-- 선택 --</option>
-		  <option value='none'>선택안함</option>
-		  <option value='seoul'>서울특별시</option>
-		  <option value='gyeonggido'>경기도</option>
-		  <option value='incheon'>인천광역시</option>
-		  <option value='busan'>부산광역시</option>
-		  <option value='daegu'>대구광역시</option>
-		  <option value='gwangju'>광주광역시</option>
-		  <option value='daejeon'>대전광역시</option>
-		  <option value='ulsan'>울산광역시</option>
-		  <option value='sejong'>세종특별자치시</option>
-		  <option value='gangwondo'>강원도</option>
-		  <option value='chungcheongnamdo'>충청남도</option>
-		  <option value='chungcheongbukdo'>충청북도</option>
-		  <option value='jeollanamdo'>전라남도</option>
-		  <option value='jeollabukdo'>전라북도</option>
-		  <option value='gyeongsangnamdo'>경상남도</option>
-		  <option value='gyeongsangbukdo'>경상북도</option>
-		  <option value='jejudo'>제주특별자치도</option>
-		</select>
-	</div>
-	
-	<div class="loc-dropdown3">
-		<select name='loc'>
-		  <option value='' selected>-- 선택 --</option>
-		  <option value='none'>선택안함</option>
-		  <option value='seoul'>서울특별시</option>
-		  <option value='gyeonggido'>경기도</option>
-		  <option value='incheon'>인천광역시</option>
-		  <option value='busan'>부산광역시</option>
-		  <option value='daegu'>대구광역시</option>
-		  <option value='gwangju'>광주광역시</option>
-		  <option value='daejeon'>대전광역시</option>
-		  <option value='ulsan'>울산광역시</option>
-		  <option value='sejong'>세종특별자치시</option>
-		  <option value='gangwondo'>강원도</option>
-		  <option value='chungcheongnamdo'>충청남도</option>
-		  <option value='chungcheongbukdo'>충청북도</option>
-		  <option value='jeollanamdo'>전라남도</option>
-		  <option value='jeollabukdo'>전라북도</option>
-		  <option value='gyeongsangnamdo'>경상남도</option>
-		  <option value='gyeongsangbukdo'>경상북도</option>
-		  <option value='jejudo'>제주특별자치도</option>
-		</select>
-	</div>
-	
 	
 <div class="age-dropdown">
 	<div class="age-dropdown1">
@@ -318,12 +238,55 @@ li a:hover {
 		</select>
 	</div>
 </div>
+
+
+<div class="loc-checkbox">
+	서울특별시 <input type="checkbox" name="locCheck">
+	경기도 <input type="checkbox" name="locCheck">
+	인천광역시 <input type="checkbox" name="locCheck">
+	부산광역시 <input type="checkbox" name="locCheck">
+	대구광역시 <input type="checkbox" name="locCheck"><br>
+	광주광역시 <input type="checkbox" name="locCheck">
+	대전광역시 <input type="checkbox" name="locCheck">
+	울산광역시 <input type="checkbox" name="locCheck">
+	세종특별자치시 <input type="checkbox" name="locCheck">
+	강원도 <input type="checkbox" name="locCheck"><br>
+	충청남도 <input type="checkbox" name="locCheck">
+	충청북도 <input type="checkbox" name="locCheck">
+	전라남도 <input type="checkbox" name="locCheck">
+	전라북도 <input type="checkbox" name="locCheck"><br>
+	경상남도 <input type="checkbox" name="locCheck">
+	경상북도 <input type="checkbox" name="locCheck">
+	제주특별자치도 <input type="checkbox" name="locCheck">
 </div>
 </form>
 
 <div class="matching-button">
-	<input type="button" name="goMatching" value="매칭하기" >
+	<input type="button" name="goMatching" value="매칭하기" onclick="return locCheck();">
 </div>
 
+
+
+
+<script type="text/javascript">
+	function locCheck(){
+		var chk = document.form;
+		var checked_loc = 0;
+		
+		for (i=0;i<chk.elements.length;i++) 
+		{
+		if ((chk.elements[i].name == "locCheck") &&
+		(chk.elements[i].checked))
+			checked_loc++;
+		}
+		if (checked_loc == 0)
+		{
+		alert("하나 이상의 지역을 선택해야 합니다.")
+		return false;
+		}
+		return true;
+	}
+
+</script>
 </body>
 </html>

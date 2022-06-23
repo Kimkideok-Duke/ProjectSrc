@@ -4,10 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>login</title>
 
 <style>
-
+.body{
+	font-family: "Noto Sans KR", sans-serif;
+}
 .login-icon{
 	position: absolute;
 	left: 535px;
