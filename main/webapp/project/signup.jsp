@@ -179,12 +179,15 @@ li a:hover {
 				ageObj.focus();
 				return;
 			}
-			if(genderObj.value==""){
-				alert("성별을 선택하세요.")
-				genderObj.focus();
-				return;
-			}
-			if(adressObj.value==""){
+			if(document.getElementById('gender_Male').checked) {
+				
+				}else if(document.getElementById('gender_Female').checked) {
+					
+				}else{
+					alert("성별을 입력하세요.")
+					return;
+				}
+			if(adressObj.value=="현재 거주지를 선택해주세요"){
 				alert("거주지를 선택하세요.")
 				adressObj.focus();
 				return;
@@ -215,8 +218,8 @@ li a:hover {
 			비밀번호 확인 <input class=inputtext type="password" name="passwordch"><br>
 			닉네임 <input class=inputtext type="text" name="nickname"><br>
 			나이 <input class=inputtext type="text" name = "age"><br>
-			성별 <input type="radio" name="gender" style="font-size:17px; width:23px;height:23px">남자
-				<input type="radio" name="gender" style="font-size:17px; width:23px;height:23px">여자<br>
+			성별 <input type="radio" name="gender" id="gender_Male" style="font-size:17px; width:23px;height:23px">남자
+				<input type="radio" name="gender" id="gender_Female" style="font-size:17px; width:23px;height:23px">여자<br>
 			주소 <select class=inputtext name="adress">
 					<option>현재 거주지를 선택해주세요</option>
 					<option>강원도</option>
