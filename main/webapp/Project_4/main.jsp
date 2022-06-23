@@ -20,6 +20,7 @@ body {
 	background-color: #ffffff;
 	text-align: center;
 	margin: 0;
+	cursor: pointer;
 }
 
 .banner>img {
@@ -75,10 +76,10 @@ li a:hover {
 	color: rgb(220,220,220);
 	cursor: pointer;
 }
-.serach > span{
+.search > span{
 	position: fixed;
 	display: inline-block;
-	left: 280px;
+	left: 1190px;
 	font-size: 20px;
 	color: rgb(220,220,220);
 	cursor: pointer;
@@ -140,7 +141,7 @@ li a:hover {
 	background-color: #F56694;
 }
 
-.footer {
+#footer {
 	width: 100%;
 	height: 150px;
 	background-color: #D4DADE;
@@ -163,30 +164,31 @@ li a:hover {
 </head>
 <body>
 <div id="header">
-	<div class="banner" href="#">
+	<div class="banner" onclick="location.href='main.jsp'">
 		<img
 			src="VV.png">
 	</div><!--
  --><div class="navigationbar">
 		<ul>
-			<li><a href="#">홈</a></li>
-			<li><a href="#">매칭하기</a></li>
-			<li><a href="#">마이프로필</a></li>
-			<li><a href="#">커뮤니티</a></li>
-			<li><a href="#">이벤트</a></li>
+			<li><a href="main.jsp">홈</a></li>
+			<li><a href="matching.jsp">매칭하기</a></li>
+			<li><a href="profile.jsp">마이프로필</a></li>
+			<li><a href="board.jsp">자유게시판</a></li>
+			<li><a href="project/notice_list.jsp">커뮤니티</a></li>
 		</ul>
 	</div>
 	<div class="user-icon">
-		<span class="material-icons">account_circle</span>
+		<span class="material-icons" onclick="location.href='profile.jsp'">account_circle</span>
 	</div>
 	<div class="search">
-		<input class="serach-button" type="text" name="search" placeholder="Search"/>
+		<input class="serach-button" type="text" name="search" placeholder="search" />
 		<span class="material-icons">search</span>
 	</div>
 </div>
 <div id="guard"></div>
 
-	<div class="contents-slider">
+	<div class="contents-slider" onclick="location.href='/webapp/project/notice_list.jsp'">
+	<!-- 공지사항/이벤트 게시글 등록 후에 post 클래스에 onclick 추가로 변경  -->
 
 		<div class="post">1</div>
 		<div class="post">2</div>
@@ -220,8 +222,22 @@ li a:hover {
 
  --><div class="contents-FAQ">FAQ</div>
 
-	<div class="footer">회사소개
+	<div id="footer">회사소개
+		<div class="footer1">
+			<h5>회사 | 이름</h5>
+			<h5>대표자 | @@@</h5>
+			<h5>이메일 | abc123@naver.com</h5>
+			<h5>주소 | address</h5>
+			<h6>COPYRIGHT (C)SAPPUN. ALL RIGHTS RESERVED.</h6>
+		</div>
+			
+		<div class="footer2">
+		
+		</div>
+		
 	</div>
+	
+
 </body>
 </html>
 

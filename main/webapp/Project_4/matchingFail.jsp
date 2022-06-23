@@ -162,17 +162,17 @@ li a:hover {
 </head>
 <body>
 <div id="header">
-	<div class="banner" href="#">
+	<div class="banner" onclick="location.href='main.jsp'">
 		<img
-			src="VV.png">
+			src="VV.png" href="main.jsp">
 	</div><!--
  --><div class="navigationbar">
 		<ul>
-			<li><a href="#">홈</a></li>
-			<li><a href="#">매칭하기</a></li>
-			<li><a href="#">마이프로필</a></li>
-			<li><a href="#">커뮤니티</a></li>
-			<li><a href="#">이벤트</a></li>
+			<li><a href="main.jsp">홈</a></li>
+			<li><a href="matching.jsp">매칭하기</a></li>
+			<li><a href="profile.jsp">마이프로필</a></li>
+			<li><a href="board.jsp">자유게시판</a></li>
+			<li><a href="project/notice_list.jsp">커뮤니티</a></li>
 		</ul>
 	</div>
 	<div class="user-icon">

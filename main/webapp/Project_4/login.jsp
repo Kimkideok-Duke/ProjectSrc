@@ -7,129 +7,30 @@
 <title>Insert title here</title>
 
 <style>
-body {
-	margin: 0;
-	color: rgb(94, 94, 94);
-}
-#header {
-	position: fixed;
-	top: 0;
-	width: 100%;
-	z-index: 99999;
-}
-.banner {
-	background-color: #ffffff;
-	text-align: center;
-	margin: 0;
-}
 
-.banner>img {
-	width: 90px;
-	height:80px;
-}
-
-ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-	background-color: #ffffff;
-	font-size: 16px;
-}
-
-li {
-	float: left;
-	margin: 0 35px 0 0;
-}
-
-li a {
-	display: inline-block;
-	width: 100px;
-	color: rgb(94, 94, 94);
-	text-align: center;
-	padding: 10px 25px;
-	text-decoration: none;
-}
-
-li a:hover {
-	color: #ffffff;
-	background-color: rgba(250, 80, 120, 0.9);
-}
-
-.search .serach-button{
-	position: fixed;
-	padding: 5px 5px;
-	font-size: 8px;
-	border: solid; 
-	border-radius: 20px;
-	border-color: rgb(220,220,220);
-	width: 200px;
-}
-.search .serach-button:hover{
-	border-color: rgba(250, 80, 120, 0.9);
-}
-
-.user-icon > span{
-	position: fixed;
-	display: inline-block;
-	font-size: 38px;
-	color: rgb(220,220,220);
-	cursor: pointer;
-}
-.serach > span{
-	position: fixed;
-	display: inline-block;
-	left: 280px;
-	font-size: 20px;
-	color: rgb(220,220,220);
-	cursor: pointer;
-
-}
-
-.search{
-	position: fixed;
-	left: 1000px;
-	top: 90px;
-}
-
-.user-icon{
-	position: fixed;
-	top: 20px;
-	left: 1200px;
-	z-index: 10;
-	font-size: 20px;
-}
-
-
-#guard{
-	height: 125px;
-	width: 0;
-}
-
-/*
 .login-icon{
 	position: absolute;
-	left: 700px;
-	top: 300px;
-	height: 110px;
-	width: 100px
-
+	left: 535px;
+	top: 100px;
+	width: 60%;
 }
-*/
+
 .login-icon1{
 	position: absolute;
-	bottom: 190px;
+	bottom: 225px;
 	left: 470px;
+	color: rgb(220,220,220);
 }
 .login-icon2{
 	position: absolute;
-	bottom: 130px;
+	bottom: 165px;
 	left: 470px;
+	color: rgb(220,220,220);
 }
 
 #login{
 	position: absolute;
-	margin: 260px 0 0 500px;
+	margin: 330px 0 0 500px;
 	border-color: rgb(220,220,220);
 	border-radius: 4px;
 	border: 1px;
@@ -164,7 +65,7 @@ li a:hover {
 
 .join{
 	position: absolute;
-	padding:400px 0 80px 570px;
+	padding: 460px 0 280px 570px;
 }
 .join-button{
 	color: rgb(250, 80, 120);
@@ -184,39 +85,12 @@ li a:hover {
 <body>
 
 
-<div id="header">
-	<div class="banner">
-		<img
-			src="VV.png" href="#">
-	</div><!--
- --><div class="navigationbar">
-		<ul>
-			<li><a href="#">홈</a></li>
-			<li><a href="#">매칭하기</a></li>
-			<li><a href="#">마이프로필</a></li>
-			<li><a href="#">커뮤니티</a></li>
-			<li><a href="#">이벤트</a></li>
-		</ul>
-	</div>
-	<div class="user-icon">
-		<span class="material-icons">account_circle</span>
-	</div>
-	
-	<div class="search">
-		<input class="serach-button" type="text" name="search" placeholder="Search"/>
-		<span class="material-icons">search</span>
-	</div>
-</div>
 
-
-
-<div id="guard"></div>
-
-<!-- 
 <div class="login-icon">
 	<img src="VV.png">
 </div>
- -->
+
+ 
 <div class="login-icon1">
 <span class="material-icons">person</span>
 </div>
@@ -225,21 +99,21 @@ li a:hover {
 </div>
 
 <div id="login">
-	<form>
+	<form class="form" action="main.jsp">
 		<div class="login-input">
-		<input class="inputsize" type="text" name="id" placeholder="Username"/><br><br>
-		<input class="inputsize" type="password" name="pass" placeholder="Password"/><br>
+		<input class="inputsize" type="text" name="id" size="15" placeholder="Username"/><br><br>
+		<input class="inputsize" type="password" name="pass" size="15" placeholder="Password"/><br>
 		</div>
 		<div class="login-button" >
-			<input class="login-submit" type="button" value="LOGIN" style="WIDTH: 90px; HEIGHT: 36px"/>
+			<input class="login-submit" type="button" value="LOGIN" style="WIDTH: 90px; HEIGHT: 36px" onclick="Login()"/>
 		</div>
+
 	</form>
 </div>	
+	<div class="join">
+		<input class="join-button" type="button" value="JOIN" style="WIDTH: 120px; HEIGHT: 26px"/>
 
-<div class="join">
-<input class="join-button" type="button" value="JOIN" style="WIDTH: 120px; HEIGHT: 26px"/>
-
-</div>
-
+	</div>
+	
 </body>
 </html>

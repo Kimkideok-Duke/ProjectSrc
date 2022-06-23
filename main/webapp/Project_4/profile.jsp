@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <style>
 body {
-	margin: 0;
+	margin: 0;  
 	color: rgb(94, 94, 94);
 }
 #header {
@@ -20,6 +20,7 @@ body {
 	background-color: #ffffff;
 	text-align: center;
 	margin: 0;
+	cursor: pointer;
 }
 
 .banner>img {
@@ -55,10 +56,48 @@ li a:hover {
 	background-color: rgba(250, 80, 120, 0.9);
 }
 
-#header .user-icon{
-	position: absolute;
+.search .serach-button{
+	position: fixed;
+	padding: 5px 5px;
+	font-size: 8px;
+	border: solid; 
+	border-radius: 20px;
+	border-color: rgb(220,220,220);
+	width: 200px;
+}
+.search .serach-button:hover{
+	border-color: rgba(250, 80, 120, 0.9);
+}
+
+.user-icon > span{
+	position: fixed;
+	display: inline-block;
+	font-size: 38px;
+	color: rgb(220,220,220);
+	cursor: pointer;
+}
+.search > span{
+	position: fixed;
+	display: inline-block;
+	left: 1190px;
+	font-size: 20px;
+	color: rgb(220,220,220);
+	cursor: pointer;
+
+}
+
+.search{
+	position: fixed;
+	left: 1000px;
+	top: 90px;
+}
+
+.user-icon{
+	position: fixed;
 	top: 20px;
 	left: 1200px;
+	z-index: 10;
+	font-size: 20px;
 }
 
 #guard{
@@ -90,17 +129,17 @@ li a:hover {
 
 
 <<div id="header">
-	<div class="banner">
+	<div class="banner" onclick="location.href='main.jsp'">
 		<img
-			src="VV.png" href="#">
+			src="VV.png" href="main.jsp">
 	</div><!--
  --><div class="navigationbar">
 		<ul>
-			<li><a href="#">홈</a></li>
-			<li><a href="#">매칭하기</a></li>
-			<li><a href="#">마이프로필</a></li>
-			<li><a href="#">커뮤니티</a></li>
-			<li><a href="#">이벤트</a></li>
+			<li><a href="main.jsp">홈</a></li>
+			<li><a href="matching.jsp">매칭하기</a></li>
+			<li><a href="profile.jsp">마이프로필</a></li>
+			<li><a href="board.jsp">자유게시판</a></li>
+			<li><a href="project/notice_list.jsp">커뮤니티</a></li>
 		</ul>
 	</div>
 	<div class="user-icon">
