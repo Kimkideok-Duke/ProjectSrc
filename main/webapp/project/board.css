@@ -1,0 +1,15 @@
+@charset "UTF-8";
+table {
+    width: 70%;
+    border-top: 1px solid #444444;
+    border-collapse: collapse;
+	margin:auto;
+    
+  }
+  th, td {
+    border-bottom: 1px solid #444444;
+    padding: 10px;
+  }
+  th:first-child, td:first-child {
+    border-left: none;
+  }

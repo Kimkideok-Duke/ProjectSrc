@@ -1,0 +1,45 @@
+@charset "UTF-8";
+.divm{
+	margin: 50px;
+	text-align: center;
+}
+.loginform{
+	background-Color: #FFD5D2;
+	border: 3px solid #FFD5D2;
+	border-radius: 5px;
+	margin:auto;
+	width :700px;
+	line-height: 70px;
+	font-size: 20px;
+	height:550px;
+	padding :25px;
+
+}
+.nextform{
+	background-Color:#FF98A3;
+	border: 3px solid #FFD5D2;
+	border-radius: 5px;
+	text-align: center;
+	margin:auto;
+	width : 20%;
+	display : block;
+	font-size: 20px;
+}
+.nextform:hover{
+	background-Color:#FF848F;
+}
+.inputtext{
+	width:500px;
+	height:30px;
+	font-size: 20px;
+	size:50px;
+	color: rgb(94, 94, 94);
+}
+.overlap{
+	font-size: 15px;
+	width:100px;
+	height:30px;
+}
+.centerdiv{
+	display : block;
+}
