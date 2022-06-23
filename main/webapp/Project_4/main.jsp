@@ -228,7 +228,7 @@ li a:hover {
 			<p>대표자 | @@@</p>
 			<p>이메일 | abc123@naver.com</p>
 			<p>주소 | address</p>
-			<p>COPYRIGHT (C)SAPPUN. ALL RIGHTS RESERVED.</p>
+			<p>COPYRIGHT (C)MATCHING. ALL RIGHTS RESERVED.</p>
 		</div>
 			
 		<div class="footer2">

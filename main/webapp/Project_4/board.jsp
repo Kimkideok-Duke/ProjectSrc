@@ -216,7 +216,7 @@ td{
 	</table>
 	
 	<div class="board-write">
-	<input class="board-write-button" type="button" name="write" value="글작성" onclick="location.href='board_write.jsp'">
+	<input class="board-write-button" type="button" value="글작성" onclick="location.href='board_write.jsp'">
 	</div>
 </div>
 
