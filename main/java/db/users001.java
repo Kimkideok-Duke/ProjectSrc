@@ -1,6 +1,6 @@
 package db;
 
-public class users001 {
+public class Users001 {
 	private String userno;
 	private String id;
 	private String passwd;
@@ -13,13 +13,16 @@ public class users001 {
 	private String interest3;
 	private String interest4;
 	private String interest5;
+	private String loc1;
+	private String loc2;
+	private String loc3;
 
-	public users001() {
+	public Users001() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public users001(String nickname, String gender, int age, String loc,
+	public Users001(String nickname, String gender, int age, String loc,
 			String interest1, String interest2, String interest3, String interest4, String interest5) {
 		super();
 		this.nickname = nickname;
@@ -33,7 +36,7 @@ public class users001 {
 		this.interest5 = interest5;
 	}
 
-	public users001(String userno, String id, String passwd, String nickname, String gender, int age, String loc,
+	public Users001(String userno, String id, String passwd, String nickname, String gender, int age, String loc,
 			String interest1, String interest2, String interest3, String interest4, String interest5) {
 		super();
 		this.userno = userno;
@@ -48,6 +51,32 @@ public class users001 {
 		this.interest3 = interest3;
 		this.interest4 = interest4;
 		this.interest5 = interest5;
+	}
+	
+	public Users001(String userno, String id, String passwd, String nickname, String gender, int age, String loc,
+			String interest1, String interest2, String interest3, String interest4, String interest5, String loc1,
+			String loc2, String loc3) {
+		super();
+		this.userno = userno;
+		this.id = id;
+		this.passwd = passwd;
+		this.nickname = nickname;
+		this.gender = gender;
+		this.age = age;
+		this.loc = loc;
+		this.interest1 = interest1;
+		this.interest2 = interest2;
+		this.interest3 = interest3;
+		this.interest4 = interest4;
+		this.interest5 = interest5;
+		this.loc1 = loc1;
+		this.loc2 = loc2;
+		this.loc3 = loc3;
+	}
+
+	public Users001(String userno) {
+		super();
+		this.userno = userno;
 	}
 
 	public String getUserno() {
@@ -144,6 +173,30 @@ public class users001 {
 
 	public void setInterest5(String interest5) {
 		this.interest5 = interest5;
+	}
+
+	public String getLoc1() {
+		return loc1;
+	}
+
+	public void setLoc1(String loc1) {
+		this.loc1 = loc1;
+	}
+
+	public String getLoc2() {
+		return loc2;
+	}
+
+	public void setLoc2(String loc2) {
+		this.loc2 = loc2;
+	}
+
+	public String getLoc3() {
+		return loc3;
+	}
+
+	public void setLoc3(String loc3) {
+		this.loc3 = loc3;
 	}
 	
 }

@@ -74,6 +74,7 @@ CREATE TABLE notice (
 CREATE TABLE faq (
 	faqno varchar2(50) PRIMARY KEY,
 	question varchar2(500) NOT NULL,
+	faqdate date NOT NULL,
 	answer varchar2(4000) NOT NULL
 );
 		
@@ -123,6 +124,12 @@ where gender=?
 AND loc=?
 AND age >= ? AND age <= ?
 
+/**   로그인   **/
+SELECT userno
+FROM users001
+WHERE id = ?
+AND passwd = ?
+
 /**   회원 조회   **/
 SELECT nickname, gender, age, loc, interest1, interest2, interest3, interest4, interest5
 FROM users001
@@ -152,7 +159,7 @@ DELETE FROM users001
 WHERE userno = ?
 
 /**   공지 조회   **/
-SELECT nttitle, ntcontent
+SELECT nttitle, ntcontent, ntdate
 FROM notice
 WHERE noticeno = ?
 
@@ -171,13 +178,13 @@ DELETE FROM notice
 WHERE noticeno = ?
 
 /**   FAQ 조회   **/
-SELECT question, answer
+SELECT question, answer, faqdate
 FROM faq
 WHERE faqno = ?
 
 /**   FAQ 등록   **/
 INSERT INTO faq 
-values(?, ?, ?)
+values(?, ?, sysdate, ?)
 
 /**   FAQ 수정   **/
 UPDATE faq
@@ -190,13 +197,13 @@ DELETE FROM faq
 WHERE faqno = ?
 
 /**   리뷰 조회   **/
-SELECT rvtitle, rvcontent
+SELECT rvtitle, rvcontent, rvdate
 FROM review
 WHERE reviewno = ?
 
 /**   리뷰 등록   **/
 INSERT INTO review 
-values(?, ?, ?)
+values(?, ?, sysdate, ?)
 
 /**   리뷰 수정   **/
 UPDATE review

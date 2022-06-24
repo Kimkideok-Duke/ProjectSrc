@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import db.FAQ;
 import db.Notice;
 import db.Review;
-import db.users001;
+import db.Users001;
 
 public class PreDAO {
 
@@ -27,8 +27,8 @@ public class PreDAO {
 	
 	
 	/**   상대 매칭   **/
-	public ArrayList<users001> matching(String gender, String loc, int age_s, int age_e) {
-		ArrayList<users001> userList = new ArrayList<users001>();
+	public ArrayList<Users001> matching(String gender, String loc, int age_s, int age_e) {
+		ArrayList<Users001> userList = new ArrayList<Users001>();
 		try {
 			setConn();
 			String sql = "SELECT userno, nickname, gender, age, loc, "
@@ -45,7 +45,7 @@ public class PreDAO {
 			pstmt.setInt(4, age_e);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				userList.add(new users001(
+				userList.add(new Users001(
 						rs.getString("nickname"),
 						rs.getString("gender"),
 						rs.getInt("age"),
@@ -95,9 +95,58 @@ public class PreDAO {
 		return userList;
 	}
 
+	public Users001 logIn(String id, String passwd) {
+		Users001 user = new Users001();
+		try {
+			setConn();
+			String sql = "SELECT userno\n"
+					+ "FROM users001\n"
+					+ "WHERE id = ?\n"
+					+ "AND passwd = ?";
+			System.out.println(sql);
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, passwd);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				user = new Users001(
+							rs.getString("userno")
+						);
+			}
+			// 자원해제
+			rs.close();
+			pstmt.close();
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("DB 에러 : " + e.getMessage());
+			// commit 전에 예외가 발생하면 rollback 처리
+		} catch (Exception e) {
+			System.out.println("일반 예외 : " + e.getMessage());
+		} finally {
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			if(con!=null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		return user;
+	}
+
 	/**   회원 조회   **/
-	public ArrayList<users001> getuserList(String userno) {
-		ArrayList<users001> userList = new ArrayList<users001>();
+	public ArrayList<Users001> getuserList(String userno) {
+		ArrayList<Users001> userList = new ArrayList<Users001>();
 		try {
 			setConn();
 			String sql = "SELECT userno, nickname, gender, age, loc, "
@@ -109,7 +158,7 @@ public class PreDAO {
 			pstmt.setString(1, userno);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				userList.add(new users001(
+				userList.add(new Users001(
 						rs.getString("nickname"),
 						rs.getString("gender"),
 						rs.getInt("age"),
@@ -160,7 +209,7 @@ public class PreDAO {
 	}
 
 	/**  회원 등록  **/
-	public void insertUsers(users001 ins) {
+	public void insertUsers(Users001 ins) {
 		try {
 			setConn();
 			con.setAutoCommit(false);
@@ -210,7 +259,7 @@ public class PreDAO {
 	}
 	
 	/**   회원 정보 수정   **/
-	public void updateUsers(users001 ins) {
+	public void updateUsers(Users001 ins) {
 		try {
 			setConn();
 			con.setAutoCommit(false);
@@ -327,6 +376,7 @@ public class PreDAO {
 				notiList.add(new Notice(
 						rs.getString("noticeno"),
 						rs.getString("nttitle"),
+						rs.getDate("ntdate"),
 						rs.getString("ntcontent")
 					)
 				);
@@ -507,6 +557,7 @@ public class PreDAO {
 				faqList.add(new FAQ(
 						rs.getString("faqno"),
 						rs.getString("question"),
+						rs.getDate("faqdate"),
 						rs.getString("answer")
 					)
 				);
@@ -687,6 +738,8 @@ public class PreDAO {
 				revList.add(new Review(
 						rs.getString("reviewno"),
 						rs.getString("rvtitle"),
+						rs.getString("rvwriter"),
+						rs.getDate("rvdate"),
 						rs.getString("rvcontent")
 					)
 				);
