@@ -3,7 +3,7 @@ package db;
 public class Users001 {
 	private String userno;
 	private String id;
-	private String passwd;
+	private String password;
 	private String nickname;
 	private String gender;
 	private int age;
@@ -19,9 +19,19 @@ public class Users001 {
 
 	public Users001() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-
+	
+	// 회원가입1
+	public Users001(String id, String password, String nickname, String gender, int age, String loc) {
+		super();
+		this.id = id;
+		this.password = password;
+		this.nickname = nickname;
+		this.gender = gender;
+		this.age = age;
+		this.loc = loc;
+	}
+	
 	public Users001(String nickname, String gender, int age, String loc,
 			String interest1, String interest2, String interest3, String interest4, String interest5) {
 		super();
@@ -36,12 +46,12 @@ public class Users001 {
 		this.interest5 = interest5;
 	}
 
-	public Users001(String userno, String id, String passwd, String nickname, String gender, int age, String loc,
+	public Users001(String userno, String id, String password, String nickname, String gender, int age, String loc,
 			String interest1, String interest2, String interest3, String interest4, String interest5) {
 		super();
 		this.userno = userno;
 		this.id = id;
-		this.passwd = passwd;
+		this.password = password;
 		this.nickname = nickname;
 		this.gender = gender;
 		this.age = age;
@@ -53,13 +63,13 @@ public class Users001 {
 		this.interest5 = interest5;
 	}
 	
-	public Users001(String userno, String id, String passwd, String nickname, String gender, int age, String loc,
+	public Users001(String userno, String id, String password, String nickname, String gender, int age, String loc,
 			String interest1, String interest2, String interest3, String interest4, String interest5, String loc1,
 			String loc2, String loc3) {
 		super();
 		this.userno = userno;
 		this.id = id;
-		this.passwd = passwd;
+		this.password = password;
 		this.nickname = nickname;
 		this.gender = gender;
 		this.age = age;
@@ -95,12 +105,12 @@ public class Users001 {
 		this.id = id;
 	}
 
-	public String getPasswd() {
-		return passwd;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setPasswd(String passwd) {
-		this.passwd = passwd;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getNickname() {

@@ -2,26 +2,37 @@
 CREATE TABLE USERS001 (
     userno varchar2(50) PRIMARY KEY,
     id varchar2(50) NOT NULL UNIQUE,
-    passwd varchar2(50) NOT NULL,
+    password varchar2(50) NOT NULL,
     nickname varchar2(50) NOT NULL,
-    gender char(1) CONSTRAINT user_gender_ck CHECK (gender IN ('M', 'F')),
+    gender char(1),
     age NUMBER NOT NULL,
     loc varchar2(50) NOT NULL,
-    interest1 varchar2(50) NOT NULL,
-    interest2 varchar2(50) NOT NULL,
-    interest3 varchar2(50) NOT NULL,
-    interest4 varchar2(50) NOT NULL,
-    interest5 varchar2(50) NOT NULL
+    interest1 varchar2(50),
+    interest2 varchar2(50),
+    interest3 varchar2(50),
+    interest4 varchar2(50),
+    interest5 varchar2(50)
 );
-	
+
+DROP TABLE users001;
+SELECT * FROM users001;
+
 		-- 회원 테이블 - 회원번호 시퀀스
 		CREATE SEQUENCE seq_userno
 			INCREMENT BY 1
 			START WITH 1
 			MAXVALUE 9999;
 		
+		DROP SEQUENCE seq_userno;
+		
 		-- 회원 테이블 - 회원 가입 양식(insert)
 		INSERT INTO users001 values('U' || seq_userno.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+		INSERT INTO users001(userno, id, password, nickname, gender, age, loc) values('U' || seq_userno.nextval, 1, 1, 1, 1, 1, 1); -- 테스트용
+		-- 회원 테이블 - 회원 가입1 페이지 insert 양식
+		INSERT INTO users001(userno, id, password, nickname, gender, age, loc)
+			values('U' || seq_userno.nextval, ?, ?, ?, ?, ?, ?);
+		-- 회원 테이블 - 회원 가입1 페이지 중복확인 id 조회 양식
+		SELECT count(id) FROM users001 WHERE id = ?;
 		-- 회원 테이블 - 회원 정보 조회 양식(search)
 		SELECT *
 		FROM users001

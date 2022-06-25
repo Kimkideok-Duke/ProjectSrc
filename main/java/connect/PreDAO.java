@@ -13,7 +13,6 @@ public class PreDAO {
 	private Connection con;
 	private PreparedStatement pstmt;
 	private ResultSet rs;
-
 	public void setConn() throws SQLException {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -24,7 +23,6 @@ public class PreDAO {
 			System.out.println("클래스 에러 : " + e.getMessage());
 		}
 	}
-	
 	
 	/**   상대 매칭   **/
 	public ArrayList<Users001> matching(String gender, String loc, int age_s, int age_e) {
@@ -95,18 +93,18 @@ public class PreDAO {
 		return userList;
 	}
 
-	public Users001 logIn(String id, String passwd) {
+	public Users001 logIn(String id, String password) {
 		Users001 user = new Users001();
 		try {
 			setConn();
 			String sql = "SELECT userno\n"
 					+ "FROM users001\n"
 					+ "WHERE id = ?\n"
-					+ "AND passwd = ?";
+					+ "AND password = ?";
 			System.out.println(sql);
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
-			pstmt.setString(2, passwd);
+			pstmt.setString(2, password);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				user = new Users001(
@@ -145,7 +143,7 @@ public class PreDAO {
 	}
 
 	/**   회원 조회   **/
-	public ArrayList<Users001> getuserList(String userno) {
+	public ArrayList<Users001> getUserList(String userno) {
 		ArrayList<Users001> userList = new ArrayList<Users001>();
 		try {
 			setConn();
@@ -208,37 +206,36 @@ public class PreDAO {
 		return userList;
 	}
 
-	/**  회원 등록  **/
-	public void insertUsers(Users001 ins) {
+	
+	/**   중복 ID 조회   **/
+	public int getOverlapIDCnt(String id) {
+		int cnt = 0; // DB서버와 연결되지 않은 상태에선 cnt값이 바뀌지 않기 때문에 어떤 아이디라도 사용가능한 아이디라고 뜬다.
 		try {
 			setConn();
-			con.setAutoCommit(false);
-			String sql = "INSERT INTO users001 \n"
-					+ "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String sql = "SELECT count(id) FROM users001 WHERE id = ?";
+			System.out.println(sql);
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, ins.getUserno());
-			pstmt.setString(2, ins.getId());
-			pstmt.setString(3, ins.getPasswd());
-			pstmt.setString(4, ins.getNickname());
-			pstmt.setString(5, ins.getGender());
-			pstmt.setInt(6, ins.getAge());
-			pstmt.setString(7, ins.getLoc());
-			pstmt.setString(8, ins.getInterest1());
-			pstmt.setString(9, ins.getInterest2());
-			pstmt.setString(10, ins.getInterest3());
-			pstmt.setString(11, ins.getInterest4());
-			pstmt.setString(12, ins.getInterest5());
-			pstmt.executeUpdate();
-			con.commit();
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			rs.next();
+			cnt = rs.getInt("count(id)");
+			rs.close();
 			pstmt.close();
 			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			System.out.println("DB 에러 : " + e.getMessage());
-			// commit 전에 예외가 발생하면 rollback 처리
+			e.printStackTrace();
 		} catch (Exception e) {
 			System.out.println("일반 예외 : " + e.getMessage());
 		} finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 			if(pstmt!=null) {
 				try {
 					pstmt.close();
@@ -256,6 +253,53 @@ public class PreDAO {
 				}
 			}
 		}
+		return cnt;
+	}
+
+
+	/**  회원 등록  **/
+	public void insertUsers(Users001 ins) {
+		try {
+			setConn();
+			con.setAutoCommit(false);
+			String sql = "INSERT INTO users001(userno, id, password, nickname, gender, age, loc)\r\n"
+					+ "			values('U' || seq_userno.nextval, ?, ?, ?, ?, ?, ?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, ins.getId());
+			pstmt.setString(2, ins.getPassword());
+			pstmt.setString(3, ins.getNickname());
+			pstmt.setString(4, ins.getGender());
+			pstmt.setInt(5, ins.getAge());
+			pstmt.setString(6, ins.getLoc());
+			pstmt.executeUpdate();
+			con.commit();
+			pstmt.close();
+			con.close();
+		} catch (SQLException e) {
+			System.out.println("DB 에러 : " + e.getMessage());
+			try {
+				con.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		} catch (Exception e) {
+			System.out.println("일반 예외 : " + e.getMessage());
+		} finally {
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(con!=null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 	
 	/**   회원 정보 수정   **/
@@ -265,7 +309,7 @@ public class PreDAO {
 			con.setAutoCommit(false);
 			String sql = "UPDATE users001\n"
 					+ "    SET id = ?,\n"
-					+ "        passwd = ?,\n"
+					+ "        password = ?,\n"
 					+ "        nickname= ?, \n"
 					+ "        gender = ?,\n"
 					+ "        age = ?,\n"
@@ -280,7 +324,7 @@ public class PreDAO {
 			
 			
 			pstmt.setString(1, ins.getId());
-			pstmt.setString(2, ins.getPasswd());
+			pstmt.setString(2, ins.getPassword());
 			pstmt.setString(3, ins.getNickname());
 			pstmt.setString(4, ins.getGender());
 			pstmt.setInt(5, ins.getAge());
