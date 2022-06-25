@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"
+	import="connect.*"
+	import="db.*"
+	%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -99,23 +102,48 @@
 <div class="login-icon2">
 <span class="material-icons">vpn_key</span>
 </div>
+<%
+	
+	String id = request.getParameter("id");
+	if(id==null) id = "";
+	String passwd = request.getParameter("pass");
+	if(passwd==null) passwd="";
 
+	
+	if(!id.equals("")&&!passwd.equals("")){
+		Users001 user = new Users001();
+		PreDAO dao = new PreDAO();
+		user = dao.logIn(id, passwd);
+		System.out.println(user.getUserno());
+		String loginSuss="Y";
+		if(user.getUserno()!=null){
+			session.setAttribute("userno", user.getUserno());%>
+			<jsp:forward page="main.jsp"/>
+		<%}else {
+			loginSuss="N";
+		}
+	}
+%>
+<script>
+	var loginSuss = "<%=loginSuss%>";
+  	if(loginSuss=="N"){
+    	alert("아이디/비밀번호를 다시 확인해주세요!!")
+  	}
+</script>
 <div id="login">
 	<form class="form" action="main.jsp">
 		<div class="login-input">
-		<input class="inputsize" type="text" name="id" size="15" placeholder="Username"/><br><br>
-		<input class="inputsize" type="password" name="pass" size="15" placeholder="Password"/><br>
+			<input class="inputsize" type="text" name="id" size="15" placeholder="Username"/><br><br>
+			<input class="inputsize" type="password" name="pass" size="15" placeholder="Password"/><br>
 		</div>
 		<div class="login-button" >
-			<input class="login-submit" type="button" value="LOGIN" style="WIDTH: 90px; HEIGHT: 36px" onclick="Login()"/>
+			<input class="login-button" type="submit" value="LOGIN" style="WIDTH: 90px; HEIGHT: 36px"/>
 		</div>
 
 	</form>
 </div>	
 	<div class="join">
-		<input class="join-button" type="button" value="JOIN" style="WIDTH: 120px; HEIGHT: 26px"/>
-
+		<input class="joinBtn" type="button" value="JOIN" style="WIDTH: 120px; HEIGHT: 26px"/>
 	</div>
-	
 </body>
 </html>
