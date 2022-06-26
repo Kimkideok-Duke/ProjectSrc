@@ -57,6 +57,7 @@ SELECT * FROM users001;
 
 	
 -- 공지사항 테이블 (공지번호, 공지제목, 공지작성일자, 공지내용)
+DROP TABLE notice;
 CREATE TABLE notice (
 	noticeno varchar2(50) PRIMARY KEY,
 	nttitle varchar2(500) NOT NULL,
@@ -78,6 +79,7 @@ CREATE TABLE notice (
 			WHERE nttitle = '%' || ? || '%';
 		-- 공지사항 테이블 - 공지수정 양식(update)
 		-- 공지사항 테이블 - 공지삭제 양식(delete)
+SELECT * FROM notice;
 
 
 	

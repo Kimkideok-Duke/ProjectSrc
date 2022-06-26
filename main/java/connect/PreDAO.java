@@ -468,7 +468,7 @@ public class PreDAO {
 			setConn();
 			con.setAutoCommit(false);
 			String sql = "INSERT INTO notice \n"
-					+ "values(?, ?, ?, sysdate)";
+					+ "values(?, ?, sysdate, ?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, ins.getNoticeno());
 			pstmt.setString(2, ins.getNttitle());
