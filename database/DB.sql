@@ -15,7 +15,8 @@ CREATE TABLE USERS001 (
 );
 
 DROP TABLE users001;
-SELECT * FROM users001;
+SELECT * FROM users001 ORDER BY userno;
+SELECT count(id) idCnt FROM users001 WHERE id = 123;
 
 		-- 회원 테이블 - 회원번호 시퀀스
 		CREATE SEQUENCE seq_userno

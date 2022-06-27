@@ -17,7 +17,7 @@ String path = request.getContextPath();
 <link rel="stylesheet" href="signupcss.css">
 
 <script>
-	var ovl = 0;	// 중복확인 검사 통과하면 ovl = 1;
+	var ovl = false;	// 중복확인 검사 통과하면 ovl = true;
 
 	function check(){
 		if(confirm("등록하시겠습니까?")){
@@ -31,10 +31,10 @@ String path = request.getContextPath();
 
 			if(idObj.value==""){
 				alert("아이디를 입력하세요.")
-				ovl = 0;
+				ovl = false;
 				idObj.focus();
 				return;
-			}else if(ovl == 0){
+			}else if(ovl == false){
 				alert("아이디 중복확인을 해주세요.")
 				idObj.focus();
 				return;
@@ -99,32 +99,32 @@ String path = request.getContextPath();
 	String ageS = request.getParameter("age"); if(ageS!=null) age = Integer.parseInt(ageS);
 	String loc = request.getParameter("loc"); if(loc==null) loc="";
 	
-	int cnt = dao.getOverlapIDCnt(id);
-	
 	// 등록 처리를 위한 조건
 	String isIns = "N";
 	if(id != null && !id.trim().equals("")){
 		dao.insertUsers(new Users001(id, password, nickname, gender, age, loc));
 		isIns = "Y";
 	}
+
 %>	
-	var idCnt = <%=cnt%>;
+	
 	//ID는 별도로 중복 확인
 	function idcheck(){
 		var idObj = document.querySelector("[name=id]");
+		var idCnt = <%=dao.getOverlapIDCnt(idObj) %>;
 		if(idObj.value == ""){
 			alert("아이디를 입력하세요.")
-			ovl = 0;
+			ovl = false;
 			idObj.focus();
 			return;
 		}else if(idCnt != 0){
 			alert("이미 사용중인 아이디입니다. 다시 입력해주세요.")
-			ovl = 0;
+			ovl = false;
 			idObj.focus();
 			return;
 		}else{
 			alert("사용가능한 아이디입니다.")
-			ovl = 1;
+			ovl = true;
 		}
 	}
 
