@@ -12,6 +12,12 @@ public class Bbs {
    private int bbsAvailable;
    
    
+   
+public Bbs() {
+	super();
+	// TODO Auto-generated constructor stub
+}
+
 public int getBbsID() {
 	return bbsID;
 }
