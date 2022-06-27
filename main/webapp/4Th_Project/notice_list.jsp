@@ -118,18 +118,25 @@ li a:hover {
       </ul>
    </div>
 </div>
+<div id="guard"></div>
 <%
    String noticeno = request.getParameter()
+   String nttitle = request.getParameter("nttitle");
+	PreDAO dao = new PreDAO();
 %>
-<div id="guard"></div>
-<h2 align="center">공지사항</h2><br><br>
-<table>
-	<tr><th>No.</th><th>제목</th><th>작성일</th></tr>
-	<%
-		for(int cnt=1;cnt<=10;cnt++){%>
-		<tr><td><%=cnt %></td><td>제목</td><td>작성일</td></tr>	
-	<%}%>
 
-</table>
+<h2 align="center">공지사항</h2><br><br>
+	<div>
+	<input type="text" value="<%=nttitle%>" placeholder="제목을 입력해주세요.">
+	<input type="submit" value="검색">
+		<table>
+			<tr><th>No.</th><th>제목</th><th>작성일</th></tr>
+			<%
+			for(Notice not:dao.showNoticeInfo(new Notice(noticeno, nttitle, ntdate, ntcontent))){%>
+				<tr><td><%=not.noticeno() %></td><td><%=not.nttitle() %></td><td><%=not.ntate() %></td></tr>	
+			<%}%>
+	
+		</table>
+	</div>
 </body>
 </html>

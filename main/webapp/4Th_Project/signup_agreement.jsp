@@ -120,14 +120,27 @@ li a:hover {
 </div>
 <div id="guard"></div>
 <div class=divm>
-
+<script type="text/javascript">
+	function check(){
+		var agreeObj  = document.querySelector("[name=agree]");
+		log(agreeObj);
+		if(agreeObj.value=!"동의합니다."){
+			alert("약관에 동의해주세요.")
+			agreeObj.focus();
+			return;
+		}
+	}
+</script>
+<%
+	String agree = request.getParameter("agree"); if(agree==null) agree="";
+%>
 	<h1 align="center">회원가입</h1>
 <form class = loginform >
 	<h2 align="center">이용 약관</h2>
 	<iframe name="terms" width="100%" height="50%" src="terms.jsp"></iframe><br>
 	<input type="radio" name="agree" value="1">동의합니다.
 	<input type="radio" name="agree" value="2">동의하지 않습니다.<br>
-	<input class="nextform" type="button" name="join" value="가입하기">
+	<input class="nextform" type="button" name="join" value="가입하기" onclick="check()">
 </form>
 </div>
 </body>

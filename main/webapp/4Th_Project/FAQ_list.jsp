@@ -103,6 +103,10 @@ li a:hover {
 }
 </style>
 </head>
+<%
+	String nttitle = request.getParameter("nttitle");
+	PreDAO dao = new PreDAO();
+%>
 <body>
 <div id="header">
    <div class="banner" href="#">
@@ -122,11 +126,12 @@ li a:hover {
 <div id="guard"></div>
 <div class="divm">
 <h1 align="center">FAQ</h1><br><br>
+<input type="text" placeholder="질문을 입력해주세요.">
 <table>
 	<tr><th>No.</th><th>제목</th><th>작성일</th></tr>
 	<%
-		for(int cnt=1;cnt<=10;cnt++){%>
-		<tr><td><%=cnt %></td><td>제목</td><td>작성일</td></tr>	
+	for(FAQ faq:dao.showFAQInfo(new FAQ(faqno, question, faqdate, answer))){%>
+		<tr><td><%=faq.faqno() %></td><td><%= faq.question()%></td><td><%=faq.faqdate() %></td></tr>
 	<%}%>
 
 </table>
