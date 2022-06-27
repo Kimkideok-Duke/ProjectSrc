@@ -105,6 +105,7 @@ li a:hover {
 </head>
 <%
 	String nttitle = request.getParameter("nttitle");
+	if(nttitle==null) nttitle="";
 	PreDAO dao = new PreDAO();
 %>
 <body>
