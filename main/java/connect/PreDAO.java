@@ -17,7 +17,7 @@ public class PreDAO {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			String info = "jdbc:oracle:thin:@220.73.54.156:1521:xe";
-			con = DriverManager.getConnection(info, "project01", "1111");
+			con = DriverManager.getConnection("jdbc:oracle:thin:@220.73.54.156:1521:xe", "project01", "1111");
 			System.out.println("접속성공!!");
 		} catch (ClassNotFoundException e) {
 			System.out.println("클래스 에러 : " + e.getMessage());

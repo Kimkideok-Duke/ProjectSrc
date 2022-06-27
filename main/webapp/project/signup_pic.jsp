@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원가입2</title>
 <link rel="stylesheet" href="signupcss.css">
 </head>
 <style>
@@ -109,6 +109,59 @@ li a:hover {
 	function goInsertPage(){
 		location.href="signup_interest.jsp";
 	}
+<%--
+	function showImage() {
+	    var newImage = document.getElementById('image-show').lastElementChild;
+	    newImage.style.visibility = "visible";
+	    
+	    document.getElementById('image-upload').style.visibility = 'hidden';
+
+	    document.getElementById('fileName').textContent = null;     //기존 파일 이름 지우기
+	}
+
+
+	function loadFile(input) {
+	    var file = input.files[0];
+
+	    var name = document.getElementById('fileName');
+	    name.textContent = file.name;
+
+	    var newImage = document.createElement("img");
+	    newImage.setAttribute("class", 'img');
+
+	    newImage.src = URL.createObjectURL(file);   
+
+	    newImage.style.width = "70%";
+	    newImage.style.height = "70%";
+	    newImage.style.visibility = "hidden";   //버튼을 누르기 전까지는 이미지 숨기기
+	    newImage.style.objectFit = "contain";
+
+	    var container = document.getElementById('image-show');
+	    container.appendChild(newImage);
+	};
+--%>
+	function loadFile(input) {
+	    var file = input.files[0];	//선택된 파일 가져오기
+
+	  	//새로운 이미지 div 추가
+	    var newImage = document.createElement("img");
+	    newImage.setAttribute("class", 'img');
+
+	    //이미지 source 가져오기
+	    newImage.src = URL.createObjectURL(file);   
+
+	    newImage.style.width = "70%";
+	    newImage.style.height = "70%";
+	    newImage.style.visibility = "visible";
+		empty.style.width = "0";
+		empty.style.height = "0";
+		uploadtext.style.visibility = "hidden";
+
+	    //이미지를 image-show div에 추가
+	    var container = document.getElementById('image-show');
+	    container.appendChild(newImage);
+	};
+
 </script>
 <body>
 <div id="header">
@@ -127,14 +180,22 @@ li a:hover {
    </div>
 </div>
 <div id="guard"></div>
-<div class=divm>
+
+
+<div class="divm">
 	<h1 align="center">회원가입</h1>
-	<form class=loginform>
-		<h2 align="center">사진을 업로드 해 주세요.</h2>
-    	<input type="file" style="display:none">
-    	<img src="./image_uplod.png" width="100" height="100"/>
-    	<input class=nextform type="button" value="등록하기" onclick="goInsertPage()">
-    </form>	
+	<form class=loginform method="post" enctype="multipart/form-data">
+		<h2 align="center" id="uploadtext">사진을 업로드 해 주세요.</h2>
+		<div class="image-show" id="image-show"></div>
+			<label for="chooseFile">
+				<img src="./image_uplod.png" id="empty" width="100" height="100"/><br>
+			</label>
+		<input type="file" id="chooseFile" name="chooseFile" accept="image/*" onchange="loadFile(this)">
+		<input class="nextform" type="button" value="등록하기" onclick="goInsertPage()">
+	</form>
 </div>
+
 </body>
 </html>
+
+
