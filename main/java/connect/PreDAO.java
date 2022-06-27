@@ -212,13 +212,14 @@ public class PreDAO {
 		int cnt = 0; // DB서버와 연결되지 않은 상태에선 cnt값이 바뀌지 않기 때문에 어떤 아이디라도 사용가능한 아이디라고 뜬다.
 		try {
 			setConn();
-			String sql = "SELECT count(id) FROM users001 WHERE id = ?";
+			String sql = "SELECT count(id) idCnt FROM users001 WHERE id = ?";
 			System.out.println(sql);
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			rs.next();
-			cnt = rs.getInt("count(id)");
+			cnt = rs.getInt("idCnt");
+			System.out.println(cnt);
 			rs.close();
 			pstmt.close();
 			con.close();
@@ -335,6 +336,56 @@ public class PreDAO {
 			pstmt.setString(10, ins.getInterest4());
 			pstmt.setString(11, ins.getInterest5());
 			pstmt.setString(12, ins.getUserno());
+			pstmt.executeUpdate();
+			con.commit();
+			pstmt.close();
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("DB 에러 : " + e.getMessage());
+			// commit 전에 예외가 발생하면 rollback 처리
+		} catch (Exception e) {
+			System.out.println("일반 예외 : " + e.getMessage());
+		} finally {
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			if(con!=null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
+	/**   회원 가입3 관심사 추가 수정   **/
+	public void updateUsersInterest(Users001 ins) {
+		try {
+			setConn();
+			con.setAutoCommit(false);
+			String sql = "UPDATE users001\n"
+					+ "    SET interest1 = ?,\n"
+					+ "        interest2 = ?,\n"
+					+ "        interest3 = ?,\n"
+					+ "        interest4 = ?,\n"
+					+ "        interest5 = ?\n"
+					+ "WHERE id = ?";
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, ins.getInterest1());
+			pstmt.setString(2, ins.getInterest2());
+			pstmt.setString(3, ins.getInterest3());
+			pstmt.setString(4, ins.getInterest4());
+			pstmt.setString(5, ins.getInterest5());
+			pstmt.setString(6, ins.getId());
 			pstmt.executeUpdate();
 			con.commit();
 			pstmt.close();

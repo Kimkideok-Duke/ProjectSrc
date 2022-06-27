@@ -259,8 +259,8 @@ li a:hover {
 			비밀번호 <input class=inputtext type="password" name="password"><br>
 			비밀번호 확인 <input class=inputtext type="password" name="passwordch"><br>
 			닉네임 <input class=inputtext type="text" name="nickname"><br>
-			성별 <input type="radio" name="gender" id="gender_Male" style="font-size:17px; width:23px;height:23px">남자
-				<input type="radio" name="gender" id="gender_Female" style="font-size:17px; width:23px;height:23px">여자<br>
+			성별 <input type="radio" name="gender" id="gender_Male" style="font-size:17px; width:23px;height:23px" value="M">남자
+				<input type="radio" name="gender" id="gender_Female" style="font-size:17px; width:23px;height:23px" value="W">여자<br>
 			나이 <input class=inputtext type="text" name = "age"><br>
 			주소 <select class=inputtext name="loc">
 					<option>현재 거주지를 선택해주세요</option>
