@@ -106,10 +106,21 @@ li a:hover {
 }
 </style>
 <script type="text/javascript">
-	function goInsertPage(){
-		location.href="signup_interest.jsp";
+	// 이미지 한장 업로드 유효성 검사
+	function check(){
+		var file1Obj  = document.querySelector("[name=file1]");
+		if(file1Obj.value==""){
+			alert("이미지를 업로드해주세요")
+			file1Obj.focus();
+			return;
+		}else{
+			location.href="signup_interest.jsp"
+		}	
 	}
 </script>
+<%
+	String file1 = request.getParameter("file1"); if(file1==null) file1="";
+%>
 <body>
 <div id="header">
    <div class="banner" href="#">
@@ -131,9 +142,13 @@ li a:hover {
 	<h1 align="center">회원가입</h1>
 	<form class=loginform>
 		<h2 align="center">사진을 업로드 해 주세요.</h2>
-    	<input type="file" style="display:none">
-    	<img src="./image_uplod.png" width="100" height="100"/>
-    	<input class=nextform type="button" value="등록하기" onclick="goInsertPage()">
+		<%-- 첨부된 이미지 클릭으로 이미지 파일업로드 (이미지파일만) --%> 
+    	<input type=file name='file1' accept="image/*" style='display: none;'> 
+		<img src="./image_uplod.png" width = 200px height = 200px 
+		onclick='document.all.file1.click(); document.all.file2.value=document.all.file1.value'> 
+    	
+  	
+    	<input class=nextform type="button" value="등록하기" onclick="check()">
     </form>	
 </div>
 </body>
