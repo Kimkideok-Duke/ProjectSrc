@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="signupcss.css">
+<link rel="stylesheet" href="board.css">
 <style>
 body {
    margin: 0;
@@ -100,16 +100,6 @@ li a:hover {
    height: 150px;
    background-color: #D4DADE;
 }
-textarea {
-  width: 550px;
-  height: 400px;
-  padding: 12px 20px;
-  box-sizing: border-box;
-  border: 2px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-  resize: none;
-}
 </style>
 </head>
 <body>
@@ -129,29 +119,24 @@ textarea {
    </div>
 </div>
 <div id="guard"></div>
-<div class="divm">
-<h1 align="center">공지사항</h1><br>
-<form align="center">
-제목 <input class="inputtext" type="text"><br><br>
-<textarea name="content" onkeyup="ckText()">내용을 입력해주세요.</textarea>
-<span id="shTxtCnt">0/1000</span>
-<input class="nextform" type="button" value="저장하기" onclick="ckText()">
-</form>
-<script>
-  	function ckText(){
-  		var ctObj = document.querySelector("[name=content]");
-  		var txtLen = ctObj.value.length;
-  		console.log(txtLen)
-  		var shCntObj = document.querySelector("#shTxtCnt");
-  		shCntObj.innerText = txtLen+"/1000";
-  		if(txtLen>=1 && txtLen<=1000){
-  			shCntObj.style.color="blue";
-  		}else{
-  			shCntObj.style.color="red";
-  		}
-  	}
-  </script>
+<%
+   String noticeno = request.getParameter()
+   String nttitle = request.getParameter("nttitle");
+	PreDAO dao = new PreDAO();
+%>
 
-</div>
+<h2 align="center">공지사항</h2><br><br>
+	<div>
+	<input type="text" value="<%=nttitle%>" placeholder="제목을 입력해주세요.">
+	<input type="submit" value="검색">
+		<table>
+			<tr><th>No.</th><th>제목</th><th>작성일</th></tr>
+			<%
+			for(Notice not:dao.showNoticeInfo(new Notice(noticeno, nttitle, ntdate, ntcontent))){%>
+				<tr><td><%=not.noticeno() %></td><td><%=not.nttitle() %></td><td><%=not.ntate() %></td></tr>	
+			<%}%>
+	
+		</table>
+	</div>
 </body>
 </html>

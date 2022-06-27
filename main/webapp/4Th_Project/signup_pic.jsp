@@ -106,8 +106,16 @@ li a:hover {
 }
 </style>
 <script type="text/javascript">
-	function goInsertPage(){
-		location.href="signup_interest.jsp";
+	// 이미지 한장 업로드 유효성 검사
+	function check(){
+		var file1Obj  = document.querySelector("[name=file1]");
+		if(file1Obj.value==""){
+			alert("이미지를 업로드해주세요")
+			file1Obj.focus();
+			return;
+		}else{
+			location.href="signup_interest.jsp"
+		}	
 	}
 <%--
 	function showImage() {
@@ -163,6 +171,9 @@ li a:hover {
 	};
 
 </script>
+<%
+	String file1 = request.getParameter("file1"); if(file1==null) file1="";
+%>
 <body>
 <div id="header">
    <div class="banner" href="#">

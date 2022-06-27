@@ -130,14 +130,15 @@ textarea {
 </div>
 <div id="guard"></div>
 <div class="divm">
-<h1 align="center">EVENT</h1><br>
+<h1 align="center">공지사항</h1><br>
 <form align="center">
 제목 <input class="inputtext" type="text"><br><br>
-<textarea name="content" onkeyup="ckText()">내용을 입력해주세요.</textarea>
+<textarea name="content" onkeyup="ckText()" placeholder="내용을 입력해주세요."></textarea>
 <span id="shTxtCnt">0/1000</span>
-<input class="nextform" type="button" value="저장하기" onclick="ckText()">
+<input class="nextform" type="button" value="저장하기" onclick="save()">
 </form>
 <script>
+	// 글쓰기 하단에 글자수 표시
   	function ckText(){
   		var ctObj = document.querySelector("[name=content]");
   		var txtLen = ctObj.value.length;
@@ -149,6 +150,19 @@ textarea {
   		}else{
   			shCntObj.style.color="red";
   		}
+  	}
+  	function save(){
+  		var ctObj = document.querySelector("[name=content]");
+  		var txtLen = ctObj.value.length;
+  		if(txtLen>=1 && txtLen<=1000){
+  			alert("저장되었습니다")
+  			location.href="notice_list.jsp"
+  			return;
+  		}else{
+  			alert("1자 이상 1000자 이하로 작성해주세요.")
+  			return;
+  		}
+  		
   	}
   </script>
 
