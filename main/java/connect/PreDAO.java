@@ -2,7 +2,6 @@ package connect;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Date;
 
 import db.FAQ;
 import db.Notice;
@@ -94,23 +93,23 @@ public class PreDAO {
 		return userList;
 	}
 
-	public int logIn(String id, String password) {
+	public Users001 logIn(String id, String password) {
+		Users001 user = new Users001();
 		try {
 			setConn();
-			String sql = "SELECT password\n"
+			String sql = "SELECT userno\n"
 					+ "FROM users001\n"
-					+ "WHERE id = ?";
+					+ "WHERE id = ?\n"
+					+ "AND password = ?";
 			System.out.println(sql);
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
+			pstmt.setString(2, password);
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				if(rs.getString(1).equals(password)) {
-					return 1; // 로그인 성공
-				}else {
-					return 0; // 비밀번호 틀림
-				}
-				return -1; // 아이디 없음
+			while(rs.next()) {
+				user = new Users001(
+							rs.getString("userno")
+						);
 			}
 			// 자원해제
 			rs.close();
@@ -140,7 +139,7 @@ public class PreDAO {
 				}
 			}
 		}
-		return -2; // 오류
+		return user;
 	}
 
 	/**   회원 조회   **/
@@ -653,7 +652,7 @@ public class PreDAO {
 				faqList.add(new FAQ(
 						rs.getString("faqno"),
 						rs.getString("question"),
-						rs.getDate("faqdate"),
+						rs.getString("faqdateS"),
 						rs.getString("answer")
 					)
 				);
@@ -778,6 +777,7 @@ public class PreDAO {
 			}
 		}
 	}
+	
 
 	/**   FAQ 삭제   **/
 	public void deleteFaq(String faqno) {
@@ -874,6 +874,7 @@ public class PreDAO {
 		}
 		return f;
 	}
+	
 	
 	/**   리뷰 조회   **/
 	public ArrayList<Review> showReviewInfo(String reviewno) {

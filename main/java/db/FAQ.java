@@ -49,5 +49,11 @@ public class FAQ {
 	public void setAnswer(String answer) {
 		this.answer = answer;
 	}
+	public String getFaqdateS() {
+		return faqdateS;
+	}
+	public void setFaqdateS(String faqdateS) {
+		this.faqdateS = faqdateS;
+	}
 	
 }
