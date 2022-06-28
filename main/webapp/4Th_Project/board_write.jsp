@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% request.setCharacterEncoding("UTF-8"); %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -145,11 +146,6 @@ td:nth-child(odd) {
 	text-align: center;
 }
 
-.submit{
-	position: absolute;
-	left: 574px;
-	top: 600px;
-}
 .insert{
 	position: absolute;
 	appearance: none;
@@ -161,6 +157,8 @@ td:nth-child(odd) {
 	background-color: rgb(250, 80, 120);
 	border: none;
 	border-radius: 4px;
+	left: 460px;
+	top: 460px;
 }
 .cancel{
 	position: absolute;
@@ -173,8 +171,10 @@ td:nth-child(odd) {
 	background-color: rgb(220,220,220);
 	border: none;
 	border-radius: 4px;
-	left: 60px;
+	left: 520px;
+	top: 460px;
 }
+
 
 
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
@@ -222,11 +222,8 @@ td:nth-child(odd) {
 		<tr class="table-text"><td>제목</td><td colspan="3"><input type="text" name="bbsTitle" size=98 maxlength=30></td></tr>
 		<tr class="contents"><td>내용</td><td colspan="3"><textarea cols="100" rows="20" name="bbsContent"></textarea></td></tr>
 	</table>
-	</form>
-</div>
-
-<div class="submit">
 	<input class="insert" type="submit" value="등록" >
+	</form>
 	<input class="cancel" type="button" value="취소" onclick="location.href='board.jsp'">
 </div>
 

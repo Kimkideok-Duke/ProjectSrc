@@ -22,13 +22,13 @@
 
 .login-icon1{
 	position: absolute;
-	bottom: 165px;
+	bottom: 225px;
 	left: 470px;
 	color: rgb(220,220,220);
 }
 .login-icon2{
 	position: absolute;
-	bottom: 105px;
+	bottom: 165px;
 	left: 470px;
 	color: rgb(220,220,220);
 }
@@ -55,7 +55,7 @@
 	display: inline-block;
 }
 
-#login .login-button > .login-submit{
+#login .login-button .login-submit{
 	appearance: none;
 	font-family: "Noto Sans KR", sans-serif;
 	color: #FFFFFF;
@@ -102,7 +102,6 @@
 <div class="login-icon2">
 <span class="material-icons">vpn_key</span>
 </div>
-<%--
 <%
 	
 	String id = request.getParameter("id");
@@ -125,31 +124,21 @@
 		}
 	}
 %>
- --%>
-
-<%--
-<script>
-	var loginSuss = "<%=loginSuss%>";
-  	if(loginSuss=="N"){
-    	alert("아이디/비밀번호를 다시 확인해주세요!!")
-  	}
-</script>
- --%>
 
 <div id="login">
-	<form class="form" method="post" action="loginAction.jsp">
+	<form class="form" action="main.jsp">
 		<div class="login-input">
 			<input class="inputsize" type="text" name="id" size="15" placeholder="Username"/><br><br>
-			<input class="inputsize" type="passwd" name="pass" size="15" placeholder="passwd"/><br>
+			<input class="inputsize" type="password" name="pass" size="15" placeholder="Password"/><br>
 		</div>
 		<div class="login-button" >
-			<input class="login-submit" type="submit" value="LOGIN" style="WIDTH: 90px; HEIGHT: 36px"/>
+			<input class="login-button" type="submit" value="LOGIN" style="WIDTH: 90px; HEIGHT: 36px"/>
 		</div>
 
 	</form>
 </div>	
 	<div class="join">
-		<input class="join-button" type="submit" value="JOIN" style="WIDTH: 120px; HEIGHT: 26px"/>
+		<input class="join-button" type="button" value="JOIN" style="WIDTH: 120px; HEIGHT: 26px"/>
 	</div>
 </body>
 </html>

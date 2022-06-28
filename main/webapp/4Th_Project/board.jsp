@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% request.setCharacterEncoding("UTF-8"); %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width-device-width", initial-scale="1">
 <title>board</title>
 <style>
 body { 
@@ -204,14 +206,12 @@ td{
 	    <th>제목</th>
 	    <th>작성자</th>
 	    <th>작성일</th>
-	    <th>조회수</th>
 	  </tr>
 	  <tr class="contents">
 	    <td>1</td>
 	    <td>안녕하세요</td>
 	    <td>홍길동</td>
 	    <td>2022-06-23</td>
-	    <td>0</td>
 	  </tr>
 	</table>
 	
@@ -222,6 +222,7 @@ td{
 
 
 
-
+script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="js/bootstrap.js"></script>
 </body>
 </html>
