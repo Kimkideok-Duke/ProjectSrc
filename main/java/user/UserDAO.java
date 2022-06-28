@@ -17,12 +17,16 @@ public class UserDAO {
 	public void setConn() throws SQLException {
 		try {
 			String driverName="oracle.jdbc.driver.OracleDriver";
+			Class.forName(driverName);
+			
 			String dbURL = "jdbc:oracle:thin:@220.73.54.156:1521:xe";
 			String dbID = "project01";
 			String dbPassword="1111";
+			System.out.println("접속!!  ");
+			
 			conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
-			System.out.println("접속성공!!");
-			Class.forName(driverName);
+			System.out.println("접속성공!!   SUCCESS");
+		
 		} catch (ClassNotFoundException e) {
 			System.out.println("클래스 에러 : " + e.toString());
 		}catch(SQLException sqle) {
@@ -33,27 +37,34 @@ public class UserDAO {
 		}
 	}
 	
-	public int login(String id, String passwd) {
-		String sql = "select password from USERS001 where id = ? ";
+	public int login(String id, String password) {
+		System.out.println(id+"\t"+password);
+	
+		int cnt = 0;
+		String sql = "select count(*) cnt from users001 where id = ? and password = ?";
 		try {
+			 setConn();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
+			pstmt.setString(2, password);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				if(rs.getString(1).equals(passwd)) {
-					return 1; // 로그인 성공
-				}else 
-					return 0; // 비밀번호 틀림
+				cnt=rs.getInt("cnt");
 			}
-			return -1; // 존재하지 않는 아이디
+			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		return -2; // 오류
+		return cnt; // 오류
 	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		UserDAO dao = new UserDAO();
+
+			
+		System.out.println(dao.login("1","0"));
+			
 
 	}
 
