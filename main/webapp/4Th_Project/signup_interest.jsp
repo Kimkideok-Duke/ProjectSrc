@@ -103,6 +103,15 @@ li a:hover {
 }
 </style>
 <script type="text/javascript">
+<%
+	String interest[] = request.getParameterValues("interest");
+
+	String interest1 = interest[0];
+	String interest2 = interest[1];
+	String interest3 = interest[2];
+	String interest4 = interest[3];
+	String interest5 = interest[4];
+%>
 	function goInsertPage(){
 		location.href="signup_agreement.jsp";
 	}
@@ -143,26 +152,26 @@ li a:hover {
 <form class = loginform>
 	<h2 align="center">관심사를 선택 해 주세요.<br>(최대 5개)</h2>
 	<div class="interestdiv">
-		<input type="checkbox" name="interest" onclick = "countckbox(this)" value="1">관심사1
-		<input type="checkbox" name="interest" onclick = "countckbox(this)" value="2">관심사2
-		<input type="checkbox" name="interest" onclick = "countckbox(this)" value="3">관심사3
-		<input type="checkbox" name="interest" onclick = "countckbox(this)" value="4">관심사4<br>
-		<input type="checkbox" name="interest" onclick = "countckbox(this)" value="5">관심사5
-		<input type="checkbox" name="interest" onclick = "countckbox(this)" value="6">관심사6
-		<input type="checkbox" name="interest" onclick = "countckbox(this)" value="7">관심사7
-		<input type="checkbox" name="interest" onclick = "countckbox(this)" value="8">관심사8<br>
-		<input type="checkbox" name="interest" onclick = "countckbox(this)" value="9">관심사9
-		<input type="checkbox" name="interest" onclick = "countckbox(this)" value="10">관심사10
-		<input type="checkbox" name="interest" onclick = "countckbox(this)" value="11">관심사11
-		<input type="checkbox" name="interest" onclick = "countckbox(this)" value="12">관심사12<br>
-		<input type="checkbox" name="interest" onclick = "countckbox(this)" value="13">관심사13
-		<input type="checkbox" name="interest" onclick = "countckbox(this)" value="14">관심사14
-		<input type="checkbox" name="interest" onclick = "countckbox(this)" value="15">관심사15
-		<input type="checkbox" name="interest" onclick = "countckbox(this)" value="16">관심사16<br>
-		<input type="checkbox" name="interest" onclick = "countckbox(this)" value="17">관심사17
-		<input type="checkbox" name="interest" onclick = "countckbox(this)" value="18">관심사18
-		<input type="checkbox" name="interest" onclick = "countckbox(this)" value="19">관심사19
-		<input type="checkbox" name="interest" onclick = "countckbox(this)" value="20">관심사20<br>
+		<input type="checkbox" name="interest" onclick = "countckbox(this)">그림
+		<input type="checkbox" name="interest" onclick = "countckbox(this)">낚시
+		<input type="checkbox" name="interest" onclick = "countckbox(this)">독서
+		<input type="checkbox" name="interest" onclick = "countckbox(this)">동물<br>
+		<input type="checkbox" name="interest" onclick = "countckbox(this)">게임
+		<input type="checkbox" name="interest" onclick = "countckbox(this)">운동
+		<input type="checkbox" name="interest" onclick = "countckbox(this)">옷
+		<input type="checkbox" name="interest" onclick = "countckbox(this)">만화<br>
+		<input type="checkbox" name="interest" onclick = "countckbox(this)">컴퓨터
+		<input type="checkbox" name="interest" onclick = "countckbox(this)">스마트폰
+		<input type="checkbox" name="interest" onclick = "countckbox(this)">신발
+		<input type="checkbox" name="interest" onclick = "countckbox(this)">시계<br>
+		<input type="checkbox" name="interest" onclick = "countckbox(this)">가방
+		<input type="checkbox" name="interest" onclick = "countckbox(this)">향수
+		<input type="checkbox" name="interest" onclick = "countckbox(this)">자동차
+		<input type="checkbox" name="interest" onclick = "countckbox(this)">오토바이<br>
+		<input type="checkbox" name="interest" onclick = "countckbox(this)">카메라
+		<input type="checkbox" name="interest" onclick = "countckbox(this)">영화
+		<input type="checkbox" name="interest" onclick = "countckbox(this)">커피
+		<input type="checkbox" name="interest" onclick = "countckbox(this)">음악<br>
 	</div>
 	<input class=nextform type="button" value="등록하기" onclick="goInsertPage()">
 </form>

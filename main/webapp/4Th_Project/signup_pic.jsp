@@ -171,9 +171,7 @@ li a:hover {
 	};
 
 </script>
-<%
-	String file1 = request.getParameter("file1"); if(file1==null) file1="";
-%>
+
 <body>
 <div id="header">
    <div class="banner" href="#">

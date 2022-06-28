@@ -28,7 +28,7 @@ SELECT count(id) idCnt FROM users001 WHERE id = 123;
 		
 		-- 회원 테이블 - 회원 가입 양식(insert)
 		INSERT INTO users001 values('U' || seq_userno.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
-		INSERT INTO users001(userno, id, password, nickname, gender, age, loc) values('U' || (seq_userno.nextval - 1), 1, 1, 1, 1, 1, 1); -- 테스트용
+		INSERT INTO users001(userno, id, password, nickname, gender, age, loc) values('U' || (seq_userno.nextval - 1), 4, 1, 1, 1, 1, 1); -- 테스트용
 		-- 회원 테이블 - 회원 가입1 페이지 insert 양식
 		INSERT INTO users001(userno, id, password, nickname, gender, age, loc)
 			values('U' || seq_userno.nextval, ?, ?, ?, ?, ?, ?);

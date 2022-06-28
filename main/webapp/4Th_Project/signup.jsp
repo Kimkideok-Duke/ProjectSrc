@@ -105,13 +105,13 @@ String path = request.getContextPath();
 		dao.insertUsers(new Users001(id, password, nickname, gender, age, loc));
 		isIns = "Y";
 	}
-
 %>	
 	
 	//ID는 별도로 중복 확인
 	function idcheck(){
 		var idObj = document.querySelector("[name=id]");
-		var idCnt = <%=dao.getOverlapIDCnt(idObj) %>;
+		var idCnt = <%=dao.getOverlapIDCnt(id) %>;
+		// ajax를 써야 구현 가능, DB 테이블 제약조건 때문에 중복값은 알아서 입력이 취소되기 때문에 크게 상관 X
 		if(idObj.value == ""){
 			alert("아이디를 입력하세요.")
 			ovl = false;
@@ -253,14 +253,14 @@ li a:hover {
 
 <div class=divm>
 		<h1 align="center">회원가입</h1>
-		<form class=loginform action="">
+		<form class=loginform>
 			아이디 <input class=inputtext type="text" name="id">
 			<input class=overlap type="button" value="중복확인" onclick="idcheck()"/><br>
 			비밀번호 <input class=inputtext type="password" name="password"><br>
 			비밀번호 확인 <input class=inputtext type="password" name="passwordch"><br>
 			닉네임 <input class=inputtext type="text" name="nickname"><br>
 			성별 <input type="radio" name="gender" id="gender_Male" style="font-size:17px; width:23px;height:23px" value="M">남자
-				<input type="radio" name="gender" id="gender_Female" style="font-size:17px; width:23px;height:23px" value="W">여자<br>
+				<input type="radio" name="gender" id="gender_Female" style="font-size:17px; width:23px;height:23px" value="F">여자<br>
 			나이 <input class=inputtext type="text" name = "age"><br>
 			주소 <select class=inputtext name="loc">
 					<option>현재 거주지를 선택해주세요</option>
