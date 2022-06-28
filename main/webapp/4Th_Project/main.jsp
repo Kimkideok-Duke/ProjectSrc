@@ -101,6 +101,25 @@ li a:hover {
 	font-size: 20px;
 }
 
+.login{
+	position: fixed;
+	top:5px;
+	left: 1050px;
+	font-family: "Noto Sans KR", sans-serif;
+	font-size: 6px;
+	text-decoration: none;
+	color: rgb(94, 94, 94);
+}
+.logout{
+	position: fixed;
+	top:5px;
+	left: 1100px;
+	font-family: "Noto Sans KR", sans-serif;
+	font-size: 6px;
+	text-decoration: none;
+	color: rgb(94, 94, 94);
+}
+
 #guard{
 	height: 125px;
 	width: 0;
@@ -164,6 +183,16 @@ li a:hover {
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
 </head>
 <body>
+<%
+// 메인 페이지로 이동했을 때 세션에 값이 담겨있는지 체크
+String id = null;
+if(session.getAttribute("id") != null){
+	id = (String)session.getAttribute("id");
+}
+String userno = (String)session.getAttribute("userno");
+if(userno==null) userno = "";
+%>
+
 <div id="header">
 	<div class="banner" onclick="location.href='main.jsp'">
 		<img
@@ -178,11 +207,15 @@ li a:hover {
 			<li><a href="project/notice_list.jsp">커뮤니티</a></li>
 		</ul>
 	</div>
-	
+	<%if(userno.equals("")){%>
 	<div class="login">
-		<input class="login-button" type="button" name="login" value="login" onclick="location.href='login.jsp'"/>
+		<a href="login.jsp">LOGIN</a>
 	</div>
-	
+	<%}else{%>
+	<div class="logout">
+		<a href="logoutAction.jsp">LOGOUT</a>
+	</div>
+	<%}%>
 	<div class="user-icon">
 		<span class="material-icons" onclick="location.href='profile.jsp'">account_circle</span>
 	</div>
@@ -243,6 +276,7 @@ li a:hover {
 	</div>
 
 <h2>userno : <%=session.getAttribute("userno")%></h2>
+<h2>id :  <%=id%></h2>
 </body>
 </html>
 
