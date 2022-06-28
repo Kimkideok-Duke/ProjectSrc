@@ -2,6 +2,7 @@ package connect;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Date;
 
 import db.FAQ;
 import db.Notice;
@@ -93,23 +94,23 @@ public class PreDAO {
 		return userList;
 	}
 
-	public Users001 logIn(String id, String password) {
-		Users001 user = new Users001();
+	public int logIn(String id, String password) {
 		try {
 			setConn();
-			String sql = "SELECT userno\n"
+			String sql = "SELECT password\n"
 					+ "FROM users001\n"
-					+ "WHERE id = ?\n"
-					+ "AND password = ?";
+					+ "WHERE id = ?";
 			System.out.println(sql);
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
-			pstmt.setString(2, password);
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				user = new Users001(
-							rs.getString("userno")
-						);
+			if(rs.next()) {
+				if(rs.getString(1).equals(password)) {
+					return 1; // 로그인 성공
+				}else {
+					return 0; // 비밀번호 틀림
+				}
+				return -1; // 아이디 없음
 			}
 			// 자원해제
 			rs.close();
@@ -139,7 +140,7 @@ public class PreDAO {
 				}
 			}
 		}
-		return user;
+		return -2; // 오류
 	}
 
 	/**   회원 조회   **/
@@ -815,6 +816,63 @@ public class PreDAO {
 				}
 			}
 		}
+	}
+	/**   FAQ 상세페이지   **/
+	public FAQ getFAQDetail(String faqno) {
+		FAQ f = new FAQ();
+		try {
+			setConn();
+			String sql = "SELECT *\r\n"
+					+ "FROM faq\r\n"
+					+ "WHERE faqno=?";
+			System.out.println(sql);
+			// ? 가 들어갈 부분에 '?'로 처리하면 안된다.
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, faqno);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				f = new FAQ(rs.getString("faqno"), rs.getString("question"), rs.getString("faqdateS"),rs.getString("answer"));
+			}
+			// 자원해제(열린순서 반대 방향)
+			rs.close();
+			pstmt.close();
+			con.close();
+			// 예외 처리.
+			// 기본 예외 : DB - SQLException
+			// 일반 예외 : Exception
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("DB 에러:" + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("일반 예외:" + e.getMessage());
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			// 예외 상관없이 처리할 내용.
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		return f;
 	}
 	
 	/**   리뷰 조회   **/

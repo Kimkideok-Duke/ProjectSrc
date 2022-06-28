@@ -6,16 +6,17 @@ public class FAQ {
     private String faqno;
     private String question;
 	private Date faqdate;
+	private String faqdateS;
     private String answer;
 	public FAQ() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public FAQ(String faqno, String question, Date faqdate, String answer) {
+	public FAQ(String faqno, String question, String faqdateS, String answer) {
 		super();
 		this.faqno = faqno;
 		this.question = question;
-		this.faqdate = faqdate;
+		this.faqdateS = faqdateS;
 		this.answer = answer;
 	}
 	public FAQ(String faqno, String question, String answer) {
