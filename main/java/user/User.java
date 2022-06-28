@@ -3,7 +3,7 @@ package user;
 public class User {
 	private String userno;
 	private String id;
-	private String passwd;
+	private String password;
 	private String nickname;
 	private String gender;
 	private int age;
@@ -28,11 +28,12 @@ public class User {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getpasswd() {
-		return passwd;
+	
+	public String getpassword() {
+		return password;
 	}
-	public void setpasswd(String passwd) {
-		this.passwd = passwd;
+	public void setpassword(String password) {
+		this.password = password;
 	}
 	public String getNickname() {
 		return nickname;
@@ -106,13 +107,13 @@ public class User {
 	public void setLoc3(String loc3) {
 		this.loc3 = loc3;
 	}
-	public User(String userno, String id, String passwd, String nickname, String gender, int age, String loc,
+	public User(String userno, String id, String password, String nickname, String gender, int age, String loc,
 			String interest1, String interest2, String interest3, String interest4, String interest5, String loc1,
 			String loc2, String loc3) {
 		super();
 		this.userno = userno;
 		this.id = id;
-		this.passwd = passwd;
+		this.password = password;
 		this.nickname = nickname;
 		this.gender = gender;
 		this.age = age;
@@ -130,6 +131,6 @@ public class User {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	
 }

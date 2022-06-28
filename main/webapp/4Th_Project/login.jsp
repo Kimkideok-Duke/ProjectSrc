@@ -22,13 +22,13 @@
 
 .login-icon1{
 	position: absolute;
-	bottom: 165px;
+	bottom: 225px;
 	left: 470px;
 	color: rgb(220,220,220);
 }
 .login-icon2{
 	position: absolute;
-	bottom: 105px;
+	bottom: 165px;
 	left: 470px;
 	color: rgb(220,220,220);
 }
@@ -107,14 +107,14 @@
 	
 	String id = request.getParameter("id");
 	if(id==null) id = "";
-	String passwd = request.getParameter("pass");
-	if(passwd==null) passwd="";
+	String passwordword = request.getParameter("password");
+	if(passwordword==null) passwordword="";
 
 	
-	if(!id.equals("")&&!passwd.equals("")){
+	if(!id.equals("")&&!passwordword.equals("")){
 		Users001 user = new Users001();
 		PreDAO dao = new PreDAO();
-		user = dao.logIn(id, passwd);
+		user = dao.logIn(id, passwordword);
 		System.out.println(user.getUserno());
 		String loginSuss="Y";
 		if(user.getUserno()!=null){
@@ -140,12 +140,11 @@
 	<form class="form" method="post" action="loginAction.jsp">
 		<div class="login-input">
 			<input class="inputsize" type="text" name="id" size="15" placeholder="Username"/><br><br>
-			<input class="inputsize" type="passwd" name="pass" size="15" placeholder="passwd"/><br>
+			<input class="inputsize" type="password" name="password" size="15" placeholder="password"/><br>
 		</div>
 		<div class="login-button" >
 			<input class="login-submit" type="submit" value="LOGIN" style="WIDTH: 90px; HEIGHT: 36px"/>
 		</div>
-
 	</form>
 </div>	
 	<div class="join">
