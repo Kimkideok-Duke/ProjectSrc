@@ -127,9 +127,19 @@ CREATE TABLE review (
 		-- 리뷰 테이블 - 리뷰수정 양식
 		-- 리뷰 테이블 - 리뷰삭제 양식
 	
-	
+SELECT * FROM BBS b ;	
 
-SELECT * FROM users001;
+CREATE TABLE bbs(
+	bbsID NUMBER PRIMARY KEY,
+	bbsTitle varchar2(200),
+	id varchar2(50),
+	bbsDate sysdate,
+	bbsContent varchar2(2048),
+	bbsAvailable NUMBER,
+);
+
+
+
 
 /**   상대 매칭   **/
 SELECT userno, nickname, gender, age, loc, interest1, interest2, interest3, interest4, interest5
