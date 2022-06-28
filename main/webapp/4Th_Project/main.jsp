@@ -242,7 +242,7 @@ li a:hover {
 		
 	</div>
 
-
+<h2>userno : <%=session.getAttribute("userno")%></h2>
 </body>
 </html>
 
