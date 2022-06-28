@@ -178,6 +178,11 @@ li a:hover {
 			<li><a href="project/notice_list.jsp">커뮤니티</a></li>
 		</ul>
 	</div>
+	
+	<div class="login">
+		<input class="login-button" type="button" name="login" value="login" onclick="location.href='login.jsp'"/>
+	</div>
+	
 	<div class="user-icon">
 		<span class="material-icons" onclick="location.href='profile.jsp'">account_circle</span>
 	</div>
@@ -236,7 +241,8 @@ li a:hover {
 		</div>
 		
 	</div>
-	
+
+
 </body>
 </html>
 
