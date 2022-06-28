@@ -37,11 +37,10 @@ public class UserDAO {
 		}
 	}
 	
-	public int login(String id, String password) {
+	public String login(String id, String password) {
 		System.out.println(id+"\t"+password);
 	
-		int cnt = 0;
-		String sql = "select count(*) cnt from users001 where id = ? and password = ?";
+		String sql = "select userno from users001 where id = ? and password = ?";
 		try {
 			 setConn();
 			pstmt = conn.prepareStatement(sql);
@@ -49,13 +48,13 @@ public class UserDAO {
 			pstmt.setString(2, password);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				cnt=rs.getInt("cnt");
+				return rs.getString("userno");
 			}
 			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		return cnt; // 오류
+		return ""; // 오류
 	}
 
 	public static void main(String[] args) {
