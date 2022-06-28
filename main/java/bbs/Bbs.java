@@ -81,6 +81,14 @@ public Bbs(int bbsID, String bbsTitle, String id, String bbsDate, String bbsCont
 	this.bbsContent = bbsContent;
 	this.bbsAvailable = bbsAvailable;
 }
+
+public Bbs(String bbsTitle, String bbsDate, String bbsContent, int bbsAvailable) {
+	super();
+	this.bbsTitle = bbsTitle;
+	this.bbsDate = bbsDate;
+	this.bbsContent = bbsContent;
+	this.bbsAvailable = bbsAvailable;
+}
    
    
 	
