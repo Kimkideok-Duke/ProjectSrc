@@ -216,6 +216,9 @@ if(userno==null) userno = "";
 		<a href="logoutAction.jsp">LOGOUT</a>
 	</div>
 	<%}%>
+	<div class="signup">
+		<a href="signup_agreement.jsp">JOINUS</a>
+	</div>
 	<div class="user-icon">
 		<span class="material-icons" onclick="location.href='profile.jsp'">account_circle</span>
 	</div>
