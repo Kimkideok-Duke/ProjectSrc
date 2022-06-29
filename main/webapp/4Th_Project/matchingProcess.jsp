@@ -37,7 +37,7 @@
                 }
             }
         }else if(gender_u.equals("F")){ // 사용자가 여자일때
-                for(int i=0;i<ulist.size();i++){
+            for(int i=0;i<ulist.size();i++){
                 String userno_m = ulist.get(i).getUserno(); 
                 String cho = dao.getResultMatch(new Result_Match(userno_m, userno)).getChoiceFM();
                 if(cho == null) cho = "";
@@ -47,9 +47,9 @@
                     page01="matchingFail.jsp";
                 }
             }
-        }else{
-            page01="matchingFail.jsp";
         }
+    }else{
+        page01="matchingFail.jsp";
     }
 %>
 <%if(!page01.equals("")){%>
