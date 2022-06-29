@@ -29,10 +29,10 @@ public class User {
 		this.id = id;
 	}
 	
-	public String getpassword() {
+	public String getPassword() {
 		return password;
 	}
-	public void setpassword(String password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 	public String getNickname() {

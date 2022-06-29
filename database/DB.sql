@@ -55,6 +55,19 @@ SELECT count(id) idCnt FROM users001 WHERE id = 123;
 		-- 회원 테이블 - 회원 탈퇴 양식(delete)
 		DELETE FROM users001 WHERE userno = ?;
 
+DROP TABLE RESULT_MATCH;
+CREATE TABLE RESULT_MATCH(
+	usernom varchar2(50) NOT NULL,
+	usernof varchar2(50) NOT NULL,
+	choiceMF char(1),
+	choiceFM char(1)
+);
+
+SELECT * FROM RESULT_MATCH
+WHERE USERNOM = ?
+AND USERNOF = ?; 
+
+INSERT INTO RESULT_MATCH VALUES(?,?,?,?);
 
 	
 -- 공지사항 테이블 (공지번호, 공지제목, 공지작성일자, 공지내용)
@@ -160,6 +173,8 @@ INSERT INTO  board (num, title, writer, content, regdate, cnt)
 	VALUES (board_seq.nextval, '제목1', '작성자1', '내용1', sysdate, 0);
 
 SELECT * FROM board;
+
+
 /**   상대 매칭   **/
 SELECT userno, nickname, gender, age, loc, interest1, interest2, interest3, interest4, interest5
 FROM users001

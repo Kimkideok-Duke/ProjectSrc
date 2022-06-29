@@ -1,13 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-String path=request.getContextPath();
-%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>matchingSuccess</title>
+<title>matching</title>
 <style>
 body {
 	margin: 0;  
@@ -79,10 +76,10 @@ li a:hover {
 	color: rgb(220,220,220);
 	cursor: pointer;
 }
-.serach > span{
+.search > span{
 	position: fixed;
 	display: inline-block;
-	left: 280px;
+	left: 1190px;
 	font-size: 20px;
 	color: rgb(220,220,220);
 	cursor: pointer;
@@ -110,26 +107,27 @@ li a:hover {
 	width: 0;
 }
 
-
-.matching-message{
+.matching1{
 	position: absolute;
-	left: 460px;
-	top: 220px;
-	color: rgb(250, 80, 120);
+	left: 560px;
+	top: 180px;
+}
+
+.loc-radio{
+	position: absolute;
+	left: 530px;
+	top: 340px;
+}
+
+.submit{
+	position: absolute;
+	left: 470px;
+	top: 480px;
+	padding: 80px;
 	
 }
-.matching2 > img{
-	width: 130%;
-	position: absolute;
-}
-.matching2{
-	position: absolute;
-	padding: 100px;
-	left: 400px;
-	top: 240px;
-}
 
-.matching-button > input{
+.submit>input{
 	padding: 8px 60px;
 	appearance: none;
 	font-family: "Noto Sans KR", sans-serif;
@@ -139,23 +137,13 @@ li a:hover {
 	background-color: rgb(250, 80, 120);
 	border: none;
 	border-radius: 4px;
-}	
-.matching-button{
-	position: absolute;
-	left: 500px;
-	top: 580px;
-	padding: 0 0 80px 0;
+	
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
 </style>
 <script src="https://kit.fontawesome.com/99c434d4a4.js" crossorigin="anonymous"></script>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-<script>
-/*
- 
- */
-</script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
 <div id="header">
@@ -176,22 +164,23 @@ li a:hover {
 		<span class="material-icons">account_circle</span>
 	</div>
 	<div class="search">
-		<input class="serach-button" type="text" name="search" placeholder="Search"/>
+		<input class="serach-button" type="text" name="search" placeholder="search" />
 		<span class="material-icons">search</span>
 	</div>
 </div>
 <div id="guard"></div>
 
-
-<div class="matching-message">
-	<h1>매칭이 성사되었습니다!</h1>
+<div class="matching1">
+	<img src="matching1.JPG">
 </div>
-<div class="matching2">
-	<img src="matching2.JPG">
-</div>
-<div class="matching-button">
-	<input type="button" onclick="matching_list.jsp" name="success" value="상대방 정보 보러가기">
-</div>
-
+    <form action="matching.jsp">
+        <div class="loc-radio">
+            같은 지역 <input type="radio" name="matLoc" value="sameloc" checked>&nbsp;&nbsp;&nbsp;&nbsp;
+            지역 선택<input type="radio" name="matLoc" value="selectloc">
+        </div>
+        <div class="submit">
+            <input type="submit" value="확인">
+        </div>
+    </form>
 </body>
 </html>

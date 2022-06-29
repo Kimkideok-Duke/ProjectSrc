@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import db.FAQ;
 import db.Notice;
+import db.Result_Match;
 import db.Review;
 import db.Users001;
 
@@ -93,6 +94,107 @@ public class PreDAO {
 		return userList;
 	}
 
+	public void setResultMat(Result_Match ins) {
+		try {
+			setConn();
+			con.setAutoCommit(false);
+			String sql = "INSERT INTO RESULT_MATCH VALUES(?,?,?,?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, ins.getUsernoM());
+			pstmt.setString(2, ins.getUsernoF());
+			pstmt.setString(3, ins.getChoiceMF());
+			pstmt.setString(3, ins.getChoiceFM());
+			pstmt.executeUpdate();
+			con.commit();
+			pstmt.close();
+			con.close();
+		} catch (SQLException e) {
+			System.out.println("DB 에러 : " + e.getMessage());
+			try {
+				con.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		} catch (Exception e) {
+			System.out.println("일반 예외 : " + e.getMessage());
+		} finally {
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(con!=null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
+	public Result_Match getResultMatch(Result_Match sch) {
+		Result_Match rm = new Result_Match();
+		try {
+			setConn();
+			String sql = "SELECT * FROM RESULT_MATCH\n"
+					+ "WHERE USERNOM = ?\n"
+					+ "AND USERNOF = ?";
+			System.out.println(sql);
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, sch.getUsernoM());
+			pstmt.setString(2, sch.getUsernoF());
+			rs = pstmt.executeQuery();
+			// 하나의 데이터 결과 처리이기에 바로 처리
+			// [핵심코드]
+			while(rs.next()) {
+				rm = new Result_Match(
+							rs.getString("usernom"),
+							rs.getString("usernof"),
+							rs.getString("choicemf"),
+							rs.getString("choidefm")
+				);
+			}
+			// 자원해제
+			rs.close();
+			pstmt.close();
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			System.out.println("일반 예외 : " + e.getMessage());
+		} finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			if(con!=null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		return rm;
+	}
+
 	public Users001 logIn(String id, String password) {
 		Users001 user = new Users001();
 		try {
@@ -143,8 +245,8 @@ public class PreDAO {
 	}
 
 	/**   회원 조회   **/
-	public ArrayList<Users001> getUserList(String userno) {
-		ArrayList<Users001> userList = new ArrayList<Users001>();
+	public Users001 getUserList(String userno) {
+		Users001 userInfo = new Users001();
 		try {
 			setConn();
 			String sql = "SELECT userno, nickname, gender, age, loc, "
@@ -156,7 +258,7 @@ public class PreDAO {
 			pstmt.setString(1, userno);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				userList.add(new Users001(
+				userInfo = new Users001(
 						rs.getString("nickname"),
 						rs.getString("gender"),
 						rs.getInt("age"),
@@ -166,8 +268,7 @@ public class PreDAO {
 						rs.getString("interest3"),
 						rs.getString("interest4"),
 						rs.getString("interest5")
-					)
-				);
+					);
 			}
 			rs.close();
 			pstmt.close();
@@ -203,7 +304,7 @@ public class PreDAO {
 				}
 			}
 		}
-		return userList;
+		return userInfo;
 	}
 
 	
