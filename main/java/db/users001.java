@@ -30,7 +30,7 @@ public class Users001 {
 		this.gender = gender;
 		this.age = age;
 		this.loc = loc;
-	}
+	}	
 	
 	public Users001(String nickname, String gender, int age, String loc,
 			String interest1, String interest2, String interest3, String interest4, String interest5) {
@@ -44,6 +44,18 @@ public class Users001 {
 		this.interest3 = interest3;
 		this.interest4 = interest4;
 		this.interest5 = interest5;
+	}
+
+	// 회원가입3 - 관심사
+	public Users001(String interest1, String interest2, String interest3, String interest4,
+			String interest5, String id) {
+		super();
+		this.interest1 = interest1;
+		this.interest2 = interest2;
+		this.interest3 = interest3;
+		this.interest4 = interest4;
+		this.interest5 = interest5;
+		this.id = id;
 	}
 
 	public Users001(String userno, String id, String password, String nickname, String gender, int age, String loc,

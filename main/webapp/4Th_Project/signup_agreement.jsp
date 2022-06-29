@@ -1,5 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%> 
+    pageEncoding="UTF-8"
+    import="connect.PreDAO"
+    import="db.*"
+    %>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.Connection"%>
+<%
+request.setCharacterEncoding("utf-8");
+String path = request.getContextPath();
+%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -103,6 +113,9 @@ li a:hover {
 }
 </style>
 <body>
+
+<jsp:useBean id="users" class="db.Users001" scope="session"/>
+
 <div id="header">
    <div class="banner" href="#">
       <img
@@ -120,7 +133,10 @@ li a:hover {
 </div>
 <div id="guard"></div>
 <div class=divm>
+
 <script type="text/javascript">
+
+
 	// 약관동의합니다 체크 여부 확인
 	function check(){
 		if(document.getElementById('agree_o').checked) {
@@ -135,7 +151,7 @@ li a:hover {
 			return;
 		}
 	}
-	
+
 </script>
 <%
 	String agree = request.getParameter("agree"); if(agree==null) agree="";

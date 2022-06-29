@@ -1,5 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"
+    import="connect.PreDAO"
+    import="db.*"
+    %>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.Connection"%>
+<%
+request.setCharacterEncoding("utf-8");
+String path = request.getContextPath();
+%>        
 <!DOCTYPE html>
 <html>
 <head>
@@ -102,39 +112,67 @@ li a:hover {
    background-color: #D4DADE;
 }
 </style>
-<script type="text/javascript">
-<%
-	String interest[] = request.getParameterValues("interest");
 
-	String interest1 = interest[0];
-	String interest2 = interest[1];
-	String interest3 = interest[2];
-	String interest4 = interest[3];
-	String interest5 = interest[4];
-%>
-	function goInsertPage(){
-		location.href="signup_agreement.jsp";
+<body>
+
+<jsp:useBean id="users" class="db.Users001" scope="session"/>
+
+<script type="text/javascript">
+	function check(){
+		if(confirm("등록하시겠습니까?")){
+			var chkBox = document.getElementsByName("interest");
+			var chkBoxCnt = 0;
+			for(var cnt = 0; cnt < chkBox.length; cnt++){
+				if(chkBox[cnt].checked){
+					chkBoxCnt++;
+				}
+			}
+			if(chkBoxCnt < 5){
+				alert("관심사를 5개 선택해야합니다!")
+			}
+			if(chkBoxCnt == 5){
+				document.querySelector("form").submit();
+			}
+		}
 	}
+	
 	function countckbox(obj){
 		var chkBox = document.getElementsByName("interest");
 		var chkBoxCnt=0;
 		for(var cnt=0; cnt<chkBox.length; cnt++){
 			if(chkBox[cnt].checked){
-			chkBoxCnt++;
+				chkBoxCnt++;
 			}
 		}
 		if(chkBoxCnt>5){
-			alert("최대 5개까지 선택할수 있습니다.")
+			alert("관심사는 5개까지만 선택할 수 있습니다.")
 			obj.checked=false;
 			return false;
 		}
 	}
+	<%
+	String id = users.getId();
+	
+	PreDAO dao = new PreDAO();
+	String interest[] = request.getParameterValues("interest");
+	String isIns = "N";
+	if(interest != null && interest[4] != null){
+		dao.updateUsersInterest(new Users001(interest[0], interest[1], interest[2], interest[3], interest[4], id));
+		isIns = "Y";
+	}
+%>
+	var isIns = "<%=isIns%>";
+	if(isIns == "Y"){
+		if(confirm("등록성공!!")){
+			location.href="signup_pic.jsp"
+		}
+	}
+
 </script>
-<body>
+
 <div id="header">
    <div class="banner" href="#">
-      <img
-         src="V.jpg">
+      <img src="V.jpg">
    </div><!--
  --><div class="navigationbar">
       <ul>
@@ -152,29 +190,42 @@ li a:hover {
 <form class = loginform>
 	<h2 align="center">관심사를 선택 해 주세요.<br>(최대 5개)</h2>
 	<div class="interestdiv">
-		<input type="checkbox" name="interest" onclick = "countckbox(this)">그림
-		<input type="checkbox" name="interest" onclick = "countckbox(this)">낚시
-		<input type="checkbox" name="interest" onclick = "countckbox(this)">독서
-		<input type="checkbox" name="interest" onclick = "countckbox(this)">동물<br>
-		<input type="checkbox" name="interest" onclick = "countckbox(this)">게임
-		<input type="checkbox" name="interest" onclick = "countckbox(this)">운동
-		<input type="checkbox" name="interest" onclick = "countckbox(this)">옷
-		<input type="checkbox" name="interest" onclick = "countckbox(this)">만화<br>
-		<input type="checkbox" name="interest" onclick = "countckbox(this)">컴퓨터
-		<input type="checkbox" name="interest" onclick = "countckbox(this)">스마트폰
-		<input type="checkbox" name="interest" onclick = "countckbox(this)">신발
-		<input type="checkbox" name="interest" onclick = "countckbox(this)">시계<br>
-		<input type="checkbox" name="interest" onclick = "countckbox(this)">가방
-		<input type="checkbox" name="interest" onclick = "countckbox(this)">향수
-		<input type="checkbox" name="interest" onclick = "countckbox(this)">자동차
-		<input type="checkbox" name="interest" onclick = "countckbox(this)">오토바이<br>
-		<input type="checkbox" name="interest" onclick = "countckbox(this)">카메라
-		<input type="checkbox" name="interest" onclick = "countckbox(this)">영화
-		<input type="checkbox" name="interest" onclick = "countckbox(this)">커피
-		<input type="checkbox" name="interest" onclick = "countckbox(this)">음악<br>
+		<input type="checkbox" name="interest" onclick = "countckbox(this)" value="그림" />그림
+		<input type="checkbox" name="interest" onclick = "countckbox(this)" value="낚시"/>낚시
+		<input type="checkbox" name="interest" onclick = "countckbox(this)" value="독서"/>독서
+		<input type="checkbox" name="interest" onclick = "countckbox(this)" value="동물"/>동물<br>
+		<input type="checkbox" name="interest" onclick = "countckbox(this)" value="게임"/>게임
+		<input type="checkbox" name="interest" onclick = "countckbox(this)" value="운동"/>운동
+		<input type="checkbox" name="interest" onclick = "countckbox(this)" value="옷"/>옷
+		<input type="checkbox" name="interest" onclick = "countckbox(this)" value="만화"/>만화<br>
+		<input type="checkbox" name="interest" onclick = "countckbox(this)" value="컴퓨터"/>컴퓨터
+		<input type="checkbox" name="interest" onclick = "countckbox(this)" value="스마트폰"/>스마트폰
+		<input type="checkbox" name="interest" onclick = "countckbox(this)" value="신발"/>신발
+		<input type="checkbox" name="interest" onclick = "countckbox(this)" value="시계"/>시계<br>
+		<input type="checkbox" name="interest" onclick = "countckbox(this)" value="가방"/>가방
+		<input type="checkbox" name="interest" onclick = "countckbox(this)" value="향수"/>향수
+		<input type="checkbox" name="interest" onclick = "countckbox(this)" value="자동차"/>자동차
+		<input type="checkbox" name="interest" onclick = "countckbox(this)" value="오토바이"/>오토바이<br>
+		<input type="checkbox" name="interest" onclick = "countckbox(this)" value="카메라"/>카메라
+		<input type="checkbox" name="interest" onclick = "countckbox(this)" value="영화"/>영화
+		<input type="checkbox" name="interest" onclick = "countckbox(this)" value="커피"/>커피
+		<input type="checkbox" name="interest" onclick = "countckbox(this)" value="음악"/>음악<br>
 	</div>
-	<input class=nextform type="button" value="등록하기" onclick="goInsertPage()">
+		<input class=nextform type="button" value="다음" onclick="check()">
 </form>
+
+
+<h2><%=id %></h2>
+
+	나의 관심사 : 
+<%
+if(interest != null){
+	for(String intrst : interest){ %>
+	<%=intrst %> 
+	<%}
+}%>
+		
+
 </div>
 </body>
 </html>

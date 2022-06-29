@@ -15,6 +15,7 @@ String path = request.getContextPath();
 <meta charset="UTF-8">
 <title>회원가입1</title>
 <link rel="stylesheet" href="signupcss.css">
+<jsp:useBean id="users" class="db.Users001" scope="session"/>
 
 <script>
 	var ovl = false;	// 중복확인 검사 통과하면 ovl = true;
@@ -102,6 +103,7 @@ String path = request.getContextPath();
 	// 등록 처리를 위한 조건
 	String isIns = "N";
 	if(id != null && !id.trim().equals("")){
+		users.setId(id);
 		dao.insertUsers(new Users001(id, password, nickname, gender, age, loc));
 		isIns = "Y";
 	}
@@ -131,7 +133,7 @@ String path = request.getContextPath();
 	var isIns = "<%=isIns%>";
 	if(isIns == "Y"){
 		if(confirm("등록성공!!")){
-			location.href="signup_pic.jsp"
+			location.href="signup_interest.jsp"
 		}
 	}
 </script>
@@ -234,6 +236,8 @@ li a:hover {
 </style>
 
 <body>
+
+
 <div id="header">
    <div class="banner" href="#">
       <img
