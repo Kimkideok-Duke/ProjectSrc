@@ -1,9 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"
+    import="connect.*"
+    import="db.*"
+    %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="signupcss.css">
 <title>profile</title>
 <style>
 body {
@@ -119,17 +123,71 @@ li a:hover {
 	bottom: 260px;
 	cursor: pointer;
 }
+table {
+  border-collapse:collapse;
+  border:none;
+  width : 300px;
+  height: 125px;
+  margin : auto;
+  width:700px
+}
+ th, td {
+    border: none;
+     padding: 10px;
+ }
+ th{
+ background-color: #F8C0E5;
+ }
+#sform {
+          text-align: center;
+}
+.nextform{
+	background-Color:#FF98A3;
+	border: 3px solid #FFD5D2;
+	text-align: center;
+	margin:auto;
+	width : 80px;
+	font-size: 12px;
+}
+.nextform:hover{
+	background-Color:#FF848F;
+}
+input {
+  width:500px;
+  height:40px;
+  font-size:15px;
+}
 
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
 </style>
 <script src="https://kit.fontawesome.com/99c434d4a4.js" crossorigin="anonymous"></script>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
-<body>
+ <script>
+ PreDAO dao = new PreDAO();
+  function uptDept(){
+		if(confirm("수정하시겠습니까?")){
+			document.querySelector("[name=proc]").value="upt";
+			document.querySelector("form").submit();
+		}
+	}
+  function delDept(){
+		if(confirm("삭제하시겠습니까?")){
+			document.querySelector("[name=proc]").value="del";
+			document.querySelector("form").submit();
+		}
+	}
+  function gomain(){
+		if(confirm("메인화면으로 이동하시겠습니까?")){
+			location.href"a01_DeptSchList.jsp";
+		}
+	}
+  </script>
+  <%    
+  %>
 <body>
 
-
-<<div id="header">
+<div id="header">
 	<div class="banner" onclick="location.href='main.jsp'">
 		<img
 			src="VV.png" href="main.jsp">
@@ -149,20 +207,140 @@ li a:hover {
 </div>
 <div id="guard"></div>
 
+<%
+   String proc = request.getParameter("proc");
+   if(proc == null) proc = "";
 
-<div class="profile-photo">
-<i class="fa-solid fa-circle-user"></i>
+   Users001 u = new Users001();
+  
+   String id = request.getParameter("id"); if(id == null) id = "";
+
+   if(id!=null&&!id.trim().equals("")){
+       PreDAO dao = new PreDAO();
+         // 수정 처리
+         if(proc.equals("upt")){
+            int age=0;
+          	String userno = request.getParameter("userno"); if(userno == null) userno = "";
+            String password = request.getParameter("password"); if(password == null) password = "";
+            String nickname = request.getParameter("nickname"); if(nickname == null) nickname = "";
+            String gender = request.getParameter("gender"); if(gender == null) gender = "";
+            String ages = request.getParameter("age");
+            if(ages != null) age = Integer.parseInt(ages);
+            String loc = request.getParameter("loc"); if(loc == null) loc = "";
+            String interest1 = request.getParameter("interest1"); if(interest1 == null) interest1 = "";
+            String interest2 = request.getParameter("interest2"); if(interest2 == null) interest2 = "";
+            String interest3 = request.getParameter("interest3"); if(interest3 == null) interest3 = "";
+            String interest4 = request.getParameter("interest4"); if(interest4 == null) interest4 = "";
+            String interest5 = request.getParameter("interest5"); if(interest5 == null) interest5 = "";
+            String loc1 = request.getParameter("loc1"); if(loc1 == null) loc1 = "";
+            String loc2 = request.getParameter("loc2"); if(loc2 == null) loc2 = "";
+            String loc3 = request.getParameter("loc3"); if(loc3 == null) loc3 = "";
+            
+            // 수정 처리를 위한 객체 매개변수 전달
+            u = new Users001(userno, id, password, nickname, gender, age, loc, 
+            		interest1,interest2,interest3,interest4,interest5,loc1,loc2,loc3);
+            dao.updateProfile(u); // 수정 처리
+         }
+   
+    // 등록된 내용 조회
+   	// u = dao.showProfile(id);
+  }
+ 
+%>
+<script type="text/javascript">
+   var proc = "<%=proc%>";
+   if(proc != null && proc.trim() != ""){
+      if(proc == "upt"){
+         if(confirm("수정처리가 되었습니다\n메인화면으로 이동하시겠습니까?")){
+            location.href="a01_empSchList.jsp";
+         }
+      }
+   }
+</script>
+
+<h1 style="text-align : center;">프로필</h1>
+<div class="container">
+  <form method="post">
+  <table style="align : center;">
+  	<tr>
+        <th><label for="userno">회원번호</label></th>
+        <td><input type="text" id="userno" name="userno" placeholder="회원번호 입력.." value="<%=u.getUserno()%>"></td>
+    </tr>
+	<tr>  
+        <th><label for="id">아이디</label></th>
+        <td><input type="text" id="id" name="id" placeholder="아이디 입력.." value="<%=u.getId()%>"></td>
+    </tr>
+    <tr>     
+        <th><label for="password">비밀번호</label></th>
+        <td><input type="password" id="password" name="password" placeholder="비밀번호 입력.." value="<%=u.getPassword()%>"></td>
+    </tr> 
+    <tr>     
+        <th><label for="nickname">닉네임</label></th>
+        <td><input type="text" id="nickname" name="nickname" placeholder="닉네임 입력.." value="<%=u.getNickname()%>"></td>
+    </tr>
+    <tr>   
+        <th><label for="gender">성별</label></th>
+        <td><input type="text" id="gender" name="gender" placeholder="성별 입력.." value="<%=u.getGender()%>"></td>
+    </tr>
+    <tr>    
+        <th><label for="age">나이</label></th>
+        <td><input type="text" id="age" name="age" placeholder="나이 입력.." value="<%=u.getAge()%>"></td>
+    </tr>
+    <tr>   
+        <th><label for="loc">거주지</label></th>
+        <td><input type="text" id="loc" name="loc" placeholder="거주지 입력.." value="<%=u.getLoc()%>"></td>
+    </tr>
+    <tr>   
+        <th><label for="interest1">관심사1</label></th>
+        <td><input type="text" id="interest1" name="interest1" placeholder="관심사 입력.." value="<%=u.getInterest1()%>"></td>
+    </tr>  
+    <tr>  
+        <th><label for="interest2">관심사2</label></th>
+        <td><input type="text" id="interest2" name="interest2" placeholder="관심사 입력.." value="<%=u.getInterest2()%>"></td>
+    </tr>
+    <tr>    
+        <th><label for="interest3">관심사3</label></th>
+        <td><input type="text" id="interest3" name="interest3" placeholder="관심사 입력.." value="<%=u.getInterest3()%>"></td>
+    </tr>
+    <tr>    
+        <th><label for="interest4">관심사4</label></th>
+        <td><input type="text" id="interest4" name="interest4" placeholder="관심사 입력.." value="<%=u.getInterest4()%>"></td>
+    </tr>
+    <tr>    
+        <th><label for="interest5">관심사5</label></th>
+        <td><input type="text" id="interest5" name="interest5" placeholder="관심사 입력.." value="<%=u.getInterest5()%>"></td>
+    </tr>
+    <tr>   
+        <th><label for="loc1">관심지역1</label></th>
+        <td><input type="text" id="loc1" name="loc1" placeholder="관심지역 입력.." value="<%=u.getLoc1()%>"></td>
+    </tr>
+    <tr>    
+        <th><label for="loc2">관심지역2</label></th>
+        <td><input type="text" id="loc2" name="loc2" placeholder="관심지역 입력.." value="<%=u.getLoc2()%>"></td>
+    </tr>
+    <tr>    
+        <th><label for="loc3">관심지역3</label></th>
+        <td><input type="text" id="loc3" name="loc3" placeholder="관심지역 입력.." value="<%=u.getLoc3()%>"></td>
+ 	</tr>
+  </table>  
+    <div>
+      	<input type="button" value="수정" onclick="uptEmp()" class="nextform">
+      	<input type="button" value="메인" onclick="gomain()" class="nextform">
+    </div>
+      <input type = "hidden" name="proc"/>
+  </form>
 </div>
-
-<div class="add-photo">
-<span class="material-icons">add_a_photo</span>
-</div>
-
-
-<div>
-	<label>
-		
-	</label>
-</div>
+<script>
+   function uptEmp(){
+      if(confirm("수정하시겠습니까?")){
+         document.querySelector("[name=proc]").value="upt";
+         document.querySelector("form").submit();
+       }
+   }
+  function gomain(){
+     location.href="main.jsp";
+  }
+</script>
 </body>
+
 </html>
