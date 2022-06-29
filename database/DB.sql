@@ -127,8 +127,7 @@ CREATE TABLE review (
 		-- 리뷰 테이블 - 리뷰수정 양식
 		-- 리뷰 테이블 - 리뷰삭제 양식
 	
-SELECT * FROM BBS b ;	
-
+/*
 CREATE TABLE bbs(
 	bbsID NUMBER PRIMARY KEY,
 	bbsTitle varchar2(200),
@@ -137,10 +136,30 @@ CREATE TABLE bbs(
 	bbsContent varchar2(2048),
 	bbsAvailable NUMBER,
 );
+ */
 
+-- 자유게시판 테이블
+CREATE TABLE board (
+	num NUMBER PRIMARY KEY,
+	title varchar2(50) NOT NULL,
+	writer varchar2(50) NOT NULL,
+	content varchar2(1000),
+	regdate DATE,
+	cnt NUMBER DEFAULT 0
+);
+-- 자유게시판 시퀀스
+	CREATE SEQUENCE board_seq
+		START WITH 1
+		INCREMENT BY 1
+		MAXVALUE 99999
+		nocache 
+		nocycle
+		noorder;
 
+INSERT INTO  board (num, title, writer, content, regdate, cnt) 
+	VALUES (board_seq.nextval, '제목1', '작성자1', '내용1', sysdate, 0);
 
-
+SELECT * FROM board;
 /**   상대 매칭   **/
 SELECT userno, nickname, gender, age, loc, interest1, interest2, interest3, interest4, interest5
 FROM users001
