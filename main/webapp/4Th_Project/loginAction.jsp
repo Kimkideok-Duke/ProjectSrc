@@ -14,8 +14,16 @@
 </head>
 <body>
 <%
+	String id = null;
+	if(session.getAttribute("id") != null){
+		id = (String)session.getAttribute("id");
+	}
+	
+	String userno = (String)session.getAttribute("userno");
+	if(userno==null) userno = "";
+	
 	UserDAO userDAO = new UserDAO();
-	String result = userDAO.login(user.getId(), user.getpassword());
+	String result = userDAO.login(user.getId(), user.getPassword());
 	if(result == ""){
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
@@ -24,6 +32,7 @@
 		script.println("</script>");
 	}else{
 		PrintWriter script = response.getWriter();
+		session.setAttribute("id",user.getId());
 		script.println("<script>");
 		script.println("alert('로그인 성공!')");
 		script.println("location.href='main.jsp'");
