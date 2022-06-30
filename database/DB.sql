@@ -12,7 +12,8 @@ CREATE TABLE USERS001 (
     interest3 varchar2(50),
     interest4 varchar2(50),
     interest5 varchar2(50),
-    image varchar2(100)
+    image varchar2(100),
+    loc1 VARCHAR2(50)
 );
 
 DROP TABLE users001;
