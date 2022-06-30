@@ -1201,7 +1201,7 @@ public class PreDAO {
 		}
 	}
 	/**   프로필 조회   **/
-	public Users001 showProfile(int id) {
+	public Users001 showProfile(String id) {
 		Users001 u = new Users001();
 		try {
 			setConn();
@@ -1210,13 +1210,13 @@ public class PreDAO {
 					+ "WHERE id=?";
 			System.out.println(sql);
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, id);
+			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 		while(rs.next()) {
 			u = new Users001(rs.getString("userno"), rs.getString("id"), rs.getString("password"), rs.getString("nickname"),
 					rs.getString("gender"), rs.getInt("age"), rs.getString("loc"), rs.getString("interest1"), rs.getString("interest2"),
-					rs.getString("interest3"),rs.getString("interest4"),rs.getString("interest5"),rs.getString("loc1"),
-					rs.getString("loc2"),rs.getString("loc3"));
+					rs.getString("interest3"),rs.getString("interest4"),rs.getString("interest5"),rs.getString("loc1")
+					);
 		}
 		// 자원해제(열린순서 반대 방향)
 		rs.close();
@@ -1264,25 +1264,25 @@ public class PreDAO {
 		try {
 			setConn();
 			con.setAutoCommit(false);
-			String sql = "UPDATE Users001 \r\n"
-					+ "	SET interest1=?,\r\n"
+			String sql = "UPDATE Users001\r\n"
+					+ "	SET nickname =?,\r\n"
+					+ "		loc = ?,\r\n"
+					+ "		interest1 = ?,\r\n"
 					+ "		interest2 = ?,\r\n"
 					+ "		interest3 = ?,\r\n"
 					+ "		interest4 = ?,\r\n"
 					+ "		interest5 = ?,\r\n"
-					+ "		loc1 = ?,\r\n"
-					+ "		loc2=?,\r\n"
-					+ "		loc3=?\r\n"
-					+ "WHERE id=? ";
+					+ "		loc1 = ?\r\n"
+					+ "	WHERE id=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, ins.getInterest1());
-			pstmt.setString(2, ins.getInterest2());
-			pstmt.setString(3, ins.getInterest3());
-			pstmt.setString(4, ins.getInterest4());
-			pstmt.setString(5, ins.getInterest5());
-			pstmt.setString(6, ins.getLoc1());
-			pstmt.setString(7, ins.getLoc2());
-			pstmt.setString(8, ins.getLoc3());
+			pstmt.setString(1, ins.getNickname());
+			pstmt.setString(2, ins.getLoc());
+			pstmt.setString(3, ins.getInterest1());
+			pstmt.setString(4, ins.getInterest2());
+			pstmt.setString(5, ins.getInterest3());
+			pstmt.setString(6, ins.getInterest4());
+			pstmt.setString(7, ins.getInterest5());
+			pstmt.setString(8, ins.getLoc1());
 			pstmt.setString(9, ins.getId());
 			pstmt.executeUpdate();
 			con.commit();
