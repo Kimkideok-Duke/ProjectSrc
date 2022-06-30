@@ -15,8 +15,6 @@ public class Users001 {
 	private String interest5;
 	private String image;
 	private String loc1;
-	private String loc2;
-	private String loc3;
 	private int age_s;
 	private int age_e;
 
@@ -85,8 +83,8 @@ public class Users001 {
 	}
 	
 	public Users001(String userno, String id, String password, String nickname, String gender, int age, String loc,
-			String interest1, String interest2, String interest3, String interest4, String interest5, String loc1,
-			String loc2, String loc3) {
+			String interest1, String interest2, String interest3, String interest4, String interest5, String loc1
+			) {
 		super();
 		this.userno = userno;
 		this.id = id;
@@ -101,13 +99,11 @@ public class Users001 {
 		this.interest4 = interest4;
 		this.interest5 = interest5;
 		this.loc1 = loc1;
-		this.loc2 = loc2;
-		this.loc3 = loc3;
 	}
 
 	public Users001(String userno, String id, String password, String nickname, String gender, int age, String loc,
 			String interest1, String interest2, String interest3, String interest4, String interest5, String loc1,
-			String loc2, String loc3, int age_s, int age_e) {
+			 int age_s, int age_e) {
 		super();
 		this.userno = userno;
 		this.id = id;
@@ -122,8 +118,6 @@ public class Users001 {
 		this.interest4 = interest4;
 		this.interest5 = interest5;
 		this.loc1 = loc1;
-		this.loc2 = loc2;
-		this.loc3 = loc3;
 		this.age_s = age_s;
 		this.age_e = age_e;
 	}
@@ -251,22 +245,6 @@ public class Users001 {
 
 	public void setLoc1(String loc1) {
 		this.loc1 = loc1;
-	}
-
-	public String getLoc2() {
-		return loc2;
-	}
-
-	public void setLoc2(String loc2) {
-		this.loc2 = loc2;
-	}
-
-	public String getLoc3() {
-		return loc3;
-	}
-
-	public void setLoc3(String loc3) {
-		this.loc3 = loc3;
 	}
 
 	public int getAge_s() {
