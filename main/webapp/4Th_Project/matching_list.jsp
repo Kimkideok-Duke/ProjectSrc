@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     import="connect.*"
-    import="db.*"%>
+    import="db.*"
+    import="java.util.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -167,6 +168,26 @@ li a:hover {
 	
 }
 
+.match-table,td{
+	border: 1px solid rgb(220,220,220);
+ 	border-collapse: collapse;
+	}
+.match-table{
+	position: absolute;
+	text-align: center;
+	width: 80%;
+	margin: 10px 0 150px 100px;
+}
+
+td:nth-child(odd) {
+  background-color: #fdc9dfff;
+}
+
+.table-text > input{
+	height: 50px;
+	margin: 0 10px 0 0;
+}
+
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
 </style>
 <script src="https://kit.fontawesome.com/99c434d4a4.js" crossorigin="anonymous"></script>
@@ -202,17 +223,12 @@ li a:hover {
 </div>
 <%	
 	PreDAO dao = new PreDAO();
+	ArrayList<Users001> ulist = (ArrayList)session.getAttribute("matchlist");
 	String userno = (String)session.getAttribute("userno");
 	Users001 user = dao.getUserList(userno);
 	String gender_u = user.getGender();
 	String gender_m = "M";					// 매칭 대상 성별
 	if(gender_u.equals("M")) gender_m = "F";
-	String loc = request.getParameter("loc");
-	int age_s, age_e; age_s=age_e=0;
-	String[] ageS = request.getParameterValues("age");
-	age_s = Integer.parseInt(ageS[0]);	// 범위 시작 나이
-	age_e = Integer.parseInt(ageS[1]);	// 범위 끝 나이
-    ArrayList<Users001> ulist = dao.matching(gender_m, loc, age_s, age_e);
 	int cnt=0;
 %>
 <body>
@@ -230,12 +246,12 @@ li a:hover {
 	</tr>
         <%}%>
 </table> --%>
-<table>
+<table class="match-table">
 	<tr><th>No.</th><th>닉네임</th></tr>
-        <% for(Users001 u:dao.matching(gender_m, loc, age_s, age_e)){%>
-        <tr ondblclick="goDetail(<%=u.getNickname()%>)">
-          <td><%=++cnt%></td><td><%=u.getNickname()%></td></tr>
-        <%}%>
+        <%for(Users001 u:ulist){%>
+			<tr ondblclick="goDetail(<%=u.getNickname()%>)">
+				<td><%=++cnt%></td><td><%=u.getNickname()%></td></tr>
+		<%}%>
 </table>
 <script>
   function goDetail(nickname){

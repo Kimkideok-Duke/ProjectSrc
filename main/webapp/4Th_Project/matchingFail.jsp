@@ -194,8 +194,13 @@ li a:hover {
 	<img src="matching3.JPG">
 </div>
 <div class="matching-button">
-	<input type="button" onclick="main.jsp" name="success" value="홈으로 돌아가기">
+	<input type="button" onclick="gomain()" name="fail" value="홈으로 돌아가기">
 </div>
+<script>
+	function gomain(){
+		location.href="main.jsp"
+	}
+</script>
 </div>
 </body>
 </html>

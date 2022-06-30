@@ -190,8 +190,12 @@ li a:hover {
 	<img src="matching2.JPG">
 </div>
 <div class="matching-button">
-	<input type="button" onclick="matching_list.jsp" name="success" value="상대방 정보 보러가기">
+	<input type="button" onclick="golist()" name="success" value="상대방 정보 보러가기">
 </div>
-
+<script>
+	function golist(){
+		location.href="matching_list.jsp"
+	}
+</script>
 </body>
 </html>

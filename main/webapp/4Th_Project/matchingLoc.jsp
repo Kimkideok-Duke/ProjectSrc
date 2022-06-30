@@ -169,7 +169,15 @@ li a:hover {
 	</div>
 </div>
 <div id="guard"></div>
-
+<%
+String id = (String)session.getAttribute("userno");
+%>
+<script>
+function gomain(){
+	alert("로그인이 필요한 서비스입니다.");
+	location.href="main.jsp";
+}
+</script>
 <div class="matching1">
 	<img src="matching1.JPG">
 </div>
@@ -179,7 +187,11 @@ li a:hover {
             지역 선택<input type="radio" name="matLoc" value="selectloc">
         </div>
         <div class="submit">
-            <input type="submit" value="확인">
+		<%if(id!=null){%>
+			<input type="submit" value="확인">
+		<%}else{%>
+			<input type="button" value="확인" onclick="gomain()">
+		<%}%>
         </div>
     </form>
 </body>
