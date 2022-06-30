@@ -14,7 +14,6 @@ public class Users001 {
 	private String interest4;
 	private String interest5;
 	private String image;
-	private String loc1;
 	private int age_s;
 	private int age_e;
 
@@ -83,26 +82,7 @@ public class Users001 {
 	}
 	
 	public Users001(String userno, String id, String password, String nickname, String gender, int age, String loc,
-			String interest1, String interest2, String interest3, String interest4, String interest5, String loc1
-			) {
-		super();
-		this.userno = userno;
-		this.id = id;
-		this.password = password;
-		this.nickname = nickname;
-		this.gender = gender;
-		this.age = age;
-		this.loc = loc;
-		this.interest1 = interest1;
-		this.interest2 = interest2;
-		this.interest3 = interest3;
-		this.interest4 = interest4;
-		this.interest5 = interest5;
-		this.loc1 = loc1;
-	}
-
-	public Users001(String userno, String id, String password, String nickname, String gender, int age, String loc,
-			String interest1, String interest2, String interest3, String interest4, String interest5, String loc1,
+			String interest1, String interest2, String interest3, String interest4, String interest5,
 			 int age_s, int age_e) {
 		super();
 		this.userno = userno;
@@ -117,7 +97,6 @@ public class Users001 {
 		this.interest3 = interest3;
 		this.interest4 = interest4;
 		this.interest5 = interest5;
-		this.loc1 = loc1;
 		this.age_s = age_s;
 		this.age_e = age_e;
 	}
@@ -133,7 +112,7 @@ public class Users001 {
 	
 
 	public Users001(String id, String nickname, String loc, String interest1, String interest2, String interest3,
-			String interest4, String interest5, String loc1) {
+			String interest4, String interest5) {
 		super();
 		this.id = id;
 		this.nickname = nickname;
@@ -143,7 +122,6 @@ public class Users001 {
 		this.interest3 = interest3;
 		this.interest4 = interest4;
 		this.interest5 = interest5;
-		this.loc1 = loc1;
 	}
 
 	public Users001(String userno) {
@@ -253,14 +231,6 @@ public class Users001 {
 
 	public void setImage(String image) {
 		this.image = image;
-	}
-
-	public String getLoc1() {
-		return loc1;
-	}
-
-	public void setLoc1(String loc1) {
-		this.loc1 = loc1;
 	}
 
 	public int getAge_s() {
