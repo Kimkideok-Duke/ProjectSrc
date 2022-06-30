@@ -1,21 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
-    import="notice.*"
-    import="java.util.*"
-    %>
+    import = "notice.*"%>
+<%@page import="java.util.*"%>
+<%request.setCharacterEncoding("UTF-8"); %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<jsp:useBean id="dao" class="notice.NoticeDAO"/>
+<%
+	int noticeno = Integer.parseInt(request.getParameter("noticeno"));
+	Notice n = dao.selectOne(noticeno);
+	pageContext.setAttribute("n", n);
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="board.css">
 <style>
 body {
 	margin: 0;  
 	color: rgb(94, 94, 94);
 	font-family: "Noto Sans KR", sans-serif;
 }
-
 #header {
 	position: fixed;
 	top: 0;
@@ -48,7 +54,7 @@ li {
 	margin: 0 35px 0 0;
 }
 
-li > a {
+li a {
 	display: inline-block;
 	width: 100px;
 	color: rgb(94, 94, 94);
@@ -57,7 +63,7 @@ li > a {
 	text-decoration: none;
 }
 
-li > a:hover {
+li a:hover {
 	color: #ffffff;
 	background-color: rgba(250, 80, 120, 0.9);
 }
@@ -125,101 +131,78 @@ li > a:hover {
 	color: rgb(94, 94, 94);
 }
 
-.signup{
-	position: fixed;
-	top:5px;
-	left: 1150px;
-	font-family: "Noto Sans KR", sans-serif;
-	font-size: 6px;
-	text-decoration: none;
-	color: rgb(94, 94, 94);
-}
-
 #guard{
 	height: 125px;
 	width: 0;
-}
-.board-table {
-	border-collapse: collapse;
-	width: 100%;
-	margin: 60px 0 0 0;
-}
-
-th, td {
-	padding: 8px;
-	text-align: left;
-	border-bottom: 1px solid #DDD;
-	text-align: center;
-	font-family: "Noto Sans KR", sans-serif;
-}
-
-th{
-	background-color: rgb(220,220,220);
-}
-
-td{
-	font-size: 12px;
-}
-
-.contents:hover {
-	background-color: rgba(250, 80, 120, 0.1);
 }
 
 #board {
 	position: absolute;
 	background-color: rgba(250, 80, 120, 0.05);
 	width: 80%;
-	height: 600px;
+	height: 550px;
 	left: 125px;
-	padding: 20px 0 100px 0;
+	padding: 0 0 100px 0;
 	color: rgb(94, 94, 94);
 }
-#board > h2{
-	position: absolute;
-	left: 50px;
-}
+.board-table,td{
+	border: 1px solid rgb(220,220,220);
+ 	border-collapse: collapse;
+	}
 .board-table{
-	margin: 100px 0 0 0;
+	position: absolute;
+	text-align: left;
+	width: 80%;
+	margin: 10px 0 150px 100px;
 }
 
-.board-write-button{
+
+td:nth-child(odd) {
+  background-color: #fdc9dfff;
+}
+
+.table-text > input{
+	height: 50px;
+	margin: 0 10px 0 0;
+}
+
+.contents > textarea{
+	height: 400px;
+	margin: 0 10px 0 0;
+}
+
+#board > h2{
+	text-align: center;
+}
+
+.update-button{
+	display: inline-block;
 	position: absolute;
 	appearance: none;
 	font-family: "Noto Sans KR", sans-serif;
 	color: #FFFFFF;
 	font-size: 16px;
 	padding: 5px 10px;
+	margin: 0 0 100px 0;
 	cursor: pointer;
 	background-color: rgb(250, 80, 120);
 	border: none;
 	border-radius: 4px;
-	left: 880px;
-	z-index: 1;
-	bottom: 645px;
+	left: 490px;
+	top: 570px;
 }
 
-.notice-search{
-	position: absolute;
-	left: 800px;
-
+* {
+  box-sizing: border-box;
 }
 
-.board-write-button{
-	position: absolute;
-	appearance: none;
-	font-family: "Noto Sans KR", sans-serif;
-	color: #FFFFFF;
-	font-size: 16px;
-	padding: 5px 10px;
-	cursor: pointer;
-	background-color: rgb(250, 80, 120);
-	border: none;
-	border-radius: 4px;
-	left: 880px;
-	z-index: 1;
-	bottom: 645px;
+input[type=text], textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
 }
-
 
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
 </style>
@@ -272,28 +255,18 @@ if(userno==null) userno = "";
 	</div>
 </div>
 <div id="guard"></div>
-<%
-   String nttitle = request.getParameter("nttitle");
-   if(nttitle==null) nttitle="";
-   NoticeDAO dao = new NoticeDAO();
-%>
 
-
-	
 <div id="board">
-<h2>공지사항</h2>
-<table class="board-table">
-	<tr><th>No.</th><th>제목</th><th>작성일</th><th>내용</th></tr>
-	<%for(Notice n:dao.showNoticeInfo(new Notice(nttitle))){%>
-	<tr class="contents"><td><%=n.getNoticeno() %></td>
-	<td><%=n.getNttitle() %></td>
-	<td><%=n.getNtdate() %></td>
-	<td><%=n.getNtcontent() %></td></tr>	
-	<%}%>
-</table>
-<div class="board-write">
-	<input class="board-write-button" type="button" value="글작성" onclick="location.href='notice_registForm.jsp'">
-</div>
+	<h2>글 수정</h2>
+	<form action="notice_edit.jsp" method="post">
+	<input type="hidden" name="noticeno" value="${n.noticeno}">
+	<table class="board-table">
+		<tr class="table-text"><td width="60">No.</td><td>${n.noticeno}</td></tr>
+		<tr class="title"><td>제목</td><td colspan="3" height="50"><input type="text" name="title" placeholder="제목" value="${n.nttitle}" style="width:735px;height:40px;" required></td></tr>
+		<tr class="contents"><td>내용</td><td colspan="3" height="350"><textarea rows="4" cols="20" name="content" placeholder="내용" style="width:735px;height:340px;">${n.ntcontent}</textarea></td></tr>
+	</table>
+	<input class="update-button" type="submit" value="수정">
+	</form>
 </div>
 
 </body>

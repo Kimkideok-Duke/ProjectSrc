@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter"%>
-<%@ page import="bbs.*"%>	
+<%@ page import="board.*"%>	
 <% request.setCharacterEncoding("UTF-8"); %>
-<jsp:useBean id="bbs" class="bbs.Bbs" scope="page"/>
+<jsp:useBean id="board" class="board.BoardVo" scope="session"/>
+<jsp:useBean id="board" class="board.BoardDao" scope="session"/>
 <jsp:setProperty name="bbs" property="*"/>
 
 <!DOCTYPE html>
@@ -39,8 +40,8 @@
 			script.println("history.back()");
 			script.println("</script>");
 		}else{
-			BbsDAO bbsDAO = new BbsDAO();
-			int result = bbsDAO.write(bbs.getBbsTitle(), id, bbs.getBbsContent());
+			BoardDao boardDAO = new BoardDao();
+			int result = boardDAO.write(dao.getTitle(), id, boardDAO.getContent());
 			if(result == -1){
 				PrintWriter script = response.getWriter();
 				script.println("<script>");

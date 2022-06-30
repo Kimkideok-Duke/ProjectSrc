@@ -11,6 +11,7 @@ body {
 	color: rgb(94, 94, 94);
 	font-family: "Noto Sans KR", sans-serif;
 }
+
 #header {
 	position: fixed;
 	top: 0;
@@ -43,7 +44,7 @@ li {
 	margin: 0 35px 0 0;
 }
 
-li a {
+li > a {
 	display: inline-block;
 	width: 100px;
 	color: rgb(94, 94, 94);
@@ -52,7 +53,7 @@ li a {
 	text-decoration: none;
 }
 
-li a:hover {
+li > a:hover {
 	color: #ffffff;
 	background-color: rgba(250, 80, 120, 0.9);
 }
@@ -120,22 +121,26 @@ li a:hover {
 	color: rgb(94, 94, 94);
 }
 
+.signup{
+	position: fixed;
+	top:5px;
+	left: 1150px;
+	font-family: "Noto Sans KR", sans-serif;
+	font-size: 6px;
+	text-decoration: none;
+	color: rgb(94, 94, 94);
+}
+
 #guard{
 	height: 125px;
 	width: 0;
 }
-.contents-slider {
+.contents-slider .post {
 	background-color: #ffaaaa;
 	height: 400px;
+	text-align: center;
 }
 
-.contents-slider .slick-arrow {
-	display: block;
-	position: absolute;
-	left: 95%;
-	top: 50%;
-	z-index: 1;
-}
 
 .contents-slider .slick-dots {
 	display: inline;
@@ -203,7 +208,7 @@ if(userno==null) userno = "";
 			<li><a href="main.jsp">홈</a></li>
 			<li><a href="matchingLoc.jsp">매칭하기</a></li>
 			<li><a href="profile.jsp">마이프로필</a></li>
-			<li><a href="board.jsp">자유게시판</a></li>
+			<li><a href="list.jsp">자유게시판</a></li>
 			<li><a href="project/notice_list.jsp">커뮤니티</a></li>
 		</ul>
 	</div>
@@ -231,11 +236,11 @@ if(userno==null) userno = "";
 
 	<div class="contents-slider" onclick="location.href='/webapp/project/notice_list.jsp'">
 	<!-- 공지사항/이벤트 게시글 등록 후에 post 클래스에 onclick 추가로 변경  -->
-		<div class="post">1</div>
-		<div class="post">2</div>
-		<div class="post">3</div>
-		<div class="post">4</div>
-		<div class="post">5</div>
+		<div class="post" style="background-color:#F8C8D2;">공지사항</div>
+		<div class="post" style="background-color:#EE7E96;">이벤트</div>
+		<div class="post" style="background-color:#F69CD2;">공지사항</div>
+		<div class="post" style="background-color:#FCB2C0;">이벤트</div>
+		<div class="post" style="background-color:#F9DFEE;">공지사항</div>
 	</div>
 
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>

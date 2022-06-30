@@ -5,9 +5,9 @@
 <%request.setCharacterEncoding("UTF-8"); %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<jsp:useBean id="vo" class="board.BoardVo"/>
-<jsp:useBean id="dao" class="board.BoardDao"/>
-<jsp:setProperty name="vo" property="*"/>
+	<jsp:useBean id="vo" class="board.BoardVo"/>
+	<jsp:useBean id="dao" class="board.BoardDao"/>
+	<jsp:setProperty name="vo" property="*"/>
 <%
 	dao.update(vo);
 	pageContext.setAttribute("vo", vo);

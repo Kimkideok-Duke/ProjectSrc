@@ -1,4 +1,4 @@
-package db;
+package faq;
 
 import java.util.Date;
 

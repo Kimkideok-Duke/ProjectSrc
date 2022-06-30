@@ -265,6 +265,7 @@ if(userno==null) userno = "";
 		<th>등록일</th>
 		<th>조회수</th>
 	</tr>
+	
 	<c:forEach var="board" items="${ls}">
 	<tr class="contents" >
 		<td>${board.num}</td>
@@ -276,7 +277,7 @@ if(userno==null) userno = "";
 	</c:forEach>
 	</table>
 	<div class="board-write">
-	<input class="board-write-button" type="button" value="글작성" onclick="location.href='registForm.jsp'">
+	<input class="board-write-button" type="button" value="글작성" onclick="location.href='notice_registForm.jsp'">
 	</div>
 </div>
 

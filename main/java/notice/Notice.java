@@ -1,33 +1,40 @@
-package db;
+package notice;
 
 import java.util.Date;
 
 public class Notice {
-	private String noticeno;
+	private int noticeno;
     private String nttitle;
 	private Date ntdate;
     private String ntcontent;
-    public Notice() {
+    
+    public Notice(String nttitle) {
+		super();
+		this.nttitle = nttitle;
+	}
+
+	public Notice() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Notice(String noticeno, String nttitle, Date ntdate, String ntcontent) {
+    
+	public Notice(int noticeno, String nttitle, Date ntdate, String ntcontent) {
 		super();
 		this.noticeno = noticeno;
 		this.nttitle = nttitle;
 		this.ntdate = ntdate;
 		this.ntcontent = ntcontent;
 	}
-	public Notice(String noticeno, String nttitle, String ntcontent) {
+	public Notice(int noticeno, String nttitle, String ntcontent) {
 		super();
 		this.noticeno = noticeno;
 		this.nttitle = nttitle;
 		this.ntcontent = ntcontent;
 	}
-	public String getNoticeno() {
+	public int getNoticeno() {
 		return noticeno;
 	}
-	public void setNoticeno(String noticeno) {
+	public void setNoticeno(int noticeno) {
 		this.noticeno = noticeno;
 	}
 	public String getNttitle() {

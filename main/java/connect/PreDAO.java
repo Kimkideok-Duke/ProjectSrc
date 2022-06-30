@@ -3,11 +3,11 @@ package connect;
 import java.sql.*;
 import java.util.ArrayList;
 
-import db.FAQ;
-import db.Notice;
 import db.Result_Match;
 import db.Review;
 import db.Users001;
+import faq.FAQ;
+import notice.Notice;
 
 public class PreDAO {
 

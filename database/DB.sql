@@ -78,7 +78,7 @@ INSERT INTO RESULT_MATCH VALUES(?,?,?,?);
 -- 공지사항 테이블 (공지번호, 공지제목, 공지작성일자, 공지내용)
 DROP TABLE notice;
 CREATE TABLE notice (
-	noticeno varchar2(50) PRIMARY KEY,
+	noticeno NUMBER PRIMARY KEY,
 	nttitle varchar2(500) NOT NULL,
 	ntdate DATE NOT NULL,
 	ntcontent varchar2(4000) NOT NULL

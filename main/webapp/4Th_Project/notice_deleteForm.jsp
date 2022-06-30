@@ -8,10 +8,10 @@
 </head>
 <body>
 <%
-	int num = Integer.parseInt(request.getParameter("num"));
+	String noticeno = request.getParameter("noticeno");
 %>
-<form action="delete.jsp?num=<%=num %>" >
-<input type="hidden" value="<%=num %>" name="num">
+<form action="notice_delete.jsp?noticeno=<%=noticeno %>" >
+<input type="hidden" value="<%=noticeno %>" name="num">
 <h3>삭제 하시겠습니까?</h3><input type="submit" value="예">
 </form>
 </body>

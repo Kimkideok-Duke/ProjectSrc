@@ -3,10 +3,10 @@ package user;
 import java.sql.*;
 import java.util.ArrayList;
 
-import db.FAQ;
-import db.Notice;
 import db.Review;
 import db.Users001;
+import faq.FAQ;
+import notice.Notice;
 
 public class UserDAO {
 	

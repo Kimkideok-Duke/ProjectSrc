@@ -1,17 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter"%>
-<%@ page import="board.*" %>
+<%@ page import="notice.*" %>
 <%@page import="java.util.*"%>
 <%request.setCharacterEncoding("UTF-8"); %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 
-<jsp:useBean id="vo" class="board.BoardVo"/>
-<jsp:useBean id="dao" class="board.BoardDao"/>
+<jsp:useBean id="n" class="notice.Notice"/>
+<jsp:useBean id="dao" class="notice.NoticeDAO"/>
 <jsp:setProperty name="vo" property="*"/>
 <%
-dao.insert(vo);
+dao.insert(n);
 %>
 <%
 	String id = null;
