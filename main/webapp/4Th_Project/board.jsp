@@ -204,22 +204,41 @@ td{
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
 </head>
 <body>
+<%
+// 메인 페이지로 이동했을 때 세션에 값이 담겨있는지 체크
+
+String userno = (String)session.getAttribute("userno");
+if(userno==null) userno = "";
+%>
+
 <div id="header">
 	<div class="banner" onclick="location.href='main.jsp'">
 		<img
-			src="VV.png" href="main.jsp">
+			src="VV.png">
 	</div><!--
  --><div class="navigationbar">
 		<ul>
 			<li><a href="main.jsp">홈</a></li>
-			<li><a href="matching.jsp">매칭하기</a></li>
+			<li><a href="matchingLoc.jsp">매칭하기</a></li>
 			<li><a href="profile.jsp">마이프로필</a></li>
-			<li><a href="board.jsp">자유게시판</a></li>
-			<li><a href="/webapp/project/notice_list.jsp">커뮤니티</a></li>
+			<li><a href="list.jsp">자유게시판</a></li>
+			<li><a href="notice_list.jsp">커뮤니티</a></li>
 		</ul>
 	</div>
+	<%if(userno.equals("")){%>
+	<div class="login">
+		<a href="login.jsp">LOGIN</a>
+	</div>
+	<%}else{%>
+	<div class="logout">
+		<a href="logoutAction.jsp">LOGOUT</a>
+	</div>
+	<%}%>
+	<div class="signup">
+		<a href="signup_agreement.jsp">JOINUS</a>
+	</div>
 	<div class="user-icon">
-		<span class="material-icons">account_circle</span>
+		<span class="material-icons" onclick="location.href='profile.jsp'">account_circle</span>
 	</div>
 	<div class="search">
 		<input class="serach-button" type="text" name="search" placeholder="search" />
@@ -227,6 +246,7 @@ td{
 	</div>
 </div>
 <div id="guard"></div>
+
 
 <%
 String id = (String)session.getAttribute("userno");

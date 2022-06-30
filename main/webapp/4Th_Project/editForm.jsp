@@ -242,7 +242,7 @@ if(userno==null) userno = "";
 			<li><a href="matchingLoc.jsp">매칭하기</a></li>
 			<li><a href="profile.jsp">마이프로필</a></li>
 			<li><a href="list.jsp">자유게시판</a></li>
-			<li><a href="project/notice_list.jsp">커뮤니티</a></li>
+			<li><a href="notice_list.jsp">커뮤니티</a></li>
 		</ul>
 	</div>
 	<%if(userno.equals("")){%>
@@ -266,6 +266,7 @@ if(userno==null) userno = "";
 	</div>
 </div>
 <div id="guard"></div>
+
 
 <div id="board">
 	<h2>글 수정</h2>
