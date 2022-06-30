@@ -1266,6 +1266,7 @@ public class PreDAO {
 			con.setAutoCommit(false);
 			String sql = "UPDATE Users001 \r\n"
 					+ "	SET nickname=?,\r\n"
+					+ "		loc = ?,\r\n"
 					+ "		interest1 = ?,\r\n"
 					+ "		interest2 = ?,\r\n"
 					+ "		interest3 = ?,\r\n"
@@ -1275,13 +1276,14 @@ public class PreDAO {
 					+ "WHERE id=? ";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, ins.getNickname());
-			pstmt.setString(2, ins.getInterest1());
-			pstmt.setString(3, ins.getInterest2());
-			pstmt.setString(4, ins.getInterest3());
-			pstmt.setString(5, ins.getInterest4());
-			pstmt.setString(6, ins.getInterest5());
-			pstmt.setString(7, ins.getLoc1());
-			pstmt.setString(8, ins.getId());
+			pstmt.setString(2, ins.getLoc());
+			pstmt.setString(3, ins.getInterest1());
+			pstmt.setString(4, ins.getInterest2());
+			pstmt.setString(5, ins.getInterest3());
+			pstmt.setString(6, ins.getInterest4());
+			pstmt.setString(7, ins.getInterest5());
+			pstmt.setString(8, ins.getLoc1());
+			pstmt.setString(9, ins.getId());
 			pstmt.executeUpdate();
 			con.commit();
 			pstmt.close();
