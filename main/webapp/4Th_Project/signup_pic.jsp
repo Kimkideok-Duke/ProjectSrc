@@ -1,11 +1,84 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%> 
+    pageEncoding="UTF-8"
+    import="connect.PreDAO"
+    import="db.*"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.Connection"%>
+<%
+request.setCharacterEncoding("utf-8");
+String path = request.getContextPath();
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입2</title>
+<title>회원가입(이미지)</title>
 <link rel="stylesheet" href="signupcss.css">
+<jsp:useBean id="users" class="db.Users001" scope="session"/>
+
+<script type="text/javascript">
+
+	function loadFile(input) {
+		var file = input.files[0];	//선택된 파일 가져오기
+		
+		var name = document.getElementById('fileName');
+		alert(name + "!");
+		name.textContent = file.name;
+		alert(name + "!");
+
+	  	//새로운 이미지 div 추가
+	    var newImage = document.createElement("img");
+	    newImage.setAttribute("class", 'img');
+
+	    //이미지 source 가져오기
+	    newImage.src = URL.createObjectURL(file);
+	    
+	    newImage.style.width = "70%";
+	    newImage.style.height = "70%";
+	    newImage.style.visibility = "visible";
+		empty.style.width = "0";
+		empty.style.height = "0";
+		uploadtext.style.visibility = "hidden";
+
+	    //이미지를 image-show div에 추가
+	    var container = document.getElementById('image-show');
+	    container.appendChild(newImage);
+	}
+	
+	// 이미지 한장 업로드 유효성 검사
+	function check(){
+		var fileNameObj = document.querySelector("[name=chooseFile]");
+		alert(fileNameObj + "!");
+		if(fileNameObj.value == null || fileNameObj.value == ""){
+			alert("이미지를 업로드해주세요")
+			return;
+		}
+		document.querySelector("form").submit();
+	}
+	
+<%
+	PreDAO dao = new PreDAO();
+	MultipartRequest multi = new MultipartRequest();
+	String id = users.getId();
+	String fileName = dao.getOriginalFile("chooseFile"); if(fileName == null) fileName="";
+	
+	
+	// 등록 처리를 위한 조건
+	String isIns = "N";
+	if(fileName != null && !fileName.trim().equals("")){
+		dao.updateUsersImage(new Users001(fileName, id));
+		isIns = "Y";
+	}
+%>
+
+	var isIns = "<%=isIns%>";
+	if(isIns == "Y"){
+		if(confirm("등록성공!!")){
+			location.href="main.jsp"
+		}
+	}
+</script>
 </head>
 <style>
 body {
@@ -105,72 +178,6 @@ li a:hover {
 	display: none;
 }
 </style>
-<script type="text/javascript">
-	// 이미지 한장 업로드 유효성 검사
-	function check(){
-		var file1Obj  = document.querySelector("[name=file1]");
-		if(file1Obj.value==""){
-			alert("이미지를 업로드해주세요")
-			file1Obj.focus();
-			return;
-		}else{
-			location.href="signup_interest.jsp"
-		}	
-	}
-<%--
-	function showImage() {
-	    var newImage = document.getElementById('image-show').lastElementChild;
-	    newImage.style.visibility = "visible";
-	    
-	    document.getElementById('image-upload').style.visibility = 'hidden';
-
-	    document.getElementById('fileName').textContent = null;     //기존 파일 이름 지우기
-	}
-
-
-	function loadFile(input) {
-	    var file = input.files[0];
-
-	    var name = document.getElementById('fileName');
-	    name.textContent = file.name;
-
-	    var newImage = document.createElement("img");
-	    newImage.setAttribute("class", 'img');
-
-	    newImage.src = URL.createObjectURL(file);   
-
-	    newImage.style.width = "70%";
-	    newImage.style.height = "70%";
-	    newImage.style.visibility = "hidden";   //버튼을 누르기 전까지는 이미지 숨기기
-	    newImage.style.objectFit = "contain";
-
-	    var container = document.getElementById('image-show');
-	    container.appendChild(newImage);
-	};
---%>
-	function loadFile(input) {
-	    var file = input.files[0];	//선택된 파일 가져오기
-
-	  	//새로운 이미지 div 추가
-	    var newImage = document.createElement("img");
-	    newImage.setAttribute("class", 'img');
-
-	    //이미지 source 가져오기
-	    newImage.src = URL.createObjectURL(file);   
-
-	    newImage.style.width = "70%";
-	    newImage.style.height = "70%";
-	    newImage.style.visibility = "visible";
-		empty.style.width = "0";
-		empty.style.height = "0";
-		uploadtext.style.visibility = "hidden";
-
-	    //이미지를 image-show div에 추가
-	    var container = document.getElementById('image-show');
-	    container.appendChild(newImage);
-	};
-
-</script>
 
 <body>
 <div id="header">
@@ -199,11 +206,14 @@ li a:hover {
 			<label for="chooseFile">
 				<img src="./image_uplod.png" id="empty" width="100" height="100"/><br>
 			</label>
-		<input type="file" id="chooseFile" name="chooseFile" accept="image/*" onchange="loadFile(this)">
-		<input class="nextform" type="button" value="등록하기" onclick="goInsertPage()">
-	</form>
-</div>
 
+		<input type="file" id="chooseFile" name="chooseFile" accept="image/*" onchange="loadFile(this)">
+		<input class="nextform" type="button" value="등록하기" onclick="check()">
+	</form>
+	<h2>세션 ID : <%=id %></h2>
+	<h6 id="fileName" name="fileName"> file name : </h6>
+
+</div>
 </body>
 </html>
 

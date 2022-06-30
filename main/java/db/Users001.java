@@ -13,6 +13,7 @@ public class Users001 {
 	private String interest3;
 	private String interest4;
 	private String interest5;
+	private String image;
 	private String loc1;
 	private String loc2;
 	private String loc3;
@@ -59,7 +60,13 @@ public class Users001 {
 		this.interest5 = interest5;
 		this.id = id;
 	}
-
+	
+	// 회원가입4 - 이미지(대신 파일명) 업로드
+	public Users001(String image, String id) {
+		this.image = image;
+		this.id = id;
+	}
+	
 	public Users001(String userno, String id, String password, String nickname, String gender, int age, String loc,
 			String interest1, String interest2, String interest3, String interest4, String interest5) {
 		super();
@@ -228,6 +235,14 @@ public class Users001 {
 
 	public void setInterest5(String interest5) {
 		this.interest5 = interest5;
+	}
+	
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	public String getLoc1() {

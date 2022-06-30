@@ -14,7 +14,7 @@ String path = request.getContextPath();
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원가입(관심사)</title>
 <link rel="stylesheet" href="signupcss.css">
 </head>
 <style>
@@ -188,7 +188,7 @@ li a:hover {
 <div class=divm>
 	<h1 align="center">회원가입</h1>
 <form class = loginform>
-	<h2 align="center">관심사를 선택 해 주세요.<br>(최대 5개)</h2>
+	<h2 align="center">관심사를 선택 해 주세요.<br>(5개)</h2>
 	<div class="interestdiv">
 		<input type="checkbox" name="interest" onclick = "countckbox(this)" value="그림" />그림
 		<input type="checkbox" name="interest" onclick = "countckbox(this)" value="낚시"/>낚시
@@ -214,18 +214,8 @@ li a:hover {
 		<input class=nextform type="button" value="다음" onclick="check()">
 </form>
 
-
-<h2><%=id %></h2>
-
-	나의 관심사 : 
-<%
-if(interest != null){
-	for(String intrst : interest){ %>
-	<%=intrst %> 
-	<%}
-}%>
+<h2>세션 ID : <%=id %></h2>
 		
-
 </div>
 </body>
 </html>

@@ -11,7 +11,8 @@ CREATE TABLE USERS001 (
     interest2 varchar2(50),
     interest3 varchar2(50),
     interest4 varchar2(50),
-    interest5 varchar2(50)
+    interest5 varchar2(50),
+    image varchar2(100)
 );
 
 DROP TABLE users001;
@@ -52,6 +53,9 @@ SELECT count(id) idCnt FROM users001 WHERE id = 123;
 		        interest4 = ?,
 		        interest5 = ?
 		WHERE userno = ?;
+		UPDATE users001
+			SET image = 'a'
+			WHERE id = '111223333';
 		-- 회원 테이블 - 회원 탈퇴 양식(delete)
 		DELETE FROM users001 WHERE userno = ?;
 

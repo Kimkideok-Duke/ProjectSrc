@@ -517,6 +517,47 @@ public class PreDAO {
 		}
 	}
 
+	/**   회원 가입3 관심사 추가 수정   **/
+	public void updateUsersImage(Users001 ins) {
+		try {
+			setConn();
+			con.setAutoCommit(false);
+			String sql = "UPDATE users001\r\n"
+					+ "			SET image = ?\r\n"
+					+ "			WHERE id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, ins.getImage());
+			pstmt.setString(2, ins.getId());
+			pstmt.executeUpdate();
+			con.commit();
+			pstmt.close();
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("DB 에러 : " + e.getMessage());
+			// commit 전에 예외가 발생하면 rollback 처리
+		} catch (Exception e) {
+			System.out.println("일반 예외 : " + e.getMessage());
+		} finally {
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			if(con!=null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
 	/**   회원 삭제   **/
 	public void deleteUsers(String userno) {
 		try {

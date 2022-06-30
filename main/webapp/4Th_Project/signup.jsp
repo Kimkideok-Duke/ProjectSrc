@@ -8,12 +8,12 @@
 <%
 request.setCharacterEncoding("utf-8");
 String path = request.getContextPath();
-%>        
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입1</title>
+<title>회원가입(개인정보)</title>
 <link rel="stylesheet" href="signupcss.css">
 <jsp:useBean id="users" class="db.Users001" scope="session"/>
 

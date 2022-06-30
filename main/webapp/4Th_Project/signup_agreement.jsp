@@ -14,7 +14,7 @@ String path = request.getContextPath();
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원가입(약관동의)</title>
 <link rel="stylesheet" href="signupcss.css">
 </head>
 <style>
@@ -140,8 +140,8 @@ li a:hover {
 	// 약관동의합니다 체크 여부 확인
 	function check(){
 		if(document.getElementById('agree_o').checked) {
-			alert("가입이 완료되었습니다.")
-			location.href = "main.jsp"
+			alert("약관 동의 완료.")
+			location.href = "signup.jsp"
 			return;
 		}else if(document.getElementById('agree_x').checked) {
 			alert("약관에 동의해주세요.")
