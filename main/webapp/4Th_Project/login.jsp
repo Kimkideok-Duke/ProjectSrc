@@ -135,7 +135,11 @@
   	}
 </script>
  --%>
-
+<script>
+	function gojoin(){
+		location.href="signup_agreement.jsp"
+	}
+</script>
 <div id="login">
 	<form class="form" method="post" action="loginAction.jsp">
 		<div class="login-input">
@@ -148,7 +152,7 @@
 	</form>
 </div>	
 	<div class="join">
-		<input class="join-button" type="submit" value="JOIN" style="WIDTH: 120px; HEIGHT: 26px"/>
+		<input class="join-button" type="button" value="JOIN" onclick="gojoin()" style="WIDTH: 120px; HEIGHT: 26px"/>
 	</div>
 </body>
 </html>
