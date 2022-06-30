@@ -293,7 +293,7 @@ if(userno==null) userno = "";
 </table>
 <div class="board-write">
 	<input class="board-write-button" type="button" value="글작성" onclick="location.href='notice_registForm.jsp'">
-</div>
+</div>	
 </div>
 
 </body>

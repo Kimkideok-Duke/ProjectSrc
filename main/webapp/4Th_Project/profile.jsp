@@ -22,6 +22,7 @@ body {
 	color: rgb(94, 94, 94);
 	font-family: "Noto Sans KR", sans-serif;
 }
+
 #header {
 	position: fixed;
 	top: 0;
@@ -54,7 +55,7 @@ li {
 	margin: 0 35px 0 0;
 }
 
-li a {
+li > a {
 	display: inline-block;
 	width: 100px;
 	color: rgb(94, 94, 94);
@@ -63,7 +64,7 @@ li a {
 	text-decoration: none;
 }
 
-li a:hover {
+li > a:hover {
 	color: #ffffff;
 	background-color: rgba(250, 80, 120, 0.9);
 }
@@ -110,6 +111,35 @@ li a:hover {
 	left: 1200px;
 	z-index: 10;
 	font-size: 20px;
+}
+
+.login{
+	position: fixed;
+	top:5px;
+	left: 1050px;
+	font-family: "Noto Sans KR", sans-serif;
+	font-size: 6px;
+	text-decoration: none;
+	color: rgb(94, 94, 94);
+}
+.logout{
+	position: fixed;
+	top:5px;
+	left: 1100px;
+	font-family: "Noto Sans KR", sans-serif;
+	font-size: 6px;
+	text-decoration: none;
+	color: rgb(94, 94, 94);
+}
+
+.signup{
+	position: fixed;
+	top:5px;
+	left: 1150px;
+	font-family: "Noto Sans KR", sans-serif;
+	font-size: 6px;
+	text-decoration: none;
+	color: rgb(94, 94, 94);
 }
 
 #guard{

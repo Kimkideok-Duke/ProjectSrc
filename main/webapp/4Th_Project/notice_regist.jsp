@@ -9,7 +9,7 @@
 
 <jsp:useBean id="n" class="notice.Notice"/>
 <jsp:useBean id="dao" class="notice.NoticeDAO"/>
-<jsp:setProperty name="vo" property="*"/>
+<jsp:setProperty name="n" property="*"/>
 <%
 dao.insert(n);
 %>
@@ -31,4 +31,4 @@ dao.insert(n);
 		script.println("</script>");
 	}
 %>
-<c:redirect url="list.jsp"/> <!-- 화면 보여주기용이 아니라 redirect처리 -->
+<c:redirect url="notice_list.jsp"/> <!-- 화면 보여주기용이 아니라 redirect처리 -->

@@ -19,57 +19,133 @@ String path = request.getContextPath();
 </head>
 <style>
 body {
-   margin: 0;
-   color: rgb(94, 94, 94);
+	margin: 0;  
+	color: rgb(94, 94, 94);
+	font-family: "Noto Sans KR", sans-serif;
 }
+
 #header {
-   position: fixed;
-   top: 0;
-   width: 100%;
-   z-index: 2;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 99999;
 }
 .banner {
-   background-color: #ffffff;
-   text-align: center;
-   margin: 0;
+	background-color: #ffffff;
+	text-align: center;
+	margin: 0;
+	cursor: pointer;
 }
 
 .banner>img {
-   width: 90px;
-   height:80px;
+	width: 90px;
+	height:80px;
 }
 
 ul {
-   list-style-type: none;
-   margin: 0;
-   padding: 0;
-   overflow: hidden;
-   background-color: #ffffff;
-   font-size: 16px;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #ffffff;
+	font-size: 16px;
 }
 
 li {
-   float: left;
-   margin: 0 35px 0 0;
+	float: left;
+	margin: 0 35px 0 0;
 }
 
-li a {
-   display: inline-block;
-   width: 100px;
-   color: rgb(94, 94, 94);
-   text-align: center;
-   padding: 10px 25px;
-   text-decoration: none;
+li > a {
+	display: inline-block;
+	width: 100px;
+	color: rgb(94, 94, 94);
+	text-align: center;
+	padding: 10px 25px;
+	text-decoration: none;
 }
 
-li a:hover {
-   color: #ffffff;
-   background-color: rgba(250, 80, 120, 0.9);
+li > a:hover {
+	color: #ffffff;
+	background-color: rgba(250, 80, 120, 0.9);
+}
+
+.search .serach-button{
+	position: fixed;
+	padding: 5px 5px;
+	font-size: 8px;
+	border: solid; 
+	border-radius: 20px;
+	border-color: rgb(220,220,220);
+	width: 200px;
+}
+.search .serach-button:hover{
+	border-color: rgba(250, 80, 120, 0.9);
+}
+
+.user-icon > span{
+	position: fixed;
+	display: inline-block;
+	font-size: 38px;
+	color: rgb(220,220,220);
+	cursor: pointer;
+}
+.search > span{
+	position: fixed;
+	display: inline-block;
+	left: 1190px;
+	font-size: 20px;
+	color: rgb(220,220,220);
+	cursor: pointer;
+
+}
+
+.search{
+	position: fixed;
+	left: 1000px;
+	top: 90px;
+}
+
+.user-icon{
+	position: fixed;
+	top: 20px;
+	left: 1200px;
+	z-index: 10;
+	font-size: 20px;
+}
+
+.login{
+	position: fixed;
+	top:5px;
+	left: 1050px;
+	font-family: "Noto Sans KR", sans-serif;
+	font-size: 6px;
+	text-decoration: none;
+	color: rgb(94, 94, 94);
+}
+.logout{
+	position: fixed;
+	top:5px;
+	left: 1100px;
+	font-family: "Noto Sans KR", sans-serif;
+	font-size: 6px;
+	text-decoration: none;
+	color: rgb(94, 94, 94);
+}
+
+.signup{
+	position: fixed;
+	top:5px;
+	left: 1150px;
+	font-family: "Noto Sans KR", sans-serif;
+	font-size: 6px;
+	text-decoration: none;
+	color: rgb(94, 94, 94);
 }
 
 #guard{
-   height: 125px;
-   width: 0;
+	height: 125px;
+	width: 0;
 }
 .contents-slider {
    background-color: #ffaaaa;
@@ -117,17 +193,17 @@ li a:hover {
 <jsp:useBean id="users" class="db.Users001" scope="session"/>
 
 <div id="header">
-   <div class="banner" href="#">
+   <div class="banner" onclick="location.href='main.jsp'">
       <img
          src="V.jpg">
    </div><!--
  --><div class="navigationbar">
       <ul>
-         <li><a href="#">홈</a></li>
-         <li><a href="#">매칭하기</a></li>
-         <li><a href="#">마이프로필</a></li>
-         <li><a href="#">커뮤니티</a></li>
-         <li><a href="#">이벤트</a></li>
+         <li><a href="main.jsp">홈</a></li>
+         <li><a href="matching.jsp">매칭하기</a></li>
+         <li><a href="profile.jsp">마이프로필</a></li>
+         <li><a href="board.jsp">자유게시판</a></li>
+         <li><a href="notice.jsp">커뮤니티</a></li>
       </ul>
    </div>
 </div>

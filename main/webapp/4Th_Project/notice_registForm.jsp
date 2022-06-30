@@ -13,6 +13,7 @@ body {
 	color: rgb(94, 94, 94);
 	font-family: "Noto Sans KR", sans-serif;
 }
+
 #header {
 	position: fixed;
 	top: 0;
@@ -45,7 +46,7 @@ li {
 	margin: 0 35px 0 0;
 }
 
-li a {
+li > a {
 	display: inline-block;
 	width: 100px;
 	color: rgb(94, 94, 94);
@@ -54,7 +55,7 @@ li a {
 	text-decoration: none;
 }
 
-li a:hover {
+li > a:hover {
 	color: #ffffff;
 	background-color: rgba(250, 80, 120, 0.9);
 }
@@ -122,6 +123,16 @@ li a:hover {
 	color: rgb(94, 94, 94);
 }
 
+.signup{
+	position: fixed;
+	top:5px;
+	left: 1150px;
+	font-family: "Noto Sans KR", sans-serif;
+	font-size: 6px;
+	text-decoration: none;
+	color: rgb(94, 94, 94);
+}
+
 #guard{
 	height: 125px;
 	width: 0;
@@ -183,9 +194,7 @@ td:nth-child(odd) {
 	top: 570px;
 }
 
-* {
-  box-sizing: border-box;
-}
+
 
 input[type=text], textarea {
   width: 100%;
