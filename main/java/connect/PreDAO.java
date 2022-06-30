@@ -1264,16 +1264,16 @@ public class PreDAO {
 		try {
 			setConn();
 			con.setAutoCommit(false);
-			String sql = "UPDATE Users001 \r\n"
-					+ "	SET nickname=?,\r\n"
+			String sql = "UPDATE Users001\r\n"
+					+ "	SET nickname =?,\r\n"
 					+ "		loc = ?,\r\n"
 					+ "		interest1 = ?,\r\n"
 					+ "		interest2 = ?,\r\n"
 					+ "		interest3 = ?,\r\n"
 					+ "		interest4 = ?,\r\n"
 					+ "		interest5 = ?,\r\n"
-					+ "		loc1 = ?,\r\n"
-					+ "WHERE id=? ";
+					+ "		loc1 = ?\r\n"
+					+ "	WHERE id=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, ins.getNickname());
 			pstmt.setString(2, ins.getLoc());

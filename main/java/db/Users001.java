@@ -130,9 +130,12 @@ public class Users001 {
 		this.age_e = age_e;
 	}
 
-	public Users001(String nickname, String loc, String interest1, String interest2, String interest3, String interest4,
-			String interest5, String loc1) {
+	
+
+	public Users001(String id, String nickname, String loc, String interest1, String interest2, String interest3,
+			String interest4, String interest5, String loc1) {
 		super();
+		this.id = id;
 		this.nickname = nickname;
 		this.loc = loc;
 		this.interest1 = interest1;
