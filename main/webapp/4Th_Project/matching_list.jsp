@@ -230,24 +230,17 @@ td:nth-child(odd) {
 	if(gender_u.equals("M")) gender_m = "F";
 	int cnt=0;
 %>
+<script>
+  	function goDetail(usernum, nickname){
+		alert(nickname+"의 프로필로 이동합니다.");
+		location.href="matching_detail.jsp?userno="+usernum;
+  	}
+</script>
 <table class="match-table">
-	<tr><th>No.</th><th>닉네임</th><th>나이</th><th>관심사1</th><th>관심사2</th><th>관심사3</th><th>관심사4</th><th>관심사5</th></tr>
+	<tr><th>No.</th><th>닉네임</th></tr>
         <%for(Users001 u:ulist){%>
-			<tr >
-				<td><%=++cnt%></td><td><%=u.getNickname()%></td><td><%=u.getAge()%></td>
-				<td><%=u.getInterest1()%></td><td><%=u.getInterest2()%></td><td><%=u.getInterest3()%></td><td><%=u.getInterest4()%></td><td><%=u.getInterest5()%></td>
-				<%-- <jsp:useBean id="mat" class="db.Users001" scope="session"/>
-				<%
-					mat.setNickname(u.getNickname());
-					mat.setAge(u.getAge());
-					mat.setLoc(u.getLoc());
-					mat.setInterest1(u.getInterest1());
-					mat.setInterest2(u.getInterest2());
-					mat.setInterest3(u.getInterest3());
-					mat.setInterest4(u.getInterest4());
-					mat.setInterest5(u.getInterest5());
-				%> --%>
-			</tr>
+			<tr ondblclick="goDetail('<%=u.getUserno()%>','<%=u.getNickname()%>')">
+				<td><%=++cnt%></td><td><%=u.getNickname()%></td></tr>
 		<%}%>
 </table>
 

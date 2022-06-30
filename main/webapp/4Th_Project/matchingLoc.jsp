@@ -198,7 +198,9 @@ li > a:hover {
 	</div>
 </div>
 <div id="guard"></div>
-
+<%
+String id = (String)session.getAttribute("userno");
+%>
 <script>
 function gologin(){
 	alert("로그인이 필요한 서비스입니다.");
