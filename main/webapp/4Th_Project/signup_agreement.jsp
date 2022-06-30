@@ -162,7 +162,7 @@ li a:hover {
 	<iframe name="terms" width="100%" height="50%" src="terms.jsp"></iframe><br>
 	<input type="radio" name="agree" id= "agree_o" value="동의합니다.">동의합니다.
 	<input type="radio" name="agree" id= "agree_x"value="동의하지 않습니다.">동의하지 않습니다.<br>
-	<input class="nextform" type="button" name="join" value="가입하기" onclick="check()">
+	<input class="nextform" type="button" name="join" value="다음" onclick="check()">
 </form>
 </div>
 </body>
