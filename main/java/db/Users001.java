@@ -16,11 +16,34 @@ public class Users001 {
 	private String image;
 	private int age_s;
 	private int age_e;
+	private String auth;
 
 	public Users001() {
 		super();
 	}
 	
+	public Users001(String userno, String id, String password, String nickname, String gender, int age, String loc,
+			String interest1, String interest2, String interest3, String interest4, String interest5, String image,
+			int age_s, int age_e, String auth) {
+		super();
+		this.userno = userno;
+		this.id = id;
+		this.password = password;
+		this.nickname = nickname;
+		this.gender = gender;
+		this.age = age;
+		this.loc = loc;
+		this.interest1 = interest1;
+		this.interest2 = interest2;
+		this.interest3 = interest3;
+		this.interest4 = interest4;
+		this.interest5 = interest5;
+		this.image = image;
+		this.age_s = age_s;
+		this.age_e = age_e;
+		this.auth = auth;
+	}
+
 	// 회원가입1
 	public Users001(String id, String password, String nickname, String gender, int age, String loc) {
 		super();
@@ -31,6 +54,21 @@ public class Users001 {
 		this.age = age;
 		this.loc = loc;
 	}	
+	
+	public Users001(String userno, String nickname, String gender, int age, String loc,
+			String interest1, String interest2, String interest3, String interest4, String interest5) {
+		super();
+		this.userno = userno;
+		this.nickname = nickname;
+		this.gender = gender;
+		this.age = age;
+		this.loc = loc;
+		this.interest1 = interest1;
+		this.interest2 = interest2;
+		this.interest3 = interest3;
+		this.interest4 = interest4;
+		this.interest5 = interest5;
+	}
 	
 	public Users001(String nickname, String gender, int age, String loc,
 			String interest1, String interest2, String interest3, String interest4, String interest5) {
@@ -247,6 +285,14 @@ public class Users001 {
 
 	public void setAge_e(int age_e) {
 		this.age_e = age_e;
+	}
+
+	public String getAuth() {
+		return auth;
+	}
+
+	public void setAuth(String auth) {
+		this.auth = auth;
 	}
 	
 }

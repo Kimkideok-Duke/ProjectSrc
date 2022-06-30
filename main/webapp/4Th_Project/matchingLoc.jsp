@@ -199,7 +199,7 @@ li > a:hover {
 </div>
 <div id="guard"></div>
 <%
-String id = (String)session.getAttribute("userno");
+String id = (String)session.getAttribute("id");
 %>
 <script>
 function gologin(){

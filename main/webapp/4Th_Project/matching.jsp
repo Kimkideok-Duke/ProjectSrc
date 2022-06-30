@@ -254,7 +254,6 @@ if(userno==null) userno = "";
 </div>
 <%
 String matLoc = request.getParameter("matLoc");
-String userno = (String)session.getAttribute("userno");
 PreDAO dao = new PreDAO();
 %>
 <div class="container">

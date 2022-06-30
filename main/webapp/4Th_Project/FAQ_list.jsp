@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"
+    import="connect.*"
+	import="db.*"
+	import="faq.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -131,8 +134,8 @@ li a:hover {
 <table>
 	<tr><th>No.</th><th>제목</th><th>작성일</th></tr>
 	<%
-	for(FAQ faq:dao.showFAQInfo(new FAQ(faqno, question, faqdate, answer))){%>
-		<tr><td><%=faq.faqno() %></td><td><%= faq.question()%></td><td><%=faq.faqdate() %></td></tr>
+	for(FAQ faq:dao.showFAQInfo(new FAQ("", "", "",""))){%>
+		<tr><td><%=faq.getFaqno() %></td><td><%= faq.getQuestion()%></td><td><%=faq.getFaqdate() %></td></tr>
 	<%}%>
 
 </table>
