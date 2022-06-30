@@ -277,8 +277,16 @@ if(userno==null) userno = "";
    if(nttitle==null) nttitle="";
    NoticeDAO dao = new NoticeDAO();
 %>
-
-
+<%
+String auth = (String)session.getAttribute("auth");
+if(auth==null) auth="";
+%>
+<script>
+function accessDenied(){
+	alert("글작성 권한이 없습니다.");
+	location.href="notice_list.jsp";
+}
+</script>
 	
 <div id="board">
 <h2>공지사항</h2>
@@ -292,7 +300,11 @@ if(userno==null) userno = "";
 	<%}%>
 </table>
 <div class="board-write">
+	<%if(auth!=null&&auth.equals("manager")){%>
 	<input class="board-write-button" type="button" value="글작성" onclick="location.href='notice_registForm.jsp'">
+	<%}else {%>
+	<input class="board-write-button" type="button" value="글작성" onclick="accessDenied()">
+	<%} %>
 </div>	
 </div>
 

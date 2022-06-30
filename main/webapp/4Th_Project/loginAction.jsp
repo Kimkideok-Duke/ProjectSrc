@@ -24,6 +24,7 @@
 	
 	UserDAO userDAO = new UserDAO();
 	String result = userDAO.login(user.getId(), user.getPassword());
+	String auth = userDAO.getAuth(user.getId(), user.getPassword());
 	if(result == ""){
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
@@ -38,6 +39,7 @@
 		script.println("location.href='main.jsp'");
 		script.println("</script>");
 		session.setAttribute("userno", result);
+		session.setAttribute("auth", auth);
 	}
 %>
 
