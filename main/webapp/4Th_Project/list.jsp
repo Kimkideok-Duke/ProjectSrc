@@ -1,11 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% request.setCharacterEncoding("UTF-8"); %>    
+<%@ page import="board.*" %>
+<%@page import="java.util.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<%
+	BoardDao dao = new BoardDao();
+	List<BoardVo> ls = dao.selectAll();
+	pageContext.setAttribute("ls", ls); // pageContext에 ls 담아서 사용 
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width-device-width", initial-scale="1">
+<%request.setCharacterEncoding("UTF-8"); %>
 <title>Insert title here</title>
 <style>
 body {
@@ -103,50 +113,78 @@ li a:hover {
 	font-size: 20px;
 }
 
+.login{
+	position: fixed;
+	top:5px;
+	left: 1050px;
+	font-family: "Noto Sans KR", sans-serif;
+	font-size: 6px;
+	text-decoration: none;
+	color: rgb(94, 94, 94);
+}
+.logout{
+	position: fixed;
+	top:5px;
+	left: 1100px;
+	font-family: "Noto Sans KR", sans-serif;
+	font-size: 6px;
+	text-decoration: none;
+	color: rgb(94, 94, 94);
+}
+
 #guard{
 	height: 125px;
 	width: 0;
+}
+.board-table {
+	font-family: "Noto Sans KR", sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+	margin: 60px 0 0 0;
+}
+
+th, td {
+	padding: 8px;
+	text-align: left;
+	border-bottom: 1px solid #DDD;
+	text-align: center;
+	font-family: "Noto Sans KR", sans-serif;
+}
+
+th{
+	background-color: rgb(220,220,220);
+}
+
+td{
+	font-size: 12px;
+}
+
+.contents:hover {
+	background-color: rgba(250, 80, 120, 0.1);
+}
+
+.contents > a{
+	text-decoration: none;
 }
 
 #board {
 	position: absolute;
 	background-color: rgba(250, 80, 120, 0.05);
 	width: 80%;
-	height: 500px;
+	height: 600px;
 	left: 125px;
-	padding: 0 0 100px 0;
+	padding: 20px 0 100px 0;
 	color: rgb(94, 94, 94);
 }
-.board-table,td{
-	border: 1px solid rgb(220,220,220);
- 	border-collapse: collapse;
-	}
-.board-table{
-	position: absolute;
-	text-align: center;
-	width: 80%;
-	margin: 10px 0 150px 100px;
-}
-
-td:nth-child(odd) {
-  background-color: #fdc9dfff;
-}
-
-.table-text > input{
-	height: 50px;
-	margin: 0 10px 0 0;
-}
-
-.contents > textarea{
-	height: 400px;
-	margin: 0 10px 0 0;
-}
-
 #board > h2{
-	text-align: center;
+	position: absolute;
+	left: 50px;
+}
+.board-table{
+	margin: 100px 0 0 0;
 }
 
-.insert{
+.board-write-button{
 	position: absolute;
 	appearance: none;
 	font-family: "Noto Sans KR", sans-serif;
@@ -157,24 +195,10 @@ td:nth-child(odd) {
 	background-color: rgb(250, 80, 120);
 	border: none;
 	border-radius: 4px;
-	left: 460px;
-	top: 460px;
+	left: 880px;
+	z-index: 1;
+	bottom: 645px;
 }
-.cancel{
-	position: absolute;
-	appearance: none;
-	font-family: "Noto Sans KR", sans-serif;
-	color: #FFFFFF;
-	font-size: 16px;
-	padding: 5px 10px;
-	cursor: pointer;
-	background-color: rgb(220,220,220);
-	border: none;
-	border-radius: 4px;
-	left: 520px;
-	top: 460px;
-}
-
 
 
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
@@ -182,16 +206,16 @@ td:nth-child(odd) {
 <script src="https://kit.fontawesome.com/99c434d4a4.js" crossorigin="anonymous"></script>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
 </head>
-<body>
 
+<body>
 <%
-	String id = null;
-	if(session.getAttribute("id") != null){
-		id = (String)session.getAttribute("id");
-	}
-	
-	String userno = (String)session.getAttribute("userno");
-	if(userno==null) userno = "";
+// 메인 페이지로 이동했을 때 세션에 값이 담겨있는지 체크
+String id = null;
+if(session.getAttribute("id") != null){
+	id = (String)session.getAttribute("id");
+}
+String userno = (String)session.getAttribute("userno");
+if(userno==null) userno = "";
 %>
 
 <div id="header">
@@ -208,6 +232,18 @@ td:nth-child(odd) {
 			<li><a href="project/notice_list.jsp">커뮤니티</a></li>
 		</ul>
 	</div>
+	<%if(userno.equals("")){%>
+	<div class="login">
+		<a href="login.jsp">LOGIN</a>
+	</div>
+	<%}else{%>
+	<div class="logout">
+		<a href="logoutAction.jsp">LOGOUT</a>
+	</div>
+	<%}%>
+	<div class="signup">
+		<a href="signup_agreement.jsp">JOINUS</a>
+	</div>
 	<div class="user-icon">
 		<span class="material-icons" onclick="location.href='profile.jsp'">account_circle</span>
 	</div>
@@ -219,22 +255,30 @@ td:nth-child(odd) {
 <div id="guard"></div>
 
 
-
- <!-- 제목 글자수 제한: 30자	작성자: 5자 내용:500자 -->
 <div id="board">
-	<h2>글 작성</h2>
-	<form method="post" action="writeAction.jsp">
+	<h2>자유게시판</h2>
 	<table class="board-table">
-		<tr class="table-text"><td>제목</td><td colspan="3"><input type="text" name="bbsTitle" size=98 maxlength=30></td></tr>
-		<tr class="contents"><td>내용</td><td colspan="3"><textarea cols="100" rows="20" name="bbsContent"></textarea></td></tr>
+	<tr>
+		<th>번호</th>
+		<th>제목</th>
+		<th>작성자</th>
+		<th>등록일</th>
+		<th>조회수</th>
+	</tr>
+	<c:forEach var="board" items="${ls}">
+	<tr class="contents" >
+		<td>${board.num}</td>
+		<td><a href="boardDetail.jsp?num=${board.num}">${board.title}</a></td>
+		<td>${board.writer}</td>
+		<td><fmt:formatDate type="both" value="${board.regdate}"/> </td>
+		<td>${board.cnt}</td>
+	</tr>
+	</c:forEach>
 	</table>
-	<input class="insert" type="submit" value="등록" >
-	</form>
-	<input class="cancel" type="button" value="취소" onclick="location.href='board.jsp'">
+	<div class="board-write">
+	<input class="board-write-button" type="button" value="글작성" onclick="location.href='registForm.jsp'">
+	</div>
 </div>
 
-
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script src="js/bootstrap.js"></script>
 </body>
 </html>

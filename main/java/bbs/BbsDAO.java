@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class BbsDAO {
 	
-	private Connection con;
+	private Connection conn;
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 
@@ -17,7 +17,7 @@ public class BbsDAO {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			String info = "jdbc:oracle:thin:@220.73.54.156:1521:xe";
-			con = DriverManager.getConnection(info, "project01", "1111");
+			conn = DriverManager.getConnection(info, "project01", "1111");
 			System.out.println("접속성공!!");
 		} catch (ClassNotFoundException e) {
 			System.out.println("클래스 에러 : " + e.getMessage());
@@ -28,7 +28,8 @@ public class BbsDAO {
 	String getDate() {
 		String sql = "select sysdate from dual";
 		try {
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			setConn();
+			PreparedStatement pstmt = conn.prepareStatement(sql);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				return rs.getString(1);
@@ -43,7 +44,8 @@ public class BbsDAO {
 	public int getNext() {
 		String sql = "select bbsID from bbs order by bbsID desc";
 		try {
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			setConn();
+			PreparedStatement pstmt = conn.prepareStatement(sql);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				return rs.getInt(1) +1; // 게시글 번호 1씩 누적 처리
@@ -59,7 +61,8 @@ public class BbsDAO {
 	public int write(String bbsTitle, String id, String bbsContent) {
 		String sql = "insert into bbs values(?,?,?,?,?,?)";
 		try {
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				setConn();
+				PreparedStatement pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, getNext());
 				pstmt.setString(2, bbsTitle);
 				pstmt.setString(3, id);
@@ -78,7 +81,8 @@ public class BbsDAO {
 		String sql = "select * from bbs where bbsID < ? and bbsAvailable = 1 order by bbsID desc limit 10";
 		ArrayList<Bbs> list = new ArrayList<Bbs>();
 		try {
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			setConn();
+			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, getNext() - (pageNumber -1)*10);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
@@ -100,7 +104,8 @@ public class BbsDAO {
 	public boolean nextPage(int pageNumber) {
 		String sql = "select * from bbs where bbsID < ? and bbsAvailable = 1";
 		try {
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			setConn();
+			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1,  getNext() - (pageNumber - 1)*10);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
@@ -114,6 +119,7 @@ public class BbsDAO {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		
+	
+	
 	}
 }
