@@ -163,8 +163,8 @@ li a:hover {
 %>
 	var isIns = "<%=isIns%>";
 	if(isIns == "Y"){
-		if(confirm("등록성공!!")){
-			location.href="signup_pic.jsp"
+		if(confirm("가입 완료!!")){
+			location.href="main.jsp"
 		}
 	}
 
