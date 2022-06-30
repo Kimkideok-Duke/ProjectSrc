@@ -359,13 +359,13 @@ public class PreDAO {
 	}
 
 
-	/**  회원 등록  **/
+	/**  회원 등록 (6월 30일 : 권한 추가)  **/
 	public void insertUsers(Users001 ins) {
 		try {
 			setConn();
 			con.setAutoCommit(false);
-			String sql = "INSERT INTO users001(userno, id, password, nickname, gender, age, loc)\r\n"
-					+ "			values('U' || seq_userno.nextval, ?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO users001(userno, id, password, nickname, gender, age, loc, auth)\r\n"
+					+ "			values('U' || seq_userno.nextval, ?, ?, ?, ?, ?, ?, 'user')";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, ins.getId());
 			pstmt.setString(2, ins.getPassword());

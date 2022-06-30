@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"
     import="connect.PreDAO"
     import="db.*"%>
+<%@page import="java.util.*,java.io.*"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
@@ -18,14 +19,16 @@ String path = request.getContextPath();
 <jsp:useBean id="users" class="db.Users001" scope="session"/>
 
 <script type="text/javascript">
-
+		
+		var fileName = "";
+		
 	function loadFile(input) {
 		var file = input.files[0];	//선택된 파일 가져오기
 		
 		var name = document.getElementById('fileName');
-		alert(name + "!");
 		name.textContent = file.name;
-		alert(name + "!");
+		fileName = name.textContent;
+		alert("야호!! " + fileName + "이다!!" )
 
 	  	//새로운 이미지 div 추가
 	    var newImage = document.createElement("img");
@@ -48,9 +51,8 @@ String path = request.getContextPath();
 	
 	// 이미지 한장 업로드 유효성 검사
 	function check(){
-		var fileNameObj = document.querySelector("[name=chooseFile]");
-		alert(fileNameObj + "!");
-		if(fileNameObj.value == null || fileNameObj.value == ""){
+		alert(fileName + "!");
+		if(fileName == null || fileName == ""){
 			alert("이미지를 업로드해주세요")
 			return;
 		}
@@ -59,10 +61,9 @@ String path = request.getContextPath();
 	
 <%
 	PreDAO dao = new PreDAO();
-	MultipartRequest multi = new MultipartRequest();
-	String id = users.getId();
-	String fileName = dao.getOriginalFile("chooseFile"); if(fileName == null) fileName="";
 	
+	String fileName = request.getParameter("fileName"); if(fileName == null) fileName = "";
+	String id = users.getId();
 	
 	// 등록 처리를 위한 조건
 	String isIns = "N";
@@ -180,6 +181,7 @@ li a:hover {
 </style>
 
 <body>
+
 <div id="header">
    <div class="banner" href="#">
       <img
@@ -197,7 +199,6 @@ li a:hover {
 </div>
 <div id="guard"></div>
 
-
 <div class="divm">
 	<h1 align="center">회원가입</h1>
 	<form class=loginform method="post" enctype="multipart/form-data">
@@ -205,13 +206,13 @@ li a:hover {
 		<div class="image-show" id="image-show"></div>
 			<label for="chooseFile">
 				<img src="./image_uplod.png" id="empty" width="100" height="100"/><br>
+				<h1 id="fileName" ></h1>
 			</label>
 
 		<input type="file" id="chooseFile" name="chooseFile" accept="image/*" onchange="loadFile(this)">
 		<input class="nextform" type="button" value="등록하기" onclick="check()">
 	</form>
 	<h2>세션 ID : <%=id %></h2>
-	<h6 id="fileName" name="fileName"> file name : </h6>
 
 </div>
 </body>
