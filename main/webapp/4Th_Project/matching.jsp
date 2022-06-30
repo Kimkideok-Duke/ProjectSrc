@@ -200,137 +200,6 @@ li a:hover {
 <div class="matching1">
 	<img src="matching1.JPG">
 </div>
-<%-- <%
-String matLoc = request.getParameter("matLoc");
-String userno = (String)session.getAttribute("userno");
-PreDAO dao = new PreDAO();
-%>
-<form class="loc" name="form">
-<div class="age-dropdown">
-	<div class="age-dropdown1">
-		상대방 나이 <select name='age'>
-		  <option value='' selected>-- 선택 --</option>
-		  <option value='29'>29세</option>
-		  <option value='28'>28세</option>
-		  <option value='27'>27세</option>
-		  <option value='26'>26세</option>
-		  <option value='25'>25세</option>
-		  <option value='24'>24세</option>
-		  <option value='23'>23세</option>
-		  <option value='22'>22세</option>
-		  <option value='21'>21세</option>
-		  <option value='20'>20세</option>
-		</select>
-	</div> ~
-	
-	<div class="age-dropdown2">
-		<select name='age'>
-		  <option value='' selected>-- 선택 --</option>
-		  <option value='29'>29세</option>
-		  <option value='28'>28세</option>
-		  <option value='27'>27세</option>
-		  <option value='26'>26세</option>
-		  <option value='25'>25세</option>
-		  <option value='24'>24세</option>
-		  <option value='23'>23세</option>
-		  <option value='22'>22세</option>
-		  <option value='21'>21세</option>
-		  <option value='20'>20세</option>
-		</select>
-	</div>
-</div>
-
-<%if(matLoc!=null && matLoc.equals("selectloc")){%>
-<div class="loc-checkbox">
-	서울특별시 <input type="checkbox" name="locCheck" value="seoul">
-	경기도 <input type="checkbox" name="locCheck" value="gyeonggido">
-	인천광역시 <input type="checkbox" name="locCheck" value="incheon">
-	부산광역시 <input type="checkbox" name="locCheck" value="busan">
-	대구광역시 <input type="checkbox" name="locCheck" value="daegu"><br>
-	광주광역시 <input type="checkbox" name="locCheck" value="gwangju">
-	대전광역시 <input type="checkbox" name="locCheck" value="daejeon">
-	울산광역시 <input type="checkbox" name="locCheck" value="ulsan">
-	세종특별자치시 <input type="checkbox" name="locCheck" value="sejong">
-	강원도 <input type="checkbox" name="locCheck" value="gangwondo"><br>
-	충청남도 <input type="checkbox" name="locCheck" value="chungcheongnamdo">
-	충청북도 <input type="checkbox" name="locCheck" value="chungcheongbukdo">
-	전라남도 <input type="checkbox" name="locCheck" value="jeollanamdo">
-	전라북도 <input type="checkbox" name="locCheck" value="jeollabukdo"><br>
-	경상남도 <input type="checkbox" name="locCheck" value="gyeongsangnamdo">
-	경상북도 <input type="checkbox" name="locCheck" value="gyeongsangbukdo">
-	제주특별자치도 <input type="checkbox" name="locCheck" value="jeju">
-</div>
-<%}%>
-</form>
-
-<div class="matching-button">
-<%if(matLoc!=null && matLoc.equals("selectloc")){%>
-	<input type="button" name="goMatching" value="매칭하기" onclick="return LocAgeCheck();">
-<%}else{%>
-	<input type="button" name="goMatching" value="매칭하기" onclick="return AgeCheck()">
-<%}%>
-</div>
-<%
-if(matLoc!=null && matLoc.equals("selectloc")){
-	String []locChecks = request.getParameterValues("locCheck");
-	if(locChecks!=null && locChecks.length>2){
-		session.setAttribute("loc1", locChecks[0]);
-		session.setAttribute("loc2", locChecks[1]);
-		session.setAttribute("loc3", locChecks[2]);
-	}else if(locChecks!=null && locChecks.length>1){
-		session.setAttribute("loc1", locChecks[0]);
-		session.setAttribute("loc2", locChecks[1]);
-		session.setAttribute("loc3", locChecks[1]);
-	}else if(locChecks!=null && locChecks.length>0){
-		String locCheck = request.getParameter("locCheck");
-		session.setAttribute("loc1", locCheck);
-		session.setAttribute("loc2", locCheck);
-		session.setAttribute("loc3", locCheck);
-	}
-}else{
-	Users001 u = dao.getUserList(userno);
-	session.setAttribute("loc1", u.getLoc());
-	session.setAttribute("loc2", u.getLoc());
-	session.setAttribute("loc3", u.getLoc());
-}
-%>
-
-
-
-<script type="text/javascript">
-	function LocAgeCheck(){
-		var chk = document.form;
-		var checked_loc = 0;
-		var age = document.querySelectorAll("[name=age]");
-		
-		for (i=0;i<chk.elements.length;i++) 
-		{
-		if ((chk.elements[i].name == "locCheck") &&
-		(chk.elements[i].checked))
-			checked_loc++;
-		}
-		if (checked_loc == 0)
-		{
-			alert("하나 이상의 지역을 선택해야 합니다.")
-			return false;
-		}
-		if(age[0]>age[1]){
-			alert("나이 범위를 올바르게 입력하세요.")
-			return false;
-		}
-		location.href = "matching_list.jsp"
-		return true;
-	}
-	function AgeCheck(){
-		var age = document.querySelectorAll("[name=age]");
-		if(age[0]>age[1]){
-			alert("나이 범위를 올바르게 입력하세요.")
-			return false;
-		}
-		location.href = "matching_list.jsp"
-		return true;
-	}
-</script> --%>
 <%
 String matLoc = request.getParameter("matLoc");
 String userno = (String)session.getAttribute("userno");
@@ -342,6 +211,26 @@ PreDAO dao = new PreDAO();
 	<div class="age-dropdown1">
 		상대방 나이 <select name='age'>
 		  <option value='' selected>-- 선택 --</option>
+		  <option value='49'>49세</option>
+		  <option value='48'>48세</option>
+		  <option value='47'>47세</option>
+		  <option value='46'>46세</option>
+		  <option value='45'>45세</option>
+		  <option value='44'>44세</option>
+		  <option value='43'>43세</option>
+		  <option value='42'>42세</option>
+		  <option value='41'>41세</option>
+		  <option value='40'>40세</option>
+		  <option value='39'>39세</option>
+		  <option value='38'>38세</option>
+		  <option value='37'>37세</option>
+		  <option value='36'>36세</option>
+		  <option value='35'>35세</option>
+		  <option value='34'>34세</option>
+		  <option value='33'>33세</option>
+		  <option value='32'>32세</option>
+		  <option value='31'>31세</option>
+		  <option value='30'>30세</option>
 		  <option value='29'>29세</option>
 		  <option value='28'>28세</option>
 		  <option value='27'>27세</option>
@@ -358,6 +247,26 @@ PreDAO dao = new PreDAO();
 	<div class="age-dropdown2">
 		<select name='age'>
 		  <option value='' selected>-- 선택 --</option>
+		  <option value='49'>49세</option>
+		  <option value='48'>48세</option>
+		  <option value='47'>47세</option>
+		  <option value='46'>46세</option>
+		  <option value='45'>45세</option>
+		  <option value='44'>44세</option>
+		  <option value='43'>43세</option>
+		  <option value='42'>42세</option>
+		  <option value='41'>41세</option>
+		  <option value='40'>40세</option>
+		  <option value='39'>39세</option>
+		  <option value='38'>38세</option>
+		  <option value='37'>37세</option>
+		  <option value='36'>36세</option>
+		  <option value='35'>35세</option>
+		  <option value='34'>34세</option>
+		  <option value='33'>33세</option>
+		  <option value='32'>32세</option>
+		  <option value='31'>31세</option>
+		  <option value='30'>30세</option>
 		  <option value='29'>29세</option>
 		  <option value='28'>28세</option>
 		  <option value='27'>27세</option>
@@ -374,7 +283,7 @@ PreDAO dao = new PreDAO();
 <%if(matLoc!=null && matLoc.equals("selectloc")){%>
   <div class="row">
     <div class="col-25">
-      <label for="loc">지역</label>
+      <label for="loc"></label>
     </div>
 	<div class="loc-checkbox">
 		서울특별시 <input type="radio" name="loc" value="서울특별시" checked="checked">
@@ -420,34 +329,5 @@ function pass(){
 		document.querySelector("form").submit();
     }
 </script>
-<%-- <script>
-	function pass2(){
-		var chk = document.form;
-		var checked_loc = 0;
-		
-		for (i=0;i<chk.elements.length;i++) 
-		{
-		if ((chk.elements[i].name == "loc") &&
-		(chk.elements[i].checked))
-			checked_loc++;
-		}
-		if (checked_loc == 0)
-		{
-			alert("하나 이상의 지역을 선택해야 합니다.")
-			return;
-		}
-		var ageS = document.querySelectorAll("[name=age]");
-		if (ageS[0].value=="" || ageS[1].value=="")
-		{
-			alert("나이를 선택해야 합니다.")
-			return;
-		}
-		if(ageS[0].value>ageS[1].value){
-			alert("나이를 제대로 입력하세요");
-			return;
-		}
-		document.querySelector("form").submit();
-	}
-</script> --%>
 </body>
 </html>

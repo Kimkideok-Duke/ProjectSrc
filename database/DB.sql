@@ -16,7 +16,9 @@ CREATE TABLE USERS001 (
     loc1 VARCHAR2(50),
    	auth varchar2(50)
 );
-
+UPDATE users001
+    SET auth = 'manager'
+WHERE ID='kkd';
 SELECT * FROM users001 ORDER BY userno;
 SELECT count(id) idCnt FROM users001 WHERE id = 123;
 

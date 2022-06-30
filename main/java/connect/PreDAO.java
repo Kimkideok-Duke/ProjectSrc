@@ -45,6 +45,7 @@ public class PreDAO {
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				userList.add(new Users001(
+						rs.getString("userno"),
 						rs.getString("nickname"),
 						rs.getString("gender"),
 						rs.getInt("age"),
