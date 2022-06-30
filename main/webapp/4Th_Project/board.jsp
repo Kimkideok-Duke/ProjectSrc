@@ -197,7 +197,15 @@ td{
 </div>
 <div id="guard"></div>
 
-
+<%
+String id = (String)session.getAttribute("userno");
+%>
+<script>
+function gologin(){
+	alert("로그인이 필요한 서비스입니다.");
+	location.href="login.jsp";
+}
+</script>
 <div id="board">
 <h2>자유게시판</h2>
 	<table class="board-table">
@@ -216,7 +224,11 @@ td{
 	</table>
 	
 	<div class="board-write">
+	<%if(id!=null){%>
 	<input class="board-write-button" type="button" value="글작성" onclick="location.href='board_write.jsp'">
+	<%}else{%>
+	<input class="board-write-button" type="button" value="글작성" onclick="gologin()">
+	<%}%>
 	</div>
 </div>
 

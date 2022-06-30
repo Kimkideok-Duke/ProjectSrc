@@ -169,13 +169,11 @@ li a:hover {
 	</div>
 </div>
 <div id="guard"></div>
-<%
-String id = (String)session.getAttribute("userno");
-%>
+
 <script>
-function gomain(){
+function gologin(){
 	alert("로그인이 필요한 서비스입니다.");
-	location.href="main.jsp";
+	location.href="login.jsp";
 }
 </script>
 <div class="matching1">
@@ -190,7 +188,7 @@ function gomain(){
 		<%if(id!=null){%>
 			<input type="submit" value="확인">
 		<%}else{%>
-			<input type="button" value="확인" onclick="gomain()">
+			<input type="button" value="확인" onclick="gologin()">
 		<%}%>
         </div>
     </form>
