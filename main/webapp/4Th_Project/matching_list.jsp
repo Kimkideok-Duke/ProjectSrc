@@ -217,10 +217,7 @@ td:nth-child(odd) {
 	</div>
 </div>
 <div id="guard"></div>
-
-<div class="matching1">
-	<img src="matching1.JPG">
-</div>
+<body>
 <%	
 	PreDAO dao = new PreDAO();
 	ArrayList<Users001> ulist = (ArrayList)session.getAttribute("matchlist");
@@ -231,38 +228,26 @@ td:nth-child(odd) {
 	if(gender_u.equals("M")) gender_m = "F";
 	int cnt=0;
 %>
-<body>
-<%
-
-
-%>
-
-<%-- <table>
-	<tr><th>No.</th><th>닉네임</th><th>나이</th><th>사는곳</th><th>관심사1</th><th>관심사2</th><th>관심사3</th><th>관심사4</th><th>관심사5</th></tr>
-        <% for(Users001 u:dao.matching(gender_m, loc, age_s, age_e)){%>
-        <tr ondblclick="goDetail(<%=u.getNickname()%>)">
-          <td><%=++cnt%></td><td><%=u.getNickname()%></td><td><%=u.getAge()%></td><td><%=u.getLoc()%></td>
-		<td><%=u.getInterest1()%></td><td><%=u.getInterest2()%></td><td><%=u.getInterest3()%></td><td><%=u.getInterest4()%></td><td><%=u.getInterest5()%></td>
-	</tr>
-        <%}%>
-</table> --%>
 <table class="match-table">
-	<tr><th>No.</th><th>닉네임</th></tr>
+	<tr><th>No.</th><th>닉네임</th><th>나이</th><th>관심사1</th><th>관심사2</th><th>관심사3</th><th>관심사4</th><th>관심사5</th></tr>
         <%for(Users001 u:ulist){%>
-			<tr ondblclick="goDetail(<%=u.getNickname()%>)">
-				<td><%=++cnt%></td><td><%=u.getNickname()%></td></tr>
+			<tr >
+				<td><%=++cnt%></td><td><%=u.getNickname()%></td><td><%=u.getAge()%></td>
+				<td><%=u.getInterest1()%></td><td><%=u.getInterest2()%></td><td><%=u.getInterest3()%></td><td><%=u.getInterest4()%></td><td><%=u.getInterest5()%></td>
+				<%-- <jsp:useBean id="mat" class="db.Users001" scope="session"/>
+				<%
+					mat.setNickname(u.getNickname());
+					mat.setAge(u.getAge());
+					mat.setLoc(u.getLoc());
+					mat.setInterest1(u.getInterest1());
+					mat.setInterest2(u.getInterest2());
+					mat.setInterest3(u.getInterest3());
+					mat.setInterest4(u.getInterest4());
+					mat.setInterest5(u.getInterest5());
+				%> --%>
+			</tr>
 		<%}%>
 </table>
-<script>
-  function goDetail(nickname){
-    alert(nickname+"상세화면 이동");
-    location.href="matching_detail.jsp?deptno="+nickname;
-  }
-</script>
-<%-- <table>
-	<tr><th>이름</th><th>성별</th><th>지역</th><th>나이</th></tr>
-	<tr ondblclick="partnerDetail(<%=dao.getNickname() %>)"><td><%=dao.getNickname() %></td><td><%=dao.getGender() %></td>
-	<td><%=dao.getLoc() %></td><td><%=dao.getAge() %></td></tr>
-</table> --%>
+
 </body>
 </html>

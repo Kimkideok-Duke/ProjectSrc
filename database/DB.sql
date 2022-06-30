@@ -13,10 +13,12 @@ CREATE TABLE USERS001 (
     interest4 varchar2(50),
     interest5 varchar2(50),
     image varchar2(100),
-    loc1 VARCHAR2(50)
+    loc1 VARCHAR2(50),
+   	auth varchar2(50)
 );
-
-DROP TABLE users001;
+UPDATE users001
+    SET auth = 'manager'
+WHERE ID='kkd';
 SELECT * FROM users001 ORDER BY userno;
 SELECT count(id) idCnt FROM users001 WHERE id = 123;
 

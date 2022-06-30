@@ -45,6 +45,7 @@ public class PreDAO {
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				userList.add(new Users001(
+						rs.getString("userno"),
 						rs.getString("nickname"),
 						rs.getString("gender"),
 						rs.getInt("age"),
@@ -359,13 +360,13 @@ public class PreDAO {
 	}
 
 
-	/**  회원 등록  **/
+	/**  회원 등록 (6월 30일 : 권한 추가)  **/
 	public void insertUsers(Users001 ins) {
 		try {
 			setConn();
 			con.setAutoCommit(false);
-			String sql = "INSERT INTO users001(userno, id, password, nickname, gender, age, loc)\r\n"
-					+ "			values('U' || seq_userno.nextval, ?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO users001(userno, id, password, nickname, gender, age, loc, auth)\r\n"
+					+ "			values('U' || seq_userno.nextval, ?, ?, ?, ?, ?, ?, 'user')";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, ins.getId());
 			pstmt.setString(2, ins.getPassword());
@@ -1215,7 +1216,7 @@ public class PreDAO {
 		while(rs.next()) {
 			u = new Users001(rs.getString("userno"), rs.getString("id"), rs.getString("password"), rs.getString("nickname"),
 					rs.getString("gender"), rs.getInt("age"), rs.getString("loc"), rs.getString("interest1"), rs.getString("interest2"),
-					rs.getString("interest3"),rs.getString("interest4"),rs.getString("interest5"),rs.getString("loc1")
+					rs.getString("interest3"),rs.getString("interest4"),rs.getString("interest5")
 					);
 		}
 		// 자원해제(열린순서 반대 방향)
@@ -1271,8 +1272,7 @@ public class PreDAO {
 					+ "		interest2 = ?,\r\n"
 					+ "		interest3 = ?,\r\n"
 					+ "		interest4 = ?,\r\n"
-					+ "		interest5 = ?,\r\n"
-					+ "		loc1 = ?\r\n"
+					+ "		interest5 = ?\r\n"
 					+ "	WHERE id=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, ins.getNickname());
@@ -1282,7 +1282,6 @@ public class PreDAO {
 			pstmt.setString(5, ins.getInterest3());
 			pstmt.setString(6, ins.getInterest4());
 			pstmt.setString(7, ins.getInterest5());
-			pstmt.setString(8, ins.getLoc1());
 			pstmt.setString(9, ins.getId());
 			pstmt.executeUpdate();
 			con.commit();

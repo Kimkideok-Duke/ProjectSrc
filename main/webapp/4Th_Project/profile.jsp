@@ -241,12 +241,9 @@ input {
             String interest3 = request.getParameter("interest3"); if(interest3 == null) interest3 = "";
             String interest4 = request.getParameter("interest4"); if(interest4 == null) interest4 = "";
             String interest5 = request.getParameter("interest5"); if(interest5 == null) interest5 = "";
-            String loc1 = request.getParameter("loc1"); if(loc1 == null) loc1 = "";
-            String loc2 = request.getParameter("loc2"); if(loc2 == null) loc2 = "";
-            String loc3 = request.getParameter("loc3"); if(loc3 == null) loc3 = "";
             
             // 수정 처리를 위한 객체 매개변수 전달
-            u = new Users001(uid,nickname,loc,interest1,interest2,interest3,interest4,interest5,loc1);
+            u = new Users001(uid,nickname,loc,interest1,interest2,interest3,interest4,interest5);
             dao.updateProfile(u); // 수정 처리
          }
       // 등록된 내용 조회
@@ -317,10 +314,6 @@ input {
     <tr>    
         <th><label for="interest5">관심사5</label></th>
         <td><input type="text" id="interest5" name="interest5" placeholder="관심사 입력.." value="<%=u.getInterest5()%>"/></td>
-    </tr>
-    <tr>   
-        <th><label for="loc1">관심지역1</label></th>
-        <td><input type="text" id="loc1" name="loc1" placeholder="관심지역 입력.." value="<%=u.getLoc1()%>"/></td>
     </tr>
   </table>  
     <div>
