@@ -285,6 +285,7 @@ if(userno==null) userno = "";
 
 <h2>userno : <%=session.getAttribute("userno")%></h2>
 <h2>id :  <%=id%></h2>
+<h2>auth : <%=session.getAttribute("auth") %></h2>
 </body>
 </html>
 

@@ -56,6 +56,26 @@ public class UserDAO {
 		}
 		return ""; // 오류
 	}
+	
+	public String getAuth(String id, String password) {
+		System.out.println(id+"\t"+password);
+	
+		String sql = "select auth from users001 where id = ? and password = ?";
+		try {
+			 setConn();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, password);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				return rs.getString("auth");
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return ""; // 오류
+	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

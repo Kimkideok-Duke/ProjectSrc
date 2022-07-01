@@ -249,7 +249,7 @@ if(userno==null) userno = "";
 
 
 <%
-String id = (String)session.getAttribute("userno");
+String id = (String)session.getAttribute("id");
 %>
 <script>
 function gologin(){
