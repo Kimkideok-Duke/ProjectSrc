@@ -599,146 +599,9 @@ public class PreDAO {
 	}
 
 	/**   공지 조회   **/
-	public ArrayList<Notice> showNoticeInfo(String noticeno) {
-		ArrayList<Notice> notiList = new ArrayList<Notice>();
-		try {
-			setConn();
-			String sql = "SELECT nttitle, ntcontent\n"
-					+ "FROM notice\n"
-					+ "WHERE noticeno = ?";
-			System.out.println(sql);
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, noticeno);
-			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				notiList.add(new Notice(
-						rs.getString("noticeno"),
-						rs.getString("nttitle"),
-						rs.getDate("ntdate"),
-						rs.getString("ntcontent")
-					)
-				);
-			}
-			rs.close();
-			pstmt.close();
-			con.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (Exception e) {
-			System.out.println("일반 예외 : " + e.getMessage());
-		} finally {
-			if(rs!=null) {
-				try {
-					rs.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			if(pstmt!=null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			if(con!=null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		}
-		return notiList;
-	}
-
+	
 	/**   공지 등록   **/
-	public void insertNotice(Notice ins) {
-		try {
-			setConn();
-			con.setAutoCommit(false);
-			String sql = "INSERT INTO notice \n"
-					+ "values(?, ?, sysdate, ?)";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, ins.getNoticeno());
-			pstmt.setString(2, ins.getNttitle());
-			pstmt.setString(3, ins.getNtcontent());
-			pstmt.executeUpdate();
-			con.commit();
-			pstmt.close();
-			con.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			System.out.println("DB 에러 : " + e.getMessage());
-			// commit 전에 예외가 발생하면 rollback 처리
-		} catch (Exception e) {
-			System.out.println("일반 예외 : " + e.getMessage());
-		} finally {
-			if(pstmt!=null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			if(con!=null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		}
-	}
-
-	/**   공지 수정   **/
-	public void updateNotice(Notice ins) {
-		try {
-			setConn();
-			con.setAutoCommit(false);
-			String sql = "UPDATE notice\n"
-					+ "    SET nttitle = ?,\n"
-					+ "        ntcontent= ?\n"
-					+ "WHERE noticeno = ?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, ins.getNttitle());
-			pstmt.setString(2, ins.getNtcontent());
-			pstmt.setString(3, ins.getNoticeno());
-			pstmt.executeUpdate();
-			con.commit();
-			pstmt.close();
-			con.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			System.out.println("DB 에러 : " + e.getMessage());
-			// commit 전에 예외가 발생하면 rollback 처리
-		} catch (Exception e) {
-			System.out.println("일반 예외 : " + e.getMessage());
-		} finally {
-			if(pstmt!=null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			if(con!=null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		}
-	}
+	
 
 	/**   공지 삭제   **/
 	public void deleteNotice(String noticeno) {
@@ -1325,7 +1188,6 @@ public class PreDAO {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		PreDAO dao = new PreDAO();
-		dao.insertNotice(new Notice("1", "첫공지", "냉무"));
 	}
 
 }

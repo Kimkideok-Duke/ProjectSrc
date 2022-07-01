@@ -281,7 +281,16 @@ if(userno==null) userno = "";
 	</div>
 </div>
 <div id="guard"></div>
-
+<%
+String auth = (String)session.getAttribute("auth");
+if(auth==null) auth="";
+%>
+<script>
+function accessDenied(){
+	alert("글작성 권한이 없습니다.");
+	location.href="notice_list.jsp";
+}
+</script>
 <div id="board">
 	<h2>공지사항</h2>
 	<table class="board-table">
@@ -302,7 +311,11 @@ if(userno==null) userno = "";
 	</c:forEach>
 	</table>
 	<div class="notice-write">
+	<%if(auth!=null&&auth.equals("manager")){%>
 	<input class="notice-write-button" type="button" value="글작성" onclick="location.href='notice_registForm.jsp'">
+	<%}else {%>
+	<input class="board-write-button" type="button" value="글작성" onclick="accessDenied()">
+	<%} %>
 	</div>
 </div>
 
