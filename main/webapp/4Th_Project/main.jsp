@@ -234,7 +234,7 @@ if(userno==null) userno = "";
 </div>
 <div id="guard"></div>
 
-	<div class="contents-slider" onclick="location.href='/webapp/project/notice_list.jsp'">
+	<div class="contents-slider" onclick="location.href='notice_list.jsp'">
 	<!-- 공지사항/이벤트 게시글 등록 후에 post 클래스에 onclick 추가로 변경  -->
 		<div class="post" style="background-color:#F8C8D2;">공지사항</div>
 		<div class="post" style="background-color:#EE7E96;">이벤트</div>
