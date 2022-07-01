@@ -3,6 +3,15 @@
     import="notice.*"
     import="java.util.*"
     %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<%
+	NoticeDAO dao = new NoticeDAO();
+	List<Notice> notiList = dao.showNoticeInfo();
+	pageContext.setAttribute("notiList", notiList); // pageContext에 notiList 담아서 사용 
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -204,7 +213,7 @@ td{
 
 }
 
-.board-write-button{
+.notice-write-button{
 	position: absolute;
 	appearance: none;
 	font-family: "Noto Sans KR", sans-serif;
@@ -272,28 +281,29 @@ if(userno==null) userno = "";
 	</div>
 </div>
 <div id="guard"></div>
-<%
-   String nttitle = request.getParameter("nttitle");
-   if(nttitle==null) nttitle="";
-   NoticeDAO dao = new NoticeDAO();
-%>
 
-
-	
 <div id="board">
-<h2>공지사항</h2>
-<table class="board-table">
-	<tr><th>No.</th><th>제목</th><th>작성일</th><th>내용</th></tr>
-	<%for(Notice n:dao.showNoticeInfo(new Notice(nttitle))){%>
-	<tr class="contents"><td><%=n.getNoticeno() %></td>
-	<td><%=n.getNttitle() %></td>
-	<td><%=n.getNtdate() %></td>
-	<td><%=n.getNtcontent() %></td></tr>	
-	<%}%>
-</table>
-<div class="board-write">
-	<input class="board-write-button" type="button" value="글작성" onclick="location.href='notice_registForm.jsp'">
-</div>	
+	<h2>공지사항</h2>
+	<table class="board-table">
+	<tr>
+		<th>No.</th>
+		<th>제목</th>
+		<th>등록일</th>
+		<th>내용</th>
+	</tr>
+	
+	<c:forEach var="board" items="${notiList}">
+	<tr class="contents" >
+		<td>${notice.noticeno}</td>
+		<td>${notice.nttitle}</td>
+		<td>${notice.ntdate}</td>
+		<td>${notice.ntcontent}</td>
+	</tr>
+	</c:forEach>
+	</table>
+	<div class="notice-write">
+	<input class="notice-write-button" type="button" value="글작성" onclick="location.href='notice_registForm.jsp'">
+	</div>
 </div>
 
 </body>

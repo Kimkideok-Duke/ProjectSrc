@@ -141,7 +141,7 @@ li > a:hover {
 .matching1{
 	position: absolute;
 	left: 560px;
-	top: 180px;
+	top: 220px;
 }
 
 .loc-radio{
@@ -152,8 +152,8 @@ li > a:hover {
 .loc-checkbox{
 	position: absolute;
 	text-align: center;
-	left: 360px;
-	top: 380px;
+	left: 365px;
+	top: 350px;
 	background-color: rgba(250, 80, 120, 0.2);
 	padding: 5px;
 	border: none;
@@ -170,15 +170,15 @@ li > a:hover {
 
 .age-dropdown{
 	position: absolute;
-	left: 500px;
-	top: 500px;
+	left: 510px;
+	top: 430px;
 	z-index: 10;
 }
 
 .matching-button{
 	position: absolute;
-	left: 470px;
-	top: 480px;
+	left: 480px;
+	top: 460px;
 	padding: 80px;
 	
 }
@@ -254,7 +254,7 @@ if(userno==null) userno = "";
 </div>
 <%
 String matLoc = request.getParameter("matLoc");
-String userno = (String)session.getAttribute("userno");
+
 PreDAO dao = new PreDAO();
 %>
 <div class="container">

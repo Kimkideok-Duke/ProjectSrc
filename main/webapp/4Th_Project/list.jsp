@@ -272,7 +272,7 @@ if(userno==null) userno = "";
 	<h2>자유게시판</h2>
 	<table class="board-table">
 	<tr>
-		<th>번호</th>
+		<th>No.</th>
 		<th>제목</th>
 		<th>작성자</th>
 		<th>등록일</th>
@@ -290,7 +290,7 @@ if(userno==null) userno = "";
 	</c:forEach>
 	</table>
 	<div class="board-write">
-	<input class="board-write-button" type="button" value="글작성" onclick="location.href='notice_registForm.jsp'">
+	<input class="board-write-button" type="button" value="글작성" onclick="location.href='registForm.jsp'">
 	</div>
 </div>
 

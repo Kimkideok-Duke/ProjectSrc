@@ -8,7 +8,14 @@ public class Notice {
 	private Date ntdate;
     private String ntcontent;
     
-    public Notice(String nttitle) {
+    
+    public Notice(String nttitle, String ntcontent) {
+		super();
+		this.nttitle = nttitle;
+		this.ntcontent = ntcontent;
+	}
+
+	public Notice(String nttitle) {
 		super();
 		this.nttitle = nttitle;
 	}

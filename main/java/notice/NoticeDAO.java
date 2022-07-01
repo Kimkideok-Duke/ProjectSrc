@@ -2,15 +2,25 @@ package notice;
 
 import java.sql.*;
 import java.util.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
-import board.BoardVo;
 
 
 public class NoticeDAO {
 	
 	private Connection con;
 	private PreparedStatement pstmt;
+	private Statement stmt;
 	private ResultSet rs;
+	
 	public void setConn() throws SQLException {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -22,30 +32,33 @@ public class NoticeDAO {
 		}
 	}
 	
+/*
+	private int noticeno;
+    private String nttitle;
+	private Date ntdate;
+    private String ntcontent;
+    
+ * */	
+	
 	// 조회
-	public ArrayList<Notice> showNoticeInfo(Notice sch) {
+	public List<Notice> showNoticeInfo() {
+		String sql = "select noticeno, nttitle, ntdate, ntcontent from notice order by noticeno desc";
 		ArrayList<Notice> notiList = new ArrayList<Notice>();
 		try {
 			setConn();
-			String sql = "select * \r\n"
-					+ "from notice \r\n"
-					+ "where nttitle like '%'|| ? ||'%'";
+			
 			System.out.println(sql);
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, sch.getNoticeno());
-			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				notiList.add(new Notice(
-						rs.getInt("noticeno"),
-						rs.getString("nttitle"),
-						rs.getDate("ntdate"),
-						rs.getString("ntcontent")
-					)
-				);
+			stmt = con.createStatement();
+			rs = stmt.executeQuery(sql);
+			while(rs.next()){
+				Notice n = new Notice(
+						rs.getInt(1),
+						rs.getString(2),
+						rs.getDate(3),
+						rs.getString(4));
+				notiList.add(n);
 			}
-			rs.close();
-			pstmt.close();
-			con.close();
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -60,9 +73,9 @@ public class NoticeDAO {
 					e.printStackTrace();
 				}
 			}
-			if(pstmt!=null) {
+			if(stmt!=null) {
 				try {
-					pstmt.close();
+					stmt.close();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -191,7 +204,7 @@ public class NoticeDAO {
 	// 삽입
 	public int insert(Notice n) {
 		String sql="insert into notice (noticeno, nttitle, ntdate, ntcontent) \r\n"
-				+ "	values (notice_seq.nextval, ?, sysdate, ?)";
+				+ "	values (seq_noticeno.nextval, ?, sysdate, ?)";
 		int ret = -1;
 		try {
 			setConn();
@@ -224,7 +237,7 @@ public class NoticeDAO {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		NoticeDAO dao = new NoticeDAO();
 	}
 
 	
