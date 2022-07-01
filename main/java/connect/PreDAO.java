@@ -1145,7 +1145,7 @@ public class PreDAO {
 			pstmt.setString(5, ins.getInterest3());
 			pstmt.setString(6, ins.getInterest4());
 			pstmt.setString(7, ins.getInterest5());
-			pstmt.setString(9, ins.getId());
+			pstmt.setString(8, ins.getId());
 			pstmt.executeUpdate();
 			con.commit();
 			pstmt.close();

@@ -246,7 +246,7 @@ input {
 
 
 <%
-
+	// 아이디 받아오기
 	String id = null;
 	if(session.getAttribute("id") != null){
 		id = (String)session.getAttribute("id");
@@ -293,7 +293,7 @@ input {
    }
 </script>
 
-<h1 style="text-align : center;">프로필(<%=id %>)(<%=u.getId() %>)</h1>
+<h1 style="text-align : center;">프로필</h1>
 <div class="container">
   <form method="post">
   <table style="align : center;">
